@@ -1,0 +1,436 @@
+@import "src/styles";
+
+h1 {
+  text-align: center;
+  margin-bottom: 0.75em;
+}
+/***********************************
+ SEARCH BAR
+************************************/
+.search-bar {
+  width: 100%;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  border-radius: 60px;
+  padding: 5px 24px;
+}
+.search-bar-bg-light {
+  background: #DCDCDC;
+}
+.search-bar-bg-dark {
+  background: #373b3e;
+}
+.search-bar input {
+  background: transparent;
+  flex: 1;
+  border: 0;
+  outline: none;
+  padding: 12px 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.search-bar input::placeholder {
+  font-weight: normal;
+}
+.bi.bi-search.light::before {
+  cursor: pointer;
+  font-size: 28px;
+  -webkit-text-stroke: 2px #FFFFFF;
+}
+.bi.bi-search.dark::before {
+  -webkit-text-stroke: 2px #000000;
+  font-size: 28px;
+  cursor: pointer;
+}
+#submission-form {
+  color: #FFF;
+  border-radius: 25px;
+  max-width: 900px;
+  margin: auto;
+}
+section:nth-child(2) {
+  background: var(--dark-blue);
+  padding: 1em 2em 20px 2em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-content: center;
+}
+section:nth-child(3) {
+  background: var(--dark-blue);
+  display: flex;
+  flex-direction: column;
+  padding: 0 2em 2em 2em;
+  textarea {
+    height: 100px;
+    padding: 0.5em;
+  }
+}
+section:last-child {
+  background: #354c76;
+  padding: 1em 2em;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 25px 25px;
+}
+section:last-child > div:first-child {
+  width: 100%;
+}
+.form-select.form-select-height.form-custom {
+  min-height: 38.2px;
+  padding: 0 2.25rem 0 .75rem;
+}
+.bi.bi-x-circle-fill.modal-circle {
+  font-size: 30px;
+  cursor: pointer;
+  transition: color .4s ease;
+}
+.bi.bi-x-circle-fill.modal-circle:hover {
+  color: #D00000;
+}
+
+/***********************************
+ FORM TITLE
+************************************/
+section:first-child {
+  gap: 7px;
+  display: flex;
+  justify-content: space-between;
+  background: #000;
+  padding: 2em;
+  border-radius: 25px 25px 0 0;
+}
+section:first-child > div:first-child {
+  gap: 7px;
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+section:first-child > div > div > input {
+  color: #FFFFFF;
+  background: #202020;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  box-sizing: border-box;
+  caret-color: #FFFFFF;
+  width: 100%;
+}
+section:first-child > div > div > input.invalid-input-border {
+  border: solid 1px #dc3545;
+}
+section:first-child > div:first-child > div:first-child > input {
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+}
+section:first-child > div:first-child > div:last-child > input {
+  font-size: 16px;
+  padding: 0.25rem 1rem;
+}
+
+/***********************************
+ FORM TITLE ICON
+************************************/
+.bi-diagram-2-fill::before {
+  content: "\f2eb";
+  font-size: 80px;
+}
+.bi-plus-lg {
+  position: relative;
+  left: 28px;
+  top: 7px;
+}
+.bi-pencil-fill {
+  position: relative;
+  left: 37px;
+  top: 8px;
+}
+.bi-plus-lg::before {
+  font-size: 40px;
+  -webkit-text-stroke: 5px var(--android-green);
+}
+.bi-pencil-fill::before {
+  font-size: 40px;
+  color: #6495ed;
+  transform: scale(-1,1);
+}
+
+/***********************************
+ SELECT DROPDOWN
+************************************/
+.form-group {
+  position: relative;
+}
+.list-items {
+  position: absolute;
+  border-radius: 8px;
+  padding: 16px;
+  background: #FFFFFF;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 6;
+  width: 100%;
+  border: 1px solid #ced4da;
+}
+.list-items .item {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0 15px;
+  border-radius: 8px;
+}
+.list-items .item:hover {
+  background: #e7edfe;
+}
+.item .item-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+}
+.item .checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  width: 16px;
+  border-radius: 4px;
+  margin-right: 12px;
+  border: 1.5px solid #c0c0c0;
+  transition: all 0.3s ease-in;
+}
+.item.checked .checkbox {
+  background: #4070f4;
+  border-color: #4070f4;
+}
+.checkbox .bi-check-lg {
+  color: #fff;
+  font-size: 11px;
+  transform: scale(0);
+}
+.item.checked .bi-check-lg {
+  transform: scale(1);
+}
+.own-property-input-list {
+  list-style: none;
+}
+.own-property-input {
+  width: 100%;
+  border: none;
+  height: 50px;
+  transition: 0.3s;
+  padding: 0 15px;
+  align-items: center;
+  border-radius: 8px;
+}
+.own-property-input:hover {
+  background: #e7edfe;
+}
+
+/***********************************
+ FORM SELECTS
+************************************/
+.form-select-height {
+  min-height: 37px;
+  height: 100%;
+}
+
+.mult-item {
+  background: #ced4da;
+  padding: 0.2rem 0.5rem;
+  margin: 0.2rem;
+  display: inline-block;
+  cursor: pointer;
+}
+.invalid-input {
+  color: #dc3545;
+}
+.invalid-input-border {
+  border-color: #dc3545;
+}
+.bi.bi-pencil-fill {
+  cursor: pointer;
+}
+.bi.bi-pencil-fill:hover {
+  color: #006bab;
+}
+.form-control.readonly {
+  background: #e9ecef;
+  color: #495057;
+  border: 1px solid #ced4da;
+}
+.true-value {
+  background: #9EFF9E;
+  text-align: center;
+}
+.false-value {
+  background: #FFC7C7;
+  text-align: center;
+}
+.unknown-value {
+  color: #FFFFFF;
+  background: #A0A0A0;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  font-weight: bold;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.modal-header {
+  color: #FFFFFF;
+  background: #000000;
+}
+
+/***********************************
+ RESET PROPERTY OPTION (IN EDIT MODE)
+************************************/
+.reset {
+  color: #b3bccc;
+  cursor: pointer;
+  display: flex;
+  font-weight: bold;
+  height: 10px;
+  justify-content: end;
+  transition: .4s;
+}
+.reset:hover {
+  color: #FFFFFF;
+}
+
+/***********************************
+ MODE EDIT
+************************************/
+#mode-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
+/***********************************
+ TABLE
+************************************/
+table {
+  z-index: 2;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  border-radius: 12px 12px 0 0;
+}
+td , th {
+  padding: 0.5em;
+  font-size: 15px;
+  text-align: left;
+}
+th {
+  padding: 1.5em 1.5em;
+  background-color: var(--dark-blue);
+  color: #fafafa;
+  font-family: 'Open Sans', Sans-serif, serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 1;
+  position: sticky;
+  top: 0;
+}
+th > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 0 0.2rem;
+}
+tr {
+  width: 100%;
+  background-color: #FAFAFA;
+  font-family: 'Montserrat', sans-serif;
+}
+tr > td:first-child {
+  width: 165px;
+}
+tr > td:last-child {
+  text-align: center;
+}
+tbody > tr {
+  border-bottom: solid transparent 6px;
+  cursor: pointer;
+  transition: color .4s ease;
+  td:first-child {
+    font-weight: bold;
+  }
+}
+tbody > tr:hover {
+  background: var(--light-blue-2);
+  color: #000000;
+  td {
+    background: inherit;
+  }
+}
+
+#table-description {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0;
+  span:last-child {
+    font-weight: bold;
+  }
+}
+
+.own-property-input-list {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  input {
+    outline: none;
+  }
+  input:focus {
+    background: #e7edfe;
+  }
+  span {
+    background: var(--android-green);
+    border: none;
+    border-radius: 8px;
+    color: #FFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    transition: .4s;
+  }
+  span:hover {
+    background: #28b26a;
+  }
+}
+
+.reset-btn {
+  padding: 1.5em 5em;
+  margin: 0;
+}
+
+#remarks {
+  border-radius: .375rem;
+}
+
+@media (max-width: 950px) {
+  section:first-child {
+    align-items: center;
+    flex-direction: column-reverse;
+    padding: 1em 2em;
+
+    div:first-child {
+      width: 100%;
+    }
+  }
+  section:nth-child(2) {
+    grid-template-columns: 1fr;
+  }
+}

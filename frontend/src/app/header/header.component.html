@@ -1,0 +1,45 @@
+<div id="disclaimer">
+  <span style="font-weight: bold">Disclaimer:</span>
+  <span>&nbsp;This website was created as a part of a bachelor's thesis by
+  Tobiáš Gačko in collaboration with Dominik Bork of the&nbsp;
+  <a href="https://www.big.tuwien.ac.at/">Business Informatics Group (BIG)</a> &nbsp;institute.
+  </span>
+</div>
+<header>
+  <div>
+    <span>
+      <button *ngIf="!phoneMode" aria-label="Suggest a Modeling Tool"
+              class="create-edit-link btn btn-success"
+              routerLink="/modeling_tool/create">
+        <span *ngIf="!phoneMode">Suggest a Modeling Tool</span>
+        <i class="bi bi-plus-lg"></i>
+        <i class="bi bi-diagram-2-fill"></i>
+      </button>
+      <button *ngIf="!phoneMode" aria-label="Update a Modeling Tool"
+              class="create-edit-link btn btn-primary"
+              routerLink="/modeling_tool/edit">
+        <span *ngIf="!phoneMode">Update a Modeling Tool</span>
+        <i class="bi bi-pencil-fill"></i>
+        <i class="bi bi-diagram-2-fill"></i>
+      </button>
+      <button class="create-edit-phone btn btn-success" *ngIf="phoneMode">
+        <i class="bi bi-plus-lg"></i>
+        <span class="bi bi-diagram-2-fill" routerLink="/modeling_tool/create"></span>
+      </button>
+      <button class="create-edit-phone btn btn-primary" *ngIf="phoneMode">
+        <i class="bi bi-pencil-fill"></i>
+        <span class="bi bi-diagram-2-fill" routerLink="/modeling_tool/edit"></span>
+      </button>
+    </span>
+    <span id="tool-categories">
+      <a aria-label="Homepage" routerLink="/">
+        <i class="bi bi-diagram-2-fill logo"></i>
+      </a>
+    </span>
+    <span>
+      <i class="bi bi-sun-fill" *ngIf="theme === 0" (click)="switchTheme()"></i>
+      <i class="bi bi-moon-fill" *ngIf="theme === 1" (click)="switchTheme()"></i>
+    </span>
+  </div>
+  <div id="sub-header-design"></div>
+</header>

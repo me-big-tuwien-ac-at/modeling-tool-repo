@@ -1,0 +1,964 @@
+<h1 class="title">
+  Modeling Tools
+</h1>
+
+<div id="information">
+  <section>
+    <h2 class="information-title" (click)="sections.generalExpanded = !sections.generalExpanded">
+    <span>
+      <i class="bi bi-chevron-down" *ngIf="sections.generalExpanded"></i>
+      <i class="bi bi-chevron-right" *ngIf="!sections.generalExpanded"></i>
+    </span>
+      <span>General</span>
+    </h2>
+    <div class="information-details" *ngIf="sections.generalExpanded">
+      <h3>What is a Modeling Tool?</h3>
+      <div>
+        <div>
+          <p>
+            Modeling Tools aim to provide their users with a set of graphical symbols so that a certain
+            concept (e.g. a process, a model or a system) can be abstracted to its core components
+            providing a comprehensive overview of all the necessary information on first glance. The
+            resulting models generally take of the form of a diagram.
+          </p>
+          <p>
+            As of right now there is a
+            large variety of modeling tools but the current trend leans towards the area of "Web
+            Modeling". Web-based modeling tools allow a user to access a modeling application over
+            the network using HTTP. This provides a variety of advantages in some cases, such as as
+            open cloud storage or real time collaboration.
+          </p>
+          <p>
+            An important subset of modeling is also
+            "Metamodeling". It is the process of modeling a model of a model, meaning it is a model
+            defining the structure, syntax and rules by which other models have to abide to.
+          </p>
+        </div>
+        <div class="image {{theme === 0 ? 'bg-dark-light' : 'bg-light-dark'}}">
+          <img id="big-er" src="assets/tool_screenshots/bigER.png" alt="bigER diagram"
+               (click)="zoomIn('assets/tool_screenshots/bigER.png', 'bigER diagram', 1)">
+          <div>
+            An Entity-Relationship (ER) diagram modelled with
+            <a href="https://marketplace.visualstudio.com/items?itemName=BIGModelingTools.erdiagram" class="{{theme === 0 ? '' : 'link-dark-theme'}}">
+              bigER Modeling Tool
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="information-title" (click)="sections.examplesExpanded = !sections.examplesExpanded">
+      <span>
+        <i class="bi bi-chevron-down" *ngIf="sections.examplesExpanded"></i>
+        <i class="bi bi-chevron-right" *ngIf="!sections.examplesExpanded"></i>
+      </span>
+      <span>Examples</span>
+    </h2>
+    <div id="gallery" *ngIf="sections.examplesExpanded">
+      <div class="image {{theme === 0 ? 'bg-dark-light' : 'bg-light-dark'}}">
+        <img id="bpmn-io" src="assets/tool_screenshots/BPMN.io.png" alt="bigER diagram"
+             (click)="zoomIn('assets/tool_screenshots/BPMN.io.png', 'BPMN.io', 0)">
+        <div>
+          A Business Process Model modelled with
+          <a href="https://bpmn.io/" class="{{theme === 0 ? '' : 'link-dark-theme'}}">
+            BPMN.io
+          </a>
+        </div>
+      </div>
+      <div class="image {{theme === 0 ? 'bg-dark-light' : 'bg-light-dark'}}">
+        <img id="diagrams-net" src="assets/tool_screenshots/diagrams.net.png" alt="diagrams.net"
+             (click)="zoomIn('assets/tool_screenshots/diagrams.net.png', 'diagrams.net', 0)">
+        <div>
+          A diagram modelled with
+          <a href="https://app.diagrams.net/" class="{{theme === 0 ? '' : 'link-dark-theme'}}">
+            app.diagrams.net
+          </a>
+        </div>
+      </div>
+      <div class="image {{theme === 0 ? 'bg-dark-light' : 'bg-light-dark'}}">
+        <img id="umletino" src="assets/tool_screenshots/UMLetino.png" alt="UMLetino"
+             (click)="zoomIn('assets/tool_screenshots/UMLetino.png', 'UMLetino', 1)">
+        <div>
+          A UML Class diagram modelled with
+          <a href="https://www.umletino.com/umletino.html" class="{{theme === 0 ? '' : 'link-dark-theme'}}">
+            UMLetino
+          </a>
+        </div>
+      </div>
+      <div class="image {{theme === 0 ? 'bg-dark-light' : 'bg-light-dark'}}">
+        <img id="dotuml" src="assets/tool_screenshots/DotUML.png" alt="DotUML"
+             (click)="zoomIn('assets/tool_screenshots/DotUML.png', 'DotUML', 1)">
+        <div>
+          A UML Use Case diagram modelled with
+          <a href="https://app.diagrams.net/" class="{{theme === 0 ? '' : 'link-dark-theme'}}">
+            DotUML
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="information-title" (click)="sections.detailsExpanded = !sections.detailsExpanded">
+      <span>
+        <i class="bi bi-chevron-down" *ngIf="sections.detailsExpanded"></i>
+        <i class="bi bi-chevron-right" *ngIf="!sections.detailsExpanded"></i>
+      </span>
+      <span>Table columns</span>
+    </h2>
+    <div class="information-details" *ngIf="sections.detailsExpanded">
+      <section>
+        <h3>Technology</h3>
+        <p>
+          Not all modeling tools in the list below are not just applications, but also frameworks/libraries, which can be
+          integrated into your own application.
+        </p>
+        <ul>
+          <li>
+            <b>App:</b> The features of the computer program are accessible as soon as the user
+            gains access to it (e.g., connecting to the website of the modeling tool).
+          </li>
+          <li>
+            <b>Framework:</b> Can be incorporated into a users own project without needing to
+            do changes to the implementation.
+          </li>
+          <li>
+            <b>Library:</b> The user can download the functionalities but cannot incorporate
+            them into the frontend. Instead can use it during the development of code.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>Category</h3>
+        <p>
+          Each modeling application targets a different type of user which can be expressed many ways, such as
+          usability, enforcing syntax for modeling rules, allowing real time collaboration, and much more. Based on
+          similar characteristics, we outlined the following categories, which might make it easier for a user to find
+          a tool which matches her or his expectations.
+        </p>
+        <ul>
+          <li>
+            <b>Text-based Modeling Tools:</b> Tools that are usually either frameworks or libraries which the user can
+            install and include in their projects. While the user can see the output visually, there is
+            no "draw and drop" functionality, meaning a user cannot use the mouse cursor and drag
+            a shape onto the modeling window, but instead must type the diagram.
+          </li>
+          <li>
+            <b>Graphical Modeling Tools:</b> Following category usually provides usability and syntactical support when creating a
+            model. The design occurs graphically, where the user most of the times has a window in
+            the center where the diagram can be modelled with shapes and arrows being provided in
+            a tool bar on the side.
+          </li>
+          <li>
+            <b>Drawing Tools:</b> The main goal of drawing tools lies in providing an easy to use application where a user
+            can use any shapes he or she wants and position as well connect arbitrarily. Unlike
+            graphical modeling tools, they do not provide any additional support and warnings if a
+            user designs a diagram that does not follow a set of rules of a certain modeling language.
+            Drawing tools are usually free and open source as it allows users to submit additional
+            templates as well as shapes.
+          </li>
+          <li>
+            <b>Business Tools:</b> Modeling tools below usually do not provide syntactical support, therefore not belonging
+            to the category "graphical modeling tools", but they also are not available for free nor
+            are they open source. These tools are usually licensed but provide perks such as real
+            time collaboration, linking the diagrams to excel tables etc. Following tools are usually
+            intended for brainstorming and planning overviews in simple fashions such as mind maps
+            or flowcharts. The reason for categorizing the tools as "business tools" is that while a
+            regular person will avoid the fees required for the license and instead use a graphical
+            modeling tool or a drawing tools, employees in a business will most likely already have
+            these apps on their working computer, paid for by their employer.
+          </li>
+          <li>
+            <b>Metamodeling Tools:</b> Following modeling tools usually do not provide syntactical support, therefore do not
+            belong to the category "graphical modeling tools", but they also are not available for free nor
+            are they open source. These tools are usually licensed but provide perks such as real
+            time collaboration, linking the diagrams to excel tables etc. Following tools are usually
+            intended for brainstorming and planning overviews in simple fashions such as mind maps
+            or flowcharts. The reason for categorizing the tools as "business tools" is that while a
+            regular person will avoid the fees required for the license and instead use a graphical
+            modeling tool or a drawing tools, employees in a business will most likely already have
+            these apps on their working computer, paid for by their employer.
+          </li>
+          <li>
+            <b>Mixed textual and graphical modeling tools:</b> Modeling tools from this category are a combination of
+            text-based modeling tools and graphical modeling tools, meaning the choice is up to the user if the model
+            will be created by typing the structure, or by creating it with the mouse cursor.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>License</h3>
+        <p>
+          Each modeling tool falls under a specific license, e.g., the software license for ArgoUML is Eclipse Public
+          License (EPL), which is a free software license. To allow a better overview over which modeling tool is
+          either free, paid or a combination of both, we simply differentiate between the following three license types
+          below:
+        </p>
+        <ul>
+          <li><b>Free:</b> All of the contents within the modeling tool are accessible to the user</li>
+          <li>
+            <b>Restricted free content, commercial:</b> Some contents within the modeling tool are accessible to the user,
+            the rest is only available if the user pays for an additional license.
+          </li>
+          <li><b>Commercial:</b> The contents within the application are only available if the user pays for the access.</li>
+        </ul>
+      </section>
+    </div>
+  </section>
+</div>
+
+<h2 class="information-title">List of Modeling Tools</h2>
+
+<div id="options">
+  <div class="option" (click)="filterDisplayed = !filterDisplayed">
+    <span>
+      <i class="bi bi-chevron-down" *ngIf="filterDisplayed"></i>
+      <i class="bi bi-chevron-right" *ngIf="!filterDisplayed"></i>
+    </span>
+    <span>Filter Options</span>
+    <span></span>
+  </div>
+  <div id="download">
+    <span>Found {{modelingToolsFiltered.length}} results</span>
+    <span>
+    <button class="btn btn-primary">
+        <a title="Download Modeling Tools as JSON" download="modeling_tools.json" [href]="downloadModelingToolsAsJson()">
+          <span><i class="bi bi-download"></i></span>
+          <span *ngIf="!phoneMode">Download as JSON</span>
+          <span *ngIf="phoneMode">JSON</span>
+        </a>
+      </button>
+
+      <button class="btn btn-success">
+        <a title="Download Modeling Tools as CSV" download="modeling_tools.csv" [href]="downloadModelingToolsAsCsv()">
+          <span><i class="bi bi-download"></i></span>
+          <span *ngIf="!phoneMode">Download as CSV</span>
+          <span *ngIf="phoneMode">CSV</span>
+        </a>
+      </button>
+    </span>
+  </div>
+</div>
+
+<div class="web-modeling-grid {{filterDisplayed ? '' : 'without-filter'}}">
+  <div class="search-column" *ngIf="filterDisplayed">
+    <div id="filter-columns">
+      <h4 (click)="filterColumnsDisplayed = !filterColumnsDisplayed">
+        <span>
+          <i class="bi bi-chevron-down" *ngIf="filterColumnsDisplayed"></i>
+          <i class="bi bi-chevron-right" *ngIf="!filterColumnsDisplayed"></i>
+        </span>
+        <span>Filter Table Columns</span>
+        <span></span>
+      </h4>
+      <form class="filter-columns" *ngIf="filterColumnsDisplayed">
+        <div class="property-column" (click)="checkedColumns.openSource = !checkedColumns.openSource">
+          <span>Open Source</span>
+          <span class="checkbox {{checkedColumns.openSource ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.openSource"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.appFramework = !checkedColumns.appFramework">
+          <span>Technology</span>
+          <span class="checkbox {{checkedColumns.appFramework ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.appFramework"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.webApp = !checkedColumns.webApp">
+          <span>Available as Web App</span>
+          <span class="checkbox {{checkedColumns.webApp ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.webApp"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.desktopApp = !checkedColumns.desktopApp">
+          <span>Available as Desktop App</span>
+          <span class="checkbox {{checkedColumns.desktopApp ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.desktopApp"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.category = !checkedColumns.category">
+          <span>Category</span>
+          <span class="checkbox {{checkedColumns.category ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.category"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.modelingLanguages = !checkedColumns.modelingLanguages">
+          <span>Modeling Languages</span>
+          <span class="checkbox {{checkedColumns.modelingLanguages ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.modelingLanguages"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.sourceCodeGeneration = !checkedColumns.sourceCodeGeneration">
+          <span>Source Code Generation</span>
+          <span class="checkbox {{checkedColumns.sourceCodeGeneration ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.sourceCodeGeneration"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.cloudService = !checkedColumns.cloudService">
+          <span>Cloud Service</span>
+          <span class="checkbox {{checkedColumns.cloudService ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.cloudService"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.license = !checkedColumns.license">
+          <span>License</span>
+          <span class="checkbox {{checkedColumns.license ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.license"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.loginRequired = !checkedColumns.loginRequired">
+          <span>Log-in required</span>
+          <span class="checkbox {{checkedColumns.loginRequired ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.loginRequired"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.realTimeCollab = !checkedColumns.realTimeCollab">
+          <span>Real Time Collaboration</span>
+          <span class="checkbox {{checkedColumns.realTimeCollab ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.realTimeCollab"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.creator = !checkedColumns.creator">
+          <span>Creator</span>
+          <span class="checkbox {{checkedColumns.creator ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.creator"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.os = !checkedColumns.os">
+          <span>Platform</span>
+          <span class="checkbox {{checkedColumns.os ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.os"></i>
+          </span>
+        </div>
+        <div class="property-column" (click)="checkedColumns.programmingLanguage = !checkedColumns.programmingLanguage">
+          <span>Programming Language used</span>
+          <span class="checkbox {{checkedColumns.programmingLanguage ? 'checked' : ''}}">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.programmingLanguage"></i>
+          </span>
+        </div>
+        <button class="reset-btn" (click)="optimizeColumns()">
+          Optimize columns
+        </button>
+      </form>
+    </div>
+
+    <div id="filter-tools">
+      <h4 (click)="filterToolsDisplayed = !filterToolsDisplayed">
+        <span>
+          <i class="bi bi-chevron-down" *ngIf="filterToolsDisplayed"></i>
+          <i class="bi bi-chevron-right" *ngIf="!filterToolsDisplayed"></i>
+        </span>
+        <span>Filter Modeling Tools</span>
+        <span></span>
+      </h4>
+      <form class="filter-columns" *ngIf="filterToolsDisplayed">
+        <div>
+          <label for="searchTool">
+            Modeling Tool Name
+          </label>
+          <input type="text" name="searchTool" id="searchTool" class="form-control"
+                 [(ngModel)]="modelingToolSearch.name" (ngModelChange)="searchModelingTool()">
+        </div>
+        <div>
+          <label for="open-source">
+            Open Source
+          </label>
+          <div class="input-group">
+            <select id="open-source"
+                    name="open-source"
+                    style="border-radius: .375rem"
+                    class="form-select {{modelingToolSearch.openSource === null || modelingToolSearch.openSource === undefined ? 'bg-white' : ''}} {{modelingToolSearch.openSource === false ? 'false-value' : (modelingToolSearch.openSource === true ? 'true-value' : '')}}"
+                    [(ngModel)]="modelingToolSearch.openSource"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div class="form-group" (clickOutside)="searchTechnologyChecked = false">
+          <label for="searchTechnology">Technology</label>
+          <div class="input-group">
+            <div style="border-radius: .375rem"
+                 class="form-select bg-white form-select-height"
+                 (click)="searchTechnologyChecked = !searchTechnologyChecked">
+              <span class="mult-item"
+                    *ngFor="let tech of modelingToolSearch.technology"
+                    (click)="deleteSearchTech(tech);$event.stopPropagation()">
+                {{tech.substring(0,1)}}{{tech.substring(1).toLowerCase()}}
+                <i class="bi bi-x"></i>
+              </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="searchTechnology" *ngIf="searchTechnologyChecked">
+            <ul class="list-items">
+              <li class="item {{searchTechStored(tech) ? 'checked' : ''}}"
+                  *ngFor="let tech of getTechnologyEnum()"
+                  (click)="addRemoveSearchTechnology(tech)">
+              <span class="checkbox">
+                <i class="bi bi-check-lg" *ngIf="searchTechStored(tech)"></i>
+              </span>
+                <span class="item-text">{{tech.substring(0,1)}}{{tech.substring(1).toLowerCase()}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <label for="web-app">
+            Web App
+          </label>
+          <div class="input-group">
+            <select id="web-app"
+                    name="web-app"
+                    style="border-radius: .375rem"
+                    class="form-select {{modelingToolSearch.webApp === null || modelingToolSearch.webApp === undefined ? 'bg-white' : ''}} {{modelingToolSearch.webApp === false ? 'false-value' : (modelingToolSearch.webApp === true ? 'true-value' : '')}}"
+                    [(ngModel)]="modelingToolSearch.webApp"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="desktop-app">
+            Desktop App
+          </label>
+          <div class="input-group">
+            <select id="desktop-app"
+                    name="desktop-app"
+                    style="border-radius: .375rem"
+                    class="form-select {{modelingToolSearch.desktopApp === null || modelingToolSearch.desktopApp === undefined ? 'bg-white' : ''}} {{modelingToolSearch.desktopApp === false ? 'false-value' : (modelingToolSearch.desktopApp === true ? 'true-value' : '')}}"
+                    [(ngModel)]="modelingToolSearch.desktopApp"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="category">
+            Category
+          </label>
+          <div class="input-group">
+            <select id="category"
+                    name="category"
+                    style="border-radius: .375rem"
+                    class="form-select bg-white"
+                    [(ngModel)]="modelingToolSearch.category"
+                    (ngModelChange)="searchModelingTool()">
+              <option [ngValue]="undefined"></option>
+              <option [ngValue]="'BUSINESS_TOOL'">Business Tool</option>
+              <option [ngValue]="'DRAWING_TOOL'">Drawing Tool</option>
+              <option [ngValue]="'GRAPHICAL_MODELING_TOOL'">Graphical Modeling Tool</option>
+              <option [ngValue]="'TEXT_BASED_MODELING_TOOL'">Text-based Modeling Tool</option>
+              <option [ngValue]="'METAMODELING_TOOL'">Metamodeling Tool</option>
+              <option [ngValue]="'MINDMAP_TOOL'">Mindmap Tool</option>
+              <option [ngValue]="'MIXED_TEXTUAL_AND_DRAWING_TOOL'">Mixed Textual and Drawing Tool</option>
+              <option [ngValue]="'MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL'">Mixed Textual and Graphical Modeling Tool</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div class="form-group" (clickOutside)="searchModelingLanguagesChecked = false">
+          <label for="modeling-languages">Modeling Languages</label>
+          <div class="input-group">
+            <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
+                 (click)="searchModelingLanguagesChecked = !searchModelingLanguagesChecked">
+              <span class="mult-item"
+                    *ngFor="let language of modelingToolSearch.modelingLanguages"
+                    (click)="deleteSearchModelingLanguage(language);$event.stopPropagation()">
+                {{language}}
+                <i class="bi bi-x"></i>
+              </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="modeling-languages" *ngIf="searchModelingLanguagesChecked">
+            <ul class="list-items">
+              <li class="item {{searchModelingLanguageStored(language) ? 'checked' : ''}}"
+                  *ngFor="let language of modelingLanguages"
+                  (click)="addRemoveSearchModelingLanguage(language)">
+                <span class="checkbox">
+                  <i class="bi bi-check-lg"></i>
+                </span>
+                <span class="item-text">
+                  {{language}}
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <label for="selectLicense">
+            License
+          </label>
+          <select name="selectLicense"
+                  id="selectLicense"
+                  style="border-radius: .375rem"
+                  class="form-select"
+                  [(ngModel)]="modelingToolSearch.license"
+                  (ngModelChange)="searchModelingTool()">
+            <option [ngValue]="undefined"></option>
+            <option [ngValue]="'FREE'">Free</option>
+            <option [ngValue]="'RESTRICTED_FREE_AND_COMMERCIAL'">Restricted free content and additional commercial features</option>
+            <option [ngValue]="'COMMERCIAL'">Commercial</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div>
+          <label for="login">
+            Log-in required?
+          </label>
+          <div class="input-group">
+            <select id="login"
+                    name="login"
+                    style="border-radius: .375rem"
+                    class="form-select {{modelingToolSearch.loginRequired === null || modelingToolSearch.loginRequired === undefined ? 'bg-white' : ''}} {{modelingToolSearch.loginRequired === false ? 'false-value' : (modelingToolSearch.loginRequired === true ? 'true-value' : '')}}"
+                    [(ngModel)]="modelingToolSearch.loginRequired"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="real-time-collab">
+            Real Time Collaboration
+          </label>
+          <div class="input-group">
+            <select name="real-time-collab"
+                    id="real-time-collab"
+                    style="border-radius: .375rem"
+                    class="form-select {{modelingToolSearch.realTimeCollab === null || modelingToolSearch.realTimeCollab === undefined ? 'bg-white' : ''}} {{modelingToolSearch.realTimeCollab === false ? 'false-value' : (modelingToolSearch.realTimeCollab === true ? 'true-value' : '')}}"
+                    [(ngModel)]="modelingToolSearch.realTimeCollab"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="undefined"></option>
+              <option class="false-value" [ngValue]="false">Unavailable</option>
+              <option class="true-value" [ngValue]="true">Available</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="searchCreator">
+            Creator
+          </label>
+          <input type="text"
+                 name="searchCreator"
+                 id="searchCreator"
+                 class="form-control"
+                 [(ngModel)]="modelingToolSearch.creator"
+                 (ngModelChange)="searchModelingTool()">
+        </div>
+        <div class="form-group" (clickOutside)="searchPlatformChecked = false">
+          <label for="searchPlatform">Platform</label>
+          <div class="input-group">
+            <div class="form-select bg-white form-select-height"
+                 style="border-radius: .375rem"
+                 (click)="searchPlatformChecked = !searchPlatformChecked">
+              <span class="mult-item"
+                    *ngFor="let platform of modelingToolSearch.platform"
+                    (click)="deleteSearchPlatform(platform);$event.stopPropagation()">
+                {{platform.substring(0,1)}}{{platform.substring(1).toLowerCase()}}
+                <i class="bi bi-x"></i>
+              </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="searchPlatform" *ngIf="searchPlatformChecked">
+            <ul class="list-items">
+              <li class="item {{searchPlatformStored(platform) ? 'checked' : ''}}"
+                  *ngFor="let platform of platforms"
+                  (click)="addRemoveSearchPlatform(platform)">
+              <span class="checkbox">
+                <i class="bi bi-check-lg" *ngIf="searchPlatformStored(platform)"></i>
+              </span>
+                <span class="item-text">{{platform.substring(0,1)}}{{platform.substring(1).toLowerCase()}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group" (clickOutside)="searchProgrammingLanguageChecked = false">
+          <label for="searchProgrammingLanguage">Programming Language</label>
+          <div class="input-group">
+            <div class="form-select bg-white form-select-height"
+                 style="border-radius: .375rem"
+                 (click)="searchProgrammingLanguageChecked = !searchProgrammingLanguageChecked">
+            <span class="mult-item"
+                  *ngFor="let language of modelingToolSearch.programmingLanguage"
+                  (click)="deleteSearchProgrammingLanguage(language);$event.stopPropagation()">
+              {{language === 'C%2B%2B' ? 'C++' : (language.substring(0,1) + language.substring(1).toLowerCase())}}
+              <i class="bi bi-x"></i>
+            </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="searchProgrammingLanguage" *ngIf="searchProgrammingLanguageChecked">
+            <ul class="list-items">
+              <li class="item {{searchProgrammingLanguageStored(language) ? 'checked' : ''}}"
+                  *ngFor="let language of programmingLanguages"
+                  (click)="addRemoveSearchProgrammingLanguage(language)">
+              <span class="checkbox">
+                <i class="bi bi-check-lg" *ngIf="searchProgrammingLanguageStored(language)"></i>
+              </span>
+                <span class="item-text">{{language.substring(0,1)}}{{language.substring(1).toLowerCase()}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button class="reset-btn" (click)="resetSearch()">
+          Reset
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modeling-tools-column">
+    <table *ngIf="modelingToolsFiltered.length > 0" (resized)="tableWidthHeight()">
+      <thead>
+      <tr>
+        <th class="sorting-arrows" (click)="sortColumn('name')">
+          <div>
+            <span></span>
+            <span>Name</span>
+            <span>
+              <div>
+                <i class="bi bi-triangle-fill {{selectedOrdered('name', -1) ? 'half-opacity' : ''}}"></i>
+              </div>
+              <div>
+                <i class="bi bi-triangle-fill downwards {{selectedOrdered('name', 1) ? 'half-opacity' : ''}}"></i>
+              </div>
+            </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.openSource" class="sorting-arrows" (click)="sortColumn('openSource')">
+          <div>
+            <span></span>
+            <span>Open Source</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('openSource', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('openSource', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.appFramework" class="sorting-arrows" (click)="sortColumn('technology')">
+          <div>
+            <span></span>
+            <span>Technology</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('technology', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('technology', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.webApp"
+            class="sorting-arrows"
+            (click)="sortColumn('webApp')">
+          <div>
+            <span></span>
+            <span>Available as Web App</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('webApp', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('webApp', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.desktopApp"
+            class="sorting-arrows"
+            (click)="sortColumn('desktopApp')">
+          <div>
+            <span></span>
+            <span>Available as Desktop App</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('desktopApp', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('desktopApp', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.category" class="sorting-arrows" (click)="sortColumn('category')">
+          <div>
+            <span></span>
+            <span>Category</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('category', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('category', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.modelingLanguages"
+            class="sorting-arrows"
+            (click)="sortColumn('modelingLanguages')">
+          <div>
+            <span></span>
+            <span>Modeling Language(s)</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('modelingLanguages', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('modelingLanguages', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.sourceCodeGeneration" class="sorting-arrows" (click)="sortColumn('sourceCodeGeneration')">
+          <div>
+            <span></span>
+            <span>Source Code Generation</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('sourceCodeGeneration', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('sourceCodeGeneration', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.cloudService" class="sorting-arrows" (click)="sortColumn('cloudService')">
+          <div>
+            <span></span>
+            <span>Cloud Service Available</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('cloudService', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('cloudService', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.license" class="sorting-arrows" (click)="sortColumn('license')">
+          <div>
+            <span></span>
+            <span>License</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('license', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('license', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.loginRequired" class="sorting-arrows" (click)="sortColumn('loginRequired')">
+          <div>
+            <span></span>
+            <span>Log-in required?</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('loginRequired', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('loginRequired', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.realTimeCollab" class="sorting-arrows" (click)="sortColumn('realTimeCollab')">
+          <div>
+            <span></span>
+            <span>Real Time Collaboration Available</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('realTimeCollab', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('realTimeCollab', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.creator" class="sorting-arrows" (click)="sortColumn('creator')">
+          <div>
+            <span></span>
+            <span>Creator(s)</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('creator', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('creator', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.os" class="sorting-arrows" (click)="sortColumn('platform')">
+          <div>
+            <span></span>
+            <span>Platform</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('platform', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('platform', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.programmingLanguage" class="sorting-arrows" (click)="sortColumn('programmingLanguage')">
+          <div>
+            <span></span>
+            <span>Programming Language(s) used</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill {{selectedOrdered('programmingLanguage', -1) ? 'half-opacity' : ''}}"></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards {{selectedOrdered('programmingLanguage', 1) ? 'half-opacity' : ''}}"></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th></th> <!-- Reserved for the edit of a modeling tool column -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tool of modelingToolsFiltered">
+        <td>
+          <a href="{{tool.link}}">{{tool.name}}</a>
+        </td>
+        <td *ngIf="checkedColumns.openSource"
+            class="{{tool.openSource ? 'true-value' : (tool.openSource !== undefined && tool.openSource !== null ? 'false-value' : 'unknown-value')}}">
+          {{tool.openSource ? 'Yes' : (tool.openSource !== undefined && tool.openSource !== null ? 'No' : 'Unknown')}}
+        </td>
+        <td *ngIf="checkedColumns.appFramework"
+            class="{{tool.technology === undefined || tool.technology === null || tool.technology.length === 0 ? 'unknown-value' : (theme === 0 ? 'td-light' : 'td-dark')}}">
+          <div *ngFor="let technology of tool.technology">
+            {{getTechnologyAsString(technology)}}
+          </div>
+          <div *ngIf="tool.technology === undefined || tool.technology === null || tool.technology.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td *ngIf="checkedColumns.webApp"
+            class="{{tool.webApp ? 'true-value' : (tool.webApp !== undefined && tool.webApp !== null ? 'false-value' : 'unknown-value')}}">
+          {{tool.webApp ? 'Yes' : (tool.webApp !== undefined && tool.webApp !== null ? 'No' : 'Unknown')}}
+        </td>
+        <td *ngIf="checkedColumns.desktopApp"
+            class="{{tool.desktopApp ? 'true-value' : (tool.desktopApp !== undefined && tool.desktopApp !== null ? 'false-value' : 'unknown-value')}}">
+          {{tool.desktopApp ? 'Yes' : (tool.desktopApp !== undefined && tool.desktopApp !== null ? 'No' : 'Unknown')}}
+        </td>
+        <td *ngIf="checkedColumns.category"
+            class="{{tool.category === undefined || tool.category === null ? 'unknown-value' : (theme === 0 ? 'td-light' : 'td-dark')}}">
+          {{getCategoryAsString(tool.category)}}
+        </td>
+        <td *ngIf="checkedColumns.modelingLanguages"
+            class="{{tool.modelingLanguages === undefined || tool.modelingLanguages === null ? 'unknown-value' : (theme === 0 ? 'td-light' : 'td-dark')}}">
+          <div *ngFor="let language of tool.modelingLanguages">
+            {{language}}
+          </div>
+          <div *ngIf="tool.modelingLanguages === undefined || tool.modelingLanguages === null || tool.modelingLanguages.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td *ngIf="checkedColumns.sourceCodeGeneration"
+            class="{{tool.sourceCodeGeneration ? 'true-value' : (tool.sourceCodeGeneration !== undefined && tool.sourceCodeGeneration !== null ? 'false-value' : 'unknown-value')}}">
+          {{tool.sourceCodeGeneration ? 'Yes' : (tool.sourceCodeGeneration !== undefined && tool.sourceCodeGeneration !== null ? 'No' : 'Unknown')}}
+        </td>
+        <td *ngIf="checkedColumns.cloudService"
+            class="{{tool.cloudService ? 'true-value' : (tool.cloudService !== undefined && tool.cloudService !== null ? 'false-value' : 'unknown-value')}}">
+          {{tool.cloudService ? 'Yes' : (tool.cloudService !== undefined && tool.cloudService !== null ? 'No' : 'Unknown')}}
+        </td>
+        <td *ngIf="checkedColumns.license"
+            class="{{tool.license === undefined || tool.license === null ? 'unknown-value' : (theme === 0 ? 'td-light' : 'td-dark')}}">
+          {{getLicenseAsString(tool.license)}}
+        </td>
+        <td *ngIf="checkedColumns.loginRequired"
+            class="{{tool.loginRequired ? 'true-value' : (tool.loginRequired !== undefined && tool.loginRequired !== null ? 'false-value' : 'unknown-value')}}">
+          {{tool.loginRequired ? 'Yes' : (tool.loginRequired !== undefined && tool.loginRequired !== null ? 'No' : 'Unknown')}}
+        </td>
+        <td *ngIf="checkedColumns.realTimeCollab"
+            class="{{tool.realTimeCollab ? 'true-value' : (tool.realTimeCollab !== undefined && tool.realTimeCollab !== null ? 'false-value' : 'unknown-value')}}">
+          {{tool.realTimeCollab ? 'Yes' : (tool.realTimeCollab !== undefined && tool.realTimeCollab !== null ? 'No' : 'Unknown')}}
+        </td>
+        <td *ngIf="checkedColumns.creator"
+            class="{{tool.creator === undefined || tool.creator === null || tool.creator.length === 0 ? 'unknown-value' : (theme === 0 ? 'td-light' : 'td-dark')}}">
+          <div *ngFor="let creator of tool.creator">
+            {{creator}}
+          </div>
+          <div *ngIf="tool.creator === undefined || tool.creator === null || tool.creator.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td *ngIf="checkedColumns.os"
+            class="{{tool.platform === undefined || tool.platform === null ? 'unknown-value' : (theme === 0 ? 'td-light' : 'td-dark')}}">
+          <div *ngFor="let platform of tool.platform">
+            {{getPlatformAsString(platform)}}
+          </div>
+          <div *ngIf="tool.platform === undefined || tool.platform === null || tool.platform.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td *ngIf="checkedColumns.programmingLanguage"
+            class="{{tool.programmingLanguage === undefined || tool.programmingLanguage === null ? 'unknown-value' : (theme === 0 ? 'td-light' : 'td-dark')}}">
+          <div *ngFor="let language of tool.programmingLanguage">
+            {{language}}
+          </div>
+          <div *ngIf="tool.programmingLanguage === undefined || tool.programmingLanguage === null || tool.programmingLanguage.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td class="{{theme === 0 ? 'td-light' : 'td-dark'}}"><i class="bi bi-pencil-fill" [routerLink]="'modeling_tool/edit/' + tool.id"></i></td>
+      </tr>
+      </tbody>
+    </table>
+    <div id="no-match" *ngIf="modelingToolsFiltered.length === 0">
+      There are no matches to your query
+    </div>
+  </div>
+</div>
+
+<div *ngIf="imgZoomedIn.zoomedIn">
+  <span id="close">×</span>
+  <div class="image-bg"></div>
+  <img class="image-zoom {{imgZoomedIn.directionExpansion == 0 ? 'height' : 'width'}}" src="{{imgZoomedIn.src}}" alt="{{imgZoomedIn.alt}}" (clickOutside)="zoomOut()">
+</div>
+
+<div *ngIf="displayConfirmation">
+  <div id="confirmation"
+       class="fadeInTop pop-up-position"
+       (clickOutside)="closeConfirmationWindow()">
+    <div>
+      <span id="close-confirmation" (click)="displayConfirmation = 0">×</span>
+    </div>
+    <div>
+      <p>Thank you for your Modeling Tool suggestion!</p>
+      <i class="bi bi-check"></i>
+    </div>
+  </div>
+  <div class="image-bg"></div>
+</div>
