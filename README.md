@@ -27,7 +27,7 @@ regular users. More details are available the website.
 <details>
    <summary>UML Class Diagram of the backend entities</summary>
 
-   <img src="./documentation/uml_class_diagram.png" alt="UML Class Diagram" width="700px">
+   <img src="./documentation/uml_class_diagram.png" alt="UML Class Diagram">
 </details>
 
 
@@ -61,9 +61,9 @@ regular users. More details are available the website.
         </tr>
         <tr>
             <td>Build & Dependency Management</td>
-            <td>
+            <td style="align-items: baseline; display: flex;">
                 <div>Maven 3.x.x</div>
-                <div></div>
+                <div>npm 9.x.x</div>
             </td>
         </tr>
         <tr>
@@ -81,7 +81,7 @@ Open the backend folder and the frontend folder contained in the root folder sep
 ### Backend
 
 You can start the backend application through your command line or your IDE (e.g., Intellij).
-To execute backend through the command line, enter the following command:
+To execute the backend through the command line, enter the following command:
 
 ```
 mvn spring-boot:run
@@ -97,7 +97,7 @@ then open the "Edit Configurations..." window and enter the following commands
    <img src="./documentation/edit_configurations.png" alt="Edit Configurations Screenshot">
 </details>
 
-IF you want to have a functional Email Service, then you also need to specify your Email and Password within the file 
+If you want to have a functional Email Service, then you also need to specify your Email and Password within the file 
 ``backend/src/main/resources/application.properties`` under the properties
 
 ```
@@ -131,7 +131,7 @@ screenshot below, simply delete the file ``frontend/.angular``, enter ``npm inst
 <details>
    <summary>Angular error</summary>
 
-   <img src="./documentation/angular_error.png" width="1400px">
+   <img src="./documentation/angular_error.png">
 </details>
 
 ### Optional
@@ -144,10 +144,3 @@ in Intellij with ``Ctrl`` + ``Shift`` + ``F``) with the official link .
 
 Homepage - section "List of Modeling Tools"
 <img src="./documentation/list_of_modeling_tools.png">
-
-<style>
-    td {
-        align-items: baseline;
-        display: flex;
-    }
-</style>
