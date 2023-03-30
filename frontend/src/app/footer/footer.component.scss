@@ -20,10 +20,18 @@ footer > div {
   gap: 15px;
   margin-bottom: 15px;
 }
-#company-information > div {
+#company-information > div > div {
   display: flex;
   gap: 10px;
   justify-content: center;
+  a {
+    text-decoration: none;
+  }
+}
+#company-information > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 ul {
   padding: 0;
