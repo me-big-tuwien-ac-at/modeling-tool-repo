@@ -1091,7 +1091,7 @@
     "modelingLanguages": ["UML", "ER", "SysML"],
     "sourceCodeGeneration": true,
     "cloudService": true,
-    "license": "FREE",
+    "license": "RESTRICTED_FREE_AND_COMMERCIAL",
     "loginRequired": false,
     "realTimeCollab": false,
     "creator": ["MKLabs Co. Ltd."],
