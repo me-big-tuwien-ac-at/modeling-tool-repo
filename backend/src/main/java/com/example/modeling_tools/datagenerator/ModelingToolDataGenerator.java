@@ -1,6 +1,6 @@
 package com.example.modeling_tools.datagenerator;
 
-import com.example.modeling_tools.entity.ModelingTool;
+import com.example.modeling_tools.entity.ModelingToolVerified;
 import com.example.modeling_tools.entity.properties.ModelingLanguage;
 import com.example.modeling_tools.entity.properties.Platform;
 import com.example.modeling_tools.entity.properties.ProgrammingLanguage;
@@ -188,7 +188,7 @@ public class ModelingToolDataGenerator {
             List<ProgrammingLanguage> programmingLanguages = getProgrammingLanguages(getJsonArray(object, "programmingLanguages"));
 
             repository.save(
-                    new ModelingTool(
+                    new ModelingToolVerified(
                             name,
                             link,
                             openSource,
@@ -210,17 +210,17 @@ public class ModelingToolDataGenerator {
 
             // Assign to each modeling tool, platform and programming language the modeling tools they are referencing
             for (ModelingLanguage language : modelingLanguages) {
-                List<ModelingTool> plTools = modelingLanguageRepository.findModelingToolByModelingLanguageId(language.getId());
+                List<ModelingToolVerified> plTools = modelingLanguageRepository.findModelingToolByModelingLanguageId(language.getId());
                 language.setModelingTools(plTools);
                 modelingLanguageRepository.save(language);
             }
             for (Platform p : platform) {
-                List<ModelingTool> plTools = platformRepository.findModelingToolByPlatformId(p.getId());
+                List<ModelingToolVerified> plTools = platformRepository.findModelingToolVerifiedByPlatformId(p.getId());
                 p.setModelingTools(plTools);
                 platformRepository.save(p);
             }
             for (ProgrammingLanguage language : programmingLanguages) {
-                List<ModelingTool> plTools = repository.findModelingToolByProgrammingLanguageId(language.getId());
+                List<ModelingToolVerified> plTools = repository.findModelingToolVerifiedByProgrammingLanguageId(language.getId());
                 language.setModelingTools(plTools);
                 programmingLanguagesRepository.save(language);
             }

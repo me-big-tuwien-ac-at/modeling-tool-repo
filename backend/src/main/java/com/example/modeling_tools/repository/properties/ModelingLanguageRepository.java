@@ -1,6 +1,6 @@
 package com.example.modeling_tools.repository.properties;
 
-import com.example.modeling_tools.entity.ModelingTool;
+import com.example.modeling_tools.entity.ModelingToolVerified;
 import com.example.modeling_tools.entity.properties.ModelingLanguage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,14 +23,14 @@ public interface ModelingLanguageRepository extends JpaRepository<ModelingLangua
      *
      * @return a list of modeling languages where the modeling tool is not null or deletable is false
      */
-    List<ModelingLanguage> findByModelingToolsIsNotNullOrDeletableIsFalse();
+    List<ModelingLanguage> findByModelingToolsVerifiedIsNotNullOrDeletableIsFalse();
 
     /**
      * Retrieves a list of modeling languages that are yet to be assigned to a modeling tool or are deletable.
      *
      * @return a list of modeling languages where the modeling tool is null or deletable is true
      */
-    List<ModelingLanguage> findByModelingToolsIsNullAndDeletableIsTrue();
+    List<ModelingLanguage> findByModelingToolsVerifiedIsNullAndDeletableIsTrue();
 
     /**
      * Retrieves a list of modeling tools which contain modeling languages with a certain id.
@@ -45,7 +45,7 @@ public interface ModelingLanguageRepository extends JpaRepository<ModelingLangua
     LEFT JOIN tool.modelingLanguages language
     WHERE language.id = ?1
     """)
-    List<ModelingTool> findModelingToolByModelingLanguageId(Long modelingLanguageId);
+    List<ModelingToolVerified> findModelingToolByModelingLanguageId(Long modelingLanguageId);
 
     /**
      * Retrieves a list of modeling languages which are assigned to a certain modeling tool suggestion.
@@ -72,7 +72,7 @@ public interface ModelingLanguageRepository extends JpaRepository<ModelingLangua
     @Query("""
     SELECT DISTINCT language
     FROM modeling_language language
-    LEFT JOIN language.modelingTools tool
+    LEFT JOIN language.modelingToolsVerified tool
     WHERE tool.id = ?1
     """)
     List<ModelingLanguage> findModelingLanguageByModelingToolId(Long modelingToolId);

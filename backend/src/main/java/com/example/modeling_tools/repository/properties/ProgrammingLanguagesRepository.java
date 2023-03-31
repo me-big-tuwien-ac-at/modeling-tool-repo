@@ -23,14 +23,14 @@ public interface ProgrammingLanguagesRepository extends JpaRepository<Programmin
      *
      * @return a list of programming languages where the modeling tool is not null or deletable is false
      */
-    List<ProgrammingLanguage> findByModelingToolsIsNotNullOrDeletableIsFalse();
+    List<ProgrammingLanguage> findByModelingToolsVerifiedIsNotNullOrDeletableIsFalse();
 
     /**
      * Retrieves a list of programming languages that are yet to be assigned to a modeling tool or are deletable.
      *
      * @return a list of programming languages where the modeling tool is null or deletable is true
      */
-    List<ProgrammingLanguage> findByModelingToolsIsNullAndDeletableIsTrue();
+    List<ProgrammingLanguage> findByModelingToolsVerifiedIsNullAndDeletableIsTrue();
 
     /**
      * Retrieves a list of programming languages which are assigned to a certain modeling tool.
@@ -42,7 +42,7 @@ public interface ProgrammingLanguagesRepository extends JpaRepository<Programmin
     @Query("""
     SELECT DISTINCT language
     FROM programming_language language
-    LEFT JOIN language.modelingTools tools
+    LEFT JOIN language.modelingToolsVerified tools
     WHERE tools.id = ?1
     """)
     List<ProgrammingLanguage> findProgrammingLanguageByModelingToolId(Long modelingToolId);

@@ -38,9 +38,9 @@ public class PropertiesServiceImpl implements PropertiesService {
         if (confirmed == null) {
             return modelingLanguageRepository.findAll().stream().map(ModelingLanguage::getName);
         } else if (confirmed) {
-            return modelingLanguageRepository.findByModelingToolsIsNotNullOrDeletableIsFalse().stream().map(ModelingLanguage::getName);
+            return modelingLanguageRepository.findByModelingToolsVerifiedIsNotNullOrDeletableIsFalse().stream().map(ModelingLanguage::getName);
         } else {
-            return modelingLanguageRepository.findByModelingToolsIsNullAndDeletableIsTrue().stream().map(ModelingLanguage::getName);
+            return modelingLanguageRepository.findByModelingToolsVerifiedIsNullAndDeletableIsTrue().stream().map(ModelingLanguage::getName);
 
         }
     }
@@ -54,9 +54,9 @@ public class PropertiesServiceImpl implements PropertiesService {
         if (confirmed == null) {
             return platformRepository.findAll().stream().map(Platform::getName);
         } else if (confirmed) {
-            return platformRepository.findByModelingToolsIsNotNullOrDeletableIsFalse().stream().map(Platform::getName);
+            return platformRepository.findByModelingToolsVerifiedIsNotNullOrDeletableIsFalse().stream().map(Platform::getName);
         } else {
-            return platformRepository.findByModelingToolsIsNullAndDeletableIsTrue().stream().map(Platform::getName);
+            return platformRepository.findByModelingToolsVerifiedIsNullAndDeletableIsTrue().stream().map(Platform::getName);
         }
     }
 
@@ -69,9 +69,9 @@ public class PropertiesServiceImpl implements PropertiesService {
         if (confirmed == null) {
             return programmingLanguagesRepository.findAll().stream().map(ProgrammingLanguage::getName);
         } else if (confirmed) {
-            return programmingLanguagesRepository.findByModelingToolsIsNotNullOrDeletableIsFalse().stream().map(ProgrammingLanguage::getName);
+            return programmingLanguagesRepository.findByModelingToolsVerifiedIsNotNullOrDeletableIsFalse().stream().map(ProgrammingLanguage::getName);
         } else {
-            return programmingLanguagesRepository.findByModelingToolsIsNullAndDeletableIsTrue().stream().map(ProgrammingLanguage::getName);
+            return programmingLanguagesRepository.findByModelingToolsVerifiedIsNullAndDeletableIsTrue().stream().map(ProgrammingLanguage::getName);
         }
     }
 }

@@ -2,7 +2,7 @@ package com.example.modeling_tools.endpoint.mapper;
 
 import com.example.modeling_tools.endpoint.dto.ModelingToolDto;
 import com.example.modeling_tools.endpoint.dto.ModelingToolSuggestionDto;
-import com.example.modeling_tools.entity.ModelingTool;
+import com.example.modeling_tools.entity.ModelingToolVerified;
 import com.example.modeling_tools.entity.ModelingToolSuggestion;
 import com.example.modeling_tools.entity.properties.ModelingLanguage;
 import com.example.modeling_tools.entity.properties.Platform;
@@ -32,51 +32,51 @@ public abstract class ModelingToolMapperAlt {
     private ProgrammingLanguagesRepository programmingLanguagesRepository;
 
 
-    public ModelingTool modelingToolDtoToModelingTool(ModelingToolDto modelingToolDto) {
+    public ModelingToolVerified modelingToolDtoToModelingTool(ModelingToolDto modelingToolDto) {
         LOGGER.debug("modelingToolDtoToModelingTool({})", modelingToolDto);
 
-        ModelingTool modelingTool = new ModelingTool();
-        modelingTool.setId(modelingToolDto.getId());
-        modelingTool.setName(modelingToolDto.getName());
-        modelingTool.setLink(modelingToolDto.getLink());
-        modelingTool.setOpenSource(modelingToolDto.getOpenSource());
-        modelingTool.setTechnology(modelingToolDto.getTechnology());
-        modelingTool.setWebApp(modelingToolDto.getWebApp());
-        modelingTool.setDesktopApp(modelingToolDto.getDesktopApp());
-        modelingTool.setCategory(modelingToolDto.getCategory());
-        modelingTool.setModelingLanguages(getModelingLanguagesByName(modelingToolDto.getModelingLanguages()));
-        modelingTool.setSourceCodeGeneration(modelingToolDto.getSourceCodeGeneration());
-        modelingTool.setCloudService(modelingToolDto.getCloudService());
-        modelingTool.setLicense(modelingToolDto.getLicense());
-        modelingTool.setLoginRequired(modelingToolDto.getLoginRequired());
-        modelingTool.setCreator(modelingToolDto.getCreator());
-        modelingTool.setPlatform(getPlatformsByName(modelingToolDto.getPlatform()));
-        modelingTool.setRealTimeCollab(modelingToolDto.getRealTimeCollab());
-        modelingTool.setProgrammingLanguage(getProgrammingLanguagesByName(modelingToolDto.getProgrammingLanguage()));
-        return modelingTool;
+        ModelingToolVerified modelingToolVerified = new ModelingToolVerified();
+        modelingToolVerified.setId(modelingToolDto.getId());
+        modelingToolVerified.setName(modelingToolDto.getName());
+        modelingToolVerified.setLink(modelingToolDto.getLink());
+        modelingToolVerified.setOpenSource(modelingToolDto.getOpenSource());
+        modelingToolVerified.setTechnology(modelingToolDto.getTechnology());
+        modelingToolVerified.setWebApp(modelingToolDto.getWebApp());
+        modelingToolVerified.setDesktopApp(modelingToolDto.getDesktopApp());
+        modelingToolVerified.setCategory(modelingToolDto.getCategory());
+        modelingToolVerified.setModelingLanguages(getModelingLanguagesByName(modelingToolDto.getModelingLanguages()));
+        modelingToolVerified.setSourceCodeGeneration(modelingToolDto.getSourceCodeGeneration());
+        modelingToolVerified.setCloudService(modelingToolDto.getCloudService());
+        modelingToolVerified.setLicense(modelingToolDto.getLicense());
+        modelingToolVerified.setLoginRequired(modelingToolDto.getLoginRequired());
+        modelingToolVerified.setCreator(modelingToolDto.getCreator());
+        modelingToolVerified.setPlatform(getPlatformsByName(modelingToolDto.getPlatform()));
+        modelingToolVerified.setRealTimeCollab(modelingToolDto.getRealTimeCollab());
+        modelingToolVerified.setProgrammingLanguage(getProgrammingLanguagesByName(modelingToolDto.getProgrammingLanguage()));
+        return modelingToolVerified;
     }
 
-    public ModelingToolDto modelingToolToModelingToolDto(ModelingTool modelingTool) {
-        LOGGER.debug("modelingToolToModelingToolDto({})", modelingTool);
+    public ModelingToolDto modelingToolToModelingToolDto(ModelingToolVerified modelingToolVerified) {
+        LOGGER.debug("modelingToolToModelingToolDto({})", modelingToolVerified);
 
         return new ModelingToolDto(
-                modelingTool.getId(),
-                modelingTool.getName(),
-                modelingTool.getLink(),
-                modelingTool.getOpenSource(),
-                modelingTool.getTechnology(),
-                modelingTool.getWebApp(),
-                modelingTool.getDesktopApp(),
-                modelingTool.getCategory(),
-                getModelingLanguageNames(modelingTool.getModelingLanguages()),
-                modelingTool.getSourceCodeGeneration(),
-                modelingTool.getCloudService(),
-                modelingTool.getLicense(),
-                modelingTool.getLoginRequired(),
-                modelingTool.getCreator(),
-                getPlatformNames(modelingTool.getPlatform()),
-                modelingTool.getRealTimeCollab(),
-                getProgrammingLanguageNames(modelingTool.getProgrammingLanguage())
+                modelingToolVerified.getId(),
+                modelingToolVerified.getName(),
+                modelingToolVerified.getLink(),
+                modelingToolVerified.getOpenSource(),
+                modelingToolVerified.getTechnology(),
+                modelingToolVerified.getWebApp(),
+                modelingToolVerified.getDesktopApp(),
+                modelingToolVerified.getCategory(),
+                getModelingLanguageNames(modelingToolVerified.getModelingLanguages()),
+                modelingToolVerified.getSourceCodeGeneration(),
+                modelingToolVerified.getCloudService(),
+                modelingToolVerified.getLicense(),
+                modelingToolVerified.getLoginRequired(),
+                modelingToolVerified.getCreator(),
+                getPlatformNames(modelingToolVerified.getPlatform()),
+                modelingToolVerified.getRealTimeCollab(),
+                getProgrammingLanguageNames(modelingToolVerified.getProgrammingLanguage())
         );
     }
 
@@ -155,27 +155,27 @@ public abstract class ModelingToolMapperAlt {
         return toolDto;
     }
 
-    public ModelingTool modelingToolSuggestionToModelingTool(ModelingToolSuggestion suggestion) {
+    public ModelingToolVerified modelingToolSuggestionToModelingTool(ModelingToolSuggestion suggestion) {
         LOGGER.debug("modelingToolSuggestionToModelingTool({})", suggestion);
 
-        ModelingTool modelingTool = new ModelingTool();
-        modelingTool.setName(suggestion.getName());
-        modelingTool.setLink(suggestion.getLink());
-        modelingTool.setOpenSource(suggestion.getOpenSource());
-        modelingTool.setTechnology(suggestion.getTechnology());
-        modelingTool.setWebApp(suggestion.getWebApp());
-        modelingTool.setDesktopApp(suggestion.getDesktopApp());
-        modelingTool.setCategory(suggestion.getCategory());
-        modelingTool.setModelingLanguages(suggestion.getModelingLanguages());
-        modelingTool.setSourceCodeGeneration(suggestion.getSourceCodeGeneration());
-        modelingTool.setCloudService(suggestion.getCloudService());
-        modelingTool.setLicense(suggestion.getLicense());
-        modelingTool.setLoginRequired(suggestion.getLoginRequired());
-        modelingTool.setCreator(suggestion.getCreator());
-        modelingTool.setPlatform(suggestion.getPlatform());
-        modelingTool.setRealTimeCollab(suggestion.getRealTimeCollab());
-        modelingTool.setProgrammingLanguage(suggestion.getProgrammingLanguage());
-        return modelingTool;
+        ModelingToolVerified modelingToolVerified = new ModelingToolVerified();
+        modelingToolVerified.setName(suggestion.getName());
+        modelingToolVerified.setLink(suggestion.getLink());
+        modelingToolVerified.setOpenSource(suggestion.getOpenSource());
+        modelingToolVerified.setTechnology(suggestion.getTechnology());
+        modelingToolVerified.setWebApp(suggestion.getWebApp());
+        modelingToolVerified.setDesktopApp(suggestion.getDesktopApp());
+        modelingToolVerified.setCategory(suggestion.getCategory());
+        modelingToolVerified.setModelingLanguages(suggestion.getModelingLanguages());
+        modelingToolVerified.setSourceCodeGeneration(suggestion.getSourceCodeGeneration());
+        modelingToolVerified.setCloudService(suggestion.getCloudService());
+        modelingToolVerified.setLicense(suggestion.getLicense());
+        modelingToolVerified.setLoginRequired(suggestion.getLoginRequired());
+        modelingToolVerified.setCreator(suggestion.getCreator());
+        modelingToolVerified.setPlatform(suggestion.getPlatform());
+        modelingToolVerified.setRealTimeCollab(suggestion.getRealTimeCollab());
+        modelingToolVerified.setProgrammingLanguage(suggestion.getProgrammingLanguage());
+        return modelingToolVerified;
     }
 
     private List<String> getModelingLanguageNames(List<ModelingLanguage> modelingLanguages) {

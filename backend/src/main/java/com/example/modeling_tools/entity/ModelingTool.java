@@ -6,12 +6,21 @@ import com.example.modeling_tools.entity.properties.ProgrammingLanguage;
 import com.example.modeling_tools.type.Category;
 import com.example.modeling_tools.type.License;
 import com.example.modeling_tools.type.Technology;
-import jakarta.persistence.*;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
 
 import java.util.List;
 
-@Entity(name = "modeling_tool")
-public class ModelingTool {
+@MappedSuperclass
+public abstract class ModelingTool {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -287,15 +296,12 @@ public class ModelingTool {
                 ", webApp=" + webApp +
                 ", desktopApp=" + desktopApp +
                 ", category='" + category + '\'' +
-                ", modelingLanguages=" + modelingLanguages +
                 ", sourceCodeGeneration=" + sourceCodeGeneration +
                 ", cloudService=" + cloudService +
                 ", license=" + license +
                 ", loginRequired=" + loginRequired +
                 ", creator=" + creator +
-                ", platform=" + platform +
                 ", realTimeCollab=" + realTimeCollab +
-                ", programmingLanguage=" + programmingLanguage +
                 '}';
     }
 }

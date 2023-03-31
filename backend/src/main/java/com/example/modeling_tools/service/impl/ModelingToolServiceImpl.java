@@ -4,7 +4,7 @@ import com.example.modeling_tools.endpoint.dto.ModelingToolDto;
 import com.example.modeling_tools.endpoint.dto.ModelingToolSearchDto;
 import com.example.modeling_tools.endpoint.dto.ModelingToolSuggestionDto;
 import com.example.modeling_tools.endpoint.mapper.ModelingToolMapperAlt;
-import com.example.modeling_tools.entity.ModelingTool;
+import com.example.modeling_tools.entity.ModelingToolVerified;
 import com.example.modeling_tools.entity.ModelingToolSuggestion;
 import com.example.modeling_tools.entity.properties.ModelingLanguage;
 import com.example.modeling_tools.entity.properties.Platform;
@@ -63,7 +63,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
     public List<ModelingToolDto> getModelingTools(ModelingToolSearchDto searchDto) {
         LOGGER.debug("Getting all modeling tools");
 
-        List<ModelingTool> repo;
+        List<ModelingToolVerified> repo;
         if (searchDto == null || searchDto.isEmpty()) {
             repo = repository.findAll();
         } else {
@@ -82,8 +82,8 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
                     searchDto.getRealTimeCollab()
             );
             if (!searchDto.listsEmpty()) {
-                List<ModelingTool> filteredRepo = new ArrayList<>();
-                for (ModelingTool tool : repo) {
+                List<ModelingToolVerified> filteredRepo = new ArrayList<>();
+                for (ModelingToolVerified tool : repo) {
                     String creator = searchDto.getCreatorUpper();
                     Boolean creatorMatch = null;
                     if (creator != null) {
@@ -118,7 +118,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
 
         List<ModelingToolDto> result = new ArrayList<>();
 
-        for (ModelingTool tool : repo) {
+        for (ModelingToolVerified tool : repo) {
             result.add(mapperAlt.modelingToolToModelingToolDto(tool));
         }
 
@@ -148,7 +148,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
     public ModelingToolDto getModelingToolById(Long id) throws NotFoundException {
         LOGGER.debug("Getting Modeling Tool by id");
 
-        Optional<ModelingTool> tool = repository.findById(id);
+        Optional<ModelingToolVerified> tool = repository.findById(id);
 
         if (tool.isEmpty()) {
             throw new NotFoundException("Modeling Tool with ID number " + id + " could not be found");
@@ -176,9 +176,9 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
         LOGGER.debug("Storing modeling tool suggestion");
 
         List<String> validationExceptions = validateModelingToolSuggestion(suggestionDto);
-        List<ModelingTool> storedModelingTool = repository.findByName(suggestionDto.getName());
+        List<ModelingToolVerified> storedModelingToolVerified = repository.findByName(suggestionDto.getName());
 
-        if (!storedModelingTool.isEmpty()) {
+        if (!storedModelingToolVerified.isEmpty()) {
             validationExceptions.add("Modeling Tool with that name already stored");
         }
         if (!validationExceptions.isEmpty()) {
@@ -233,7 +233,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
             Boolean ignoreMail
     ) throws DuplicateException, NotFoundException, ValidationException {
         LOGGER.debug("Storing a modeling tool update suggestion");
-        Optional<ModelingTool> modelingTool = repository.findById(id);
+        Optional<ModelingToolVerified> modelingTool = repository.findById(id);
 
         if (modelingTool.isEmpty()) {
             throw new NotFoundException("Modeling tool with id " + id + " does not exist!");
@@ -368,7 +368,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
                 // Removing modeling tool suggestion
                 suggestionRepository.deleteById(suggestion.getId());
 
-                ModelingTool toolMapped = new ModelingTool();
+                ModelingToolVerified toolMapped = new ModelingToolVerified();
                 if (suggestion.getModelingToolId() != null) {
                     toolMapped.setId(suggestion.getModelingToolId());
                 }
@@ -389,7 +389,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
                 toolMapped.setRealTimeCollab(suggestion.getRealTimeCollab());
                 toolMapped.setProgrammingLanguage(suggestionProgrammingLanguages);
 
-                ModelingTool verifiedTool = repository.save(toolMapped);
+                ModelingToolVerified verifiedTool = repository.save(toolMapped);
 
                 // Jpa ElementCollections do not seem to be updated if they are changed with setters or the lists
                 // themselves are altered. Therefore, both Technology and Creator are first stored with null values,
@@ -399,7 +399,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
                 verifiedTool = repository.save(verifiedTool);
 
                 for (ModelingLanguage language : suggestionModelingLanguages) {
-                    List<ModelingTool> suggestionsByLanguage = repository.findModelingToolByModelingLanguageId(language.getId());
+                    List<ModelingToolVerified> suggestionsByLanguage = repository.findModelingToolByModelingLanguageId(language.getId());
                     if (suggestionsByLanguage != null) {
                         suggestionsByLanguage.add(verifiedTool);
                         language.setModelingTools(suggestionsByLanguage);
@@ -410,7 +410,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
                     }
                 }
                 for (Platform platform : suggestionPlatforms) {
-                    List<ModelingTool> suggestionsByPlatform = repository.findModelingToolByPlatformId(platform.getId());
+                    List<ModelingToolVerified> suggestionsByPlatform = repository.findModelingToolVerifiedByPlatformId(platform.getId());
                     if (suggestionsByPlatform != null) {
                         suggestionsByPlatform.add(verifiedTool);
                         platform.setModelingTools(suggestionsByPlatform);
@@ -421,7 +421,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
                     }
                 }
                 for (ProgrammingLanguage language : suggestionProgrammingLanguages) {
-                    List<ModelingTool> suggestionsByLanguage = repository.findModelingToolByProgrammingLanguageId(language.getId());
+                    List<ModelingToolVerified> suggestionsByLanguage = repository.findModelingToolVerifiedByProgrammingLanguageId(language.getId());
                     if (suggestionsByLanguage != null) {
                         suggestionsByLanguage.add(verifiedTool);
                         language.setModelingTools(suggestionsByLanguage);
@@ -486,7 +486,7 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
         return null;
     }
 
-    private boolean areSuggestionsEqual(ModelingTool tool, ModelingToolSuggestionDto suggestion) {
+    private boolean areSuggestionsEqual(ModelingToolVerified tool, ModelingToolSuggestionDto suggestion) {
         return
                 tool.getName().trim().equalsIgnoreCase(suggestion.getName().trim()) &&
                 tool.getLink().trim().equalsIgnoreCase(suggestion.getLink().trim()) &&
@@ -718,9 +718,9 @@ public class ModelingToolServiceImpl implements ModelingToolService, EmailBuilde
 
         suggestionRepository.deleteById(suggestion.getId());
 
-        List<ModelingLanguage> modelingLanguageMlNull = modelingLanguageRepository.findByModelingToolsIsNullAndDeletableIsTrue();
-        List<Platform> platformMlNull = platformRepository.findByModelingToolsIsNullAndDeletableIsTrue();
-        List<ProgrammingLanguage> programmingLanguageMlNull = programmingLanguagesRepository.findByModelingToolsIsNullAndDeletableIsTrue();
+        List<ModelingLanguage> modelingLanguageMlNull = modelingLanguageRepository.findByModelingToolsVerifiedIsNullAndDeletableIsTrue();
+        List<Platform> platformMlNull = platformRepository.findByModelingToolsVerifiedIsNullAndDeletableIsTrue();
+        List<ProgrammingLanguage> programmingLanguageMlNull = programmingLanguagesRepository.findByModelingToolsVerifiedIsNullAndDeletableIsTrue();
 
         for (ModelingLanguage language : modelingLanguageMlNull) {
             modelingLanguageRepository.deleteById(language.getId());

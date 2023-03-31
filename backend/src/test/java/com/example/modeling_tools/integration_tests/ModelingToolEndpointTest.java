@@ -2,7 +2,7 @@ package com.example.modeling_tools.integration_tests;
 
 import com.example.modeling_tools.base_test.TestData;
 import com.example.modeling_tools.endpoint.dto.ModelingToolSuggestionDto;
-import com.example.modeling_tools.entity.ModelingTool;
+import com.example.modeling_tools.entity.ModelingToolVerified;
 import com.example.modeling_tools.entity.ModelingToolSuggestion;
 import com.example.modeling_tools.entity.properties.ModelingLanguage;
 import com.example.modeling_tools.entity.properties.Platform;
@@ -165,7 +165,7 @@ public class ModelingToolEndpointTest implements TestData {
         makePostRequest(createModelingToolSuggestionJson(TestData.MAX_INFO_CREATE));
         confirmAllSuggestions();
 
-        ModelingTool toolInRepository = repository.findAll().get(0);
+        ModelingToolVerified toolInRepository = repository.findAll().get(0);
         makeInvalidPutRequest(createModelingToolSuggestionJson(TestData.MAX_INFO_CREATE), toolInRepository.getId(), status().isUnprocessableEntity());
 
         // 3. Expecting successfully processed PUT request
@@ -301,30 +301,30 @@ public class ModelingToolEndpointTest implements TestData {
      *               within the persistent data store
      */
     private void assertThatModelingToolsAndPropertiesAreStored(List<ModelingToolSuggestionDto> suggestions) {
-        List<ModelingTool> modelingToolRepo = repository.findAll();
+        List<ModelingToolVerified> modelingToolVerifiedRepo = repository.findAll();
 
         System.out.println();
         System.out.println("REPO SIZE CHECK");
-        for (ModelingTool mt : modelingToolRepo) {
+        for (ModelingToolVerified mt : modelingToolVerifiedRepo) {
             System.out.println(mt.getName());
         }
         System.out.println();
 
         // 1. Assert that all Modeling Tools that have been initially suggested are now also stored as Modeling Tools
-        assertEquals(suggestions.size(), modelingToolRepo.size());
-        assertThat(modelingToolRepo)
+        assertEquals(suggestions.size(), modelingToolVerifiedRepo.size());
+        assertThat(modelingToolVerifiedRepo)
                 .extracting(
-                        ModelingTool::getName,
-                        ModelingTool::getLink,
-                        ModelingTool::getOpenSource,
-                        ModelingTool::getWebApp,
-                        ModelingTool::getDesktopApp,
-                        ModelingTool::getCategory,
-                        ModelingTool::getSourceCodeGeneration,
-                        ModelingTool::getCloudService,
-                        ModelingTool::getLicense,
-                        ModelingTool::getLoginRequired,
-                        ModelingTool::getRealTimeCollab
+                        ModelingToolVerified::getName,
+                        ModelingToolVerified::getLink,
+                        ModelingToolVerified::getOpenSource,
+                        ModelingToolVerified::getWebApp,
+                        ModelingToolVerified::getDesktopApp,
+                        ModelingToolVerified::getCategory,
+                        ModelingToolVerified::getSourceCodeGeneration,
+                        ModelingToolVerified::getCloudService,
+                        ModelingToolVerified::getLicense,
+                        ModelingToolVerified::getLoginRequired,
+                        ModelingToolVerified::getRealTimeCollab
                 )
                 .containsAll(
                         getSuggestionTupleList(suggestions)
@@ -332,7 +332,7 @@ public class ModelingToolEndpointTest implements TestData {
 
         // 2. Assert that all properties contained within the suggestions are now stored as verified properties
         for (int i = 0; i < suggestions.size() ; i++) {
-            ModelingTool tool = modelingToolRepo.get(i);
+            ModelingToolVerified tool = modelingToolVerifiedRepo.get(i);
 
             // Test Modeling Languages
             List<ModelingLanguage> mlList = modelingLanguageRepository.findModelingLanguageByModelingToolId(
@@ -455,8 +455,8 @@ public class ModelingToolEndpointTest implements TestData {
         }
 
         // Modeling Tools
-        List<ModelingTool> modelingTools = repository.findAll();
-        for (ModelingTool tool : modelingTools) {
+        List<ModelingToolVerified> modelingToolsVerified = repository.findAll();
+        for (ModelingToolVerified tool : modelingToolsVerified) {
             tool.setModelingLanguages(null);
             tool.setPlatform(null);
             tool.setProgrammingLanguage(null);

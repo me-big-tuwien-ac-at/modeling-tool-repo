@@ -1,6 +1,6 @@
 package com.example.modeling_tools.repository.properties;
 
-import com.example.modeling_tools.entity.ModelingTool;
+import com.example.modeling_tools.entity.ModelingToolVerified;
 import com.example.modeling_tools.entity.properties.Platform;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,14 +23,14 @@ public interface PlatformRepository extends JpaRepository<Platform, Long> {
      *
      * @return a list of platforms where the modeling tool is not null or deletable is false
      */
-    List<Platform> findByModelingToolsIsNotNullOrDeletableIsFalse();
+    List<Platform> findByModelingToolsVerifiedIsNotNullOrDeletableIsFalse();
 
     /**
      * Retrieves a list of platforms that are yet to be assigned to a modeling tool or are deletable.
      *
      * @return a list of platforms where the modeling tool is null or deletable is true
      */
-    List<Platform> findByModelingToolsIsNullAndDeletableIsTrue();
+    List<Platform> findByModelingToolsVerifiedIsNullAndDeletableIsTrue();
 
     /**
      * Retrieves a list of modeling tools which contain platforms with a certain id.
@@ -45,7 +45,7 @@ public interface PlatformRepository extends JpaRepository<Platform, Long> {
     LEFT JOIN tool.platform p
     WHERE p.id = ?1
     """)
-    List<ModelingTool> findModelingToolByPlatformId(Long platformId);
+    List<ModelingToolVerified> findModelingToolVerifiedByPlatformId(Long platformId);
 
     /**
      * Retrieves a list of platforms which are assigned to a certain modeling tool suggestion.
@@ -72,7 +72,7 @@ public interface PlatformRepository extends JpaRepository<Platform, Long> {
     @Query("""
     SELECT DISTINCT p
     FROM Platform p
-    LEFT JOIN p.modelingTools tool
+    LEFT JOIN p.modelingToolsVerified tool
     WHERE tool.id = ?1
     """)
     List<Platform> findPlatformByModelingToolId(Long modelingToolId);

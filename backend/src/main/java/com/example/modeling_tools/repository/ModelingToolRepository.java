@@ -1,10 +1,6 @@
 package com.example.modeling_tools.repository;
 
-import com.example.modeling_tools.entity.ModelingTool;
-import com.example.modeling_tools.entity.ModelingToolSuggestion;
-import com.example.modeling_tools.entity.properties.ModelingLanguage;
-import com.example.modeling_tools.entity.properties.ProgrammingLanguage;
-import com.example.modeling_tools.type.Technology;
+import com.example.modeling_tools.entity.ModelingToolVerified;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,14 +8,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ModelingToolRepository extends JpaRepository<ModelingTool, Long> {
+public interface ModelingToolRepository extends JpaRepository<ModelingToolVerified, Long> {
     /**
      * Retrieves a list of modeling tools with a matching {@code name}.
      *
      * @param name name of the searched modeling tool
      * @return a list of modeling tools with a corresponding name
      */
-    List<ModelingTool> findByName(String name);
+    List<ModelingToolVerified> findByName(String name);
 
     /**
      * Retrieves a list of modeling tools matching the query parameters. Parameters such as technology, modelingLanguages,
@@ -91,7 +87,7 @@ public interface ModelingToolRepository extends JpaRepository<ModelingTool, Long
         (?11 IS NULL AND (tool.realTimeCollab = TRUE OR tool.realTimeCollab = FALSE OR tool.realTimeCollab IS NULL))
     )
     """)
-    List<ModelingTool> findBySearch(
+    List<ModelingToolVerified> findBySearch(
             String name,
             String link,
             String category,
@@ -118,7 +114,7 @@ public interface ModelingToolRepository extends JpaRepository<ModelingTool, Long
     LEFT JOIN tool.programmingLanguage language
     WHERE language.id = ?1
     """)
-    List<ModelingTool> findModelingToolByProgrammingLanguageId(Long programmingLanguageId);
+    List<ModelingToolVerified> findModelingToolVerifiedByProgrammingLanguageId(Long programmingLanguageId);
 
     /**
      * Retrieves a list of modeling tool suggestions which contain platforms with a certain id.
@@ -133,7 +129,7 @@ public interface ModelingToolRepository extends JpaRepository<ModelingTool, Long
     LEFT JOIN tool.platform p
     WHERE p.id = ?1
     """)
-    List<ModelingTool> findModelingToolByPlatformId(Long platformId);
+    List<ModelingToolVerified> findModelingToolVerifiedByPlatformId(Long platformId);
 
     /**
      * Retrieves a list of modeling tool suggestions which contain modeling languages with a certain id.
@@ -148,5 +144,5 @@ public interface ModelingToolRepository extends JpaRepository<ModelingTool, Long
     LEFT JOIN tool.modelingLanguages language
     WHERE language.id = ?1
     """)
-    List<ModelingTool> findModelingToolByModelingLanguageId(Long modelingLanguageId);
+    List<ModelingToolVerified> findModelingToolByModelingLanguageId(Long modelingLanguageId);
 }
