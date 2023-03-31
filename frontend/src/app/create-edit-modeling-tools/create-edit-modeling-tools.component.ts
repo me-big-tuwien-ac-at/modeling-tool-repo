@@ -348,7 +348,7 @@ export class CreateEditModelingToolsComponent implements OnInit {
    */
   private isModelingToolValid(): boolean {
     const validator: UserModelValidator = this.userModelValidator;
-    return !validator.name.duplicate && !validator.name.syntactic && !validator.link && !validator.toolNotEdited;
+    return !validator.name.duplicate && !validator.name.syntactic && !validator.link && !validator.toolNotEdited && !validator.email;
   }
 
   /**
