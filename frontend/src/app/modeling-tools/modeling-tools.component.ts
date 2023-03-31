@@ -39,21 +39,14 @@ export class ModelingToolsComponent implements OnInit {
   };
 
   // Checks for pop up windows
-  public technologyChecked = false;
   public searchTechnologyChecked = false;
   public searchPlatformChecked = false;
   public searchProgrammingLanguageChecked = false;
   public searchModelingLanguagesChecked = false;
-  public platformsChecked = false;
-  public programmingLanguagesChecked = false;
-  public creatorInput = '';
 
   public modelingLanguages: string[] = [];
-  public suggestedModelingLanguage = '';
   public platforms: string[] = [];
-  public suggestedPlatforms = '';
   public programmingLanguages: string[] = [];
-  public suggestedProgrammingLanguage = '';
 
   // Captcha properties
   public siteKey: string = '6Ldw5bkkAAAAACArt28AdO4SWq6YtSbRlwaeHaTN';
@@ -65,9 +58,6 @@ export class ModelingToolsComponent implements OnInit {
     examplesExpanded: false,
     detailsExpanded: false
   }
-
-  // Downloadable files
-  public downloadJson: SafeUrl = '';
 
   // TODO: Replace with pageInteractionProperties - Filter interface
   public filterDisplayed = false;
@@ -324,6 +314,9 @@ export class ModelingToolsComponent implements OnInit {
   }
 
   public searchProgrammingLanguageStored(language: string): boolean {
+    if (language === 'C++') {
+      language = 'C%2B%2B';
+    }
     return this.modelingToolSearch.programmingLanguage !== null && this.modelingToolSearch.programmingLanguage !== undefined
       && this.modelingToolSearch.programmingLanguage.indexOf(language) > -1;
   }
@@ -397,20 +390,6 @@ export class ModelingToolsComponent implements OnInit {
 
   public selectedOrdered(property: string, ordered: number): boolean {
     return property === this.sortingKey && this.order === ordered;
-  }
-
-  public tableWidthHeight(): void {
-    const table = document.querySelector('table');
-    if (table !== null) {
-      const tableDiv = document.getElementById('modeling-tools-column');
-      if (tableDiv != null) {
-        if (this.modelingToolsFiltered.length !== 0) {
-          tableDiv.style.height = `${table.offsetHeight + 10 + 1}px`;
-        } else {
-          tableDiv.style.height = '200px';
-        }
-      }
-    }
   }
 
   public zoomIn(src: string, alt: string, directionExpansion: DirectionExpansion): void {

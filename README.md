@@ -61,7 +61,7 @@ regular users. More details are available the website.
         </tr>
         <tr>
             <td>Build & Dependency Management</td>
-            <td style="align-items: baseline; display: flex;">
+            <td>
                 <div>Maven 3.x.x</div>
                 <div>npm 9.x.x</div>
             </td>
@@ -111,7 +111,7 @@ file and instead open the "Edit Configurations..." window and enter your Email a
 <details>
    <summary>Edit Configurations - Email and Password example</summary>
 
-   <img src="./documentation/email_password.png">
+   <img src="./documentation/email_password.png" alt="Email Password Screenshot">
 </details>
 
 #### Tip
@@ -131,7 +131,7 @@ screenshot below, simply delete the file ``frontend/.angular``, enter ``npm inst
 <details>
    <summary>Angular error</summary>
 
-   <img src="./documentation/angular_error.png">
+   <img src="./documentation/angular_error.png" alt="Angular error">
 </details>
 
 ### Optional

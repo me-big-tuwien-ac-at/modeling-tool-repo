@@ -624,7 +624,7 @@
   </div>
 
   <div id="modeling-tools-column">
-    <table *ngIf="modelingToolsFiltered.length > 0" (resized)="tableWidthHeight()">
+    <table *ngIf="modelingToolsFiltered.length > 0">
       <thead>
       <tr>
         <th class="sorting-arrows" (click)="sortColumn('name')">

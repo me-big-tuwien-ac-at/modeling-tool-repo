@@ -88,6 +88,40 @@ td {
 }
 
 /***********************************
+ CUSTOM SELECT
+************************************/
+.list-items {
+  position: absolute;
+  border-radius: 8px;
+  padding: 16px;
+  background: #FFFFFF;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 6;
+  width: 100%;
+  border: 1px solid #ced4da;
+  max-height: 325px;
+  overflow: scroll;
+}
+.list-items .item {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0 15px;
+  border-radius: 8px;
+}
+.list-items .item:hover {
+  background: #e7edfe;
+}
+.item .item-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+}
+
+/***********************************
  RESET BUTTON
 ************************************/
 .reset-btn {
