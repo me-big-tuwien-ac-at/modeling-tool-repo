@@ -579,3 +579,12 @@ section > .information-title {
     gap: 10px;
   }
 }
+
+@media (max-width: 950px) {
+  #options {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1vw;
+    padding-right: 9px;
+  }
+}

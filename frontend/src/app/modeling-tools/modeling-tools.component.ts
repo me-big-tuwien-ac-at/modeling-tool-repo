@@ -100,6 +100,7 @@ export class ModelingToolsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.phoneMode = window.innerWidth < 1150;
     this.sharedService.getConfirmation().subscribe({
       next: (data: ZoomStatus) => {
         if (data) {

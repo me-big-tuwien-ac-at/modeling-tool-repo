@@ -3,3 +3,9 @@
   min-height: 100vh;
   position: relative;
 }
+
+@media (max-width: 800px) {
+  .modeling-tools-container {
+    margin: 0 4rem;
+  }
+}
