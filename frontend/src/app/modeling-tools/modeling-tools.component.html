@@ -97,6 +97,16 @@
           </a>
         </div>
       </div>
+      <div class="image {{theme === 0 ? 'bg-dark-light' : 'bg-light-dark'}}">
+        <img id="plantuml" src="assets/tool_screenshots/plantUML.png" alt="plantUML"
+             (click)="zoomIn('assets/tool_screenshots/plantUML.png', 'plantUML', 1)">
+        <div>
+          A UML sequence diagram modelled with
+          <a href="https://plantuml.com/en/" class="{{theme === 0 ? '' : 'link-dark-theme'}}">
+            PlantUML
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
