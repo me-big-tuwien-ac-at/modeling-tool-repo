@@ -261,7 +261,7 @@ public interface TestData {
             List.of(Technology.FRAMEWORK),
             true,
             true,
-            Category.MIXED_TEXTUAL_AND_GRAPHICAL_MODElING_TOOL,
+            Category.MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL,
             List.of("UML"),
             false,
             true,
