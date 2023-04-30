@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  backend:
+    image: modeling_tools_backend_2
+    container_name: modeling_tools_backend
+    build:
+      context: ./backend
+    ports:
+      - "8080:80"
+  frontend:
+    image: modeling_tools_frontend_2
+    container_name: modeling_tools_frontend
+    build:
+      context: ./frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
