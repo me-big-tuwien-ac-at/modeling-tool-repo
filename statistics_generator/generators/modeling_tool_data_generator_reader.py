@@ -1,6 +1,7 @@
+import os
 import re
 
-path: str = r'../backend/src/main/java/com/example/modeling_tools/datagenerator/ModelingToolDataGenerator.java'
+path: str = r'../../backend/src/main/java/com/example/modeling_tools/datagenerator/ModelingToolDataGenerator.java'
 
 
 class ModelingTool:
@@ -152,5 +153,5 @@ def read_modeling_tools() -> [ModelingTool]:
 
 
 def print_modeling_tools(modeling_tools: [ModelingTool]):
-    for i, tool in modeling_tools:
-        print(f"{i}. {tool.get_name()} {tool}")
+    for i, tool in enumerate(modeling_tools):
+        print(f"{i + 1}. {tool.get_name()} {tool}")
