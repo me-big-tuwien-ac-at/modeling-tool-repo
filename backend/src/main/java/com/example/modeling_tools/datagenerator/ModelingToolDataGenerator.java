@@ -55,6 +55,7 @@ public class ModelingToolDataGenerator {
     private void addModelingLanguages() {
         LOGGER.info("Generating Modeling Languages");
         if (modelingLanguageRepository.findAll().isEmpty()) {
+            ModelingLanguage archiMate = new ModelingLanguage("ArchiMate", false);
             ModelingLanguage bpmn = new ModelingLanguage("BPMN", false);
             ModelingLanguage circuitDiagram = new ModelingLanguage("Circuit Diagrams", false);
             ModelingLanguage er = new ModelingLanguage("ER", false);
@@ -62,6 +63,7 @@ public class ModelingToolDataGenerator {
             ModelingLanguage sequenceDiagram = new ModelingLanguage("Sequence Diagram", false);
             ModelingLanguage sysml = new ModelingLanguage("SysML", false);
             ModelingLanguage uml = new ModelingLanguage("UML", false);
+            modelingLanguageRepository.save(archiMate);
             modelingLanguageRepository.save(bpmn);
             modelingLanguageRepository.save(circuitDiagram);
             modelingLanguageRepository.save(er);
@@ -182,9 +184,15 @@ public class ModelingToolDataGenerator {
                         getPlatforms(List.of("Windows")), false, getProgrammingLanguages(List.of("C++", "Java")))
                 );
         tools.add(
+                new ModelingToolVerified("Archi", "https://www.archimatetool.com/", true, List.of(Technology.APP),
+                        false, true, Category.GRAPHICAL_MODELING_TOOL, getModelingLanguages(List.of("ArchiMate")), false,
+                        false, License.FREE, false, List.of("Phil Beauvoir", "Jean-Baptiste Sarrodie"),
+                        getPlatforms(List.of("Windows", "macOS", "Linux")), false, getProgrammingLanguages(List.of("Java", "HTML", "JavaScript", "CSS")))
+        );
+        tools.add(
                 new ModelingToolVerified("ARGOuml", "https://argouml-tigris-org.github.io/", true, List.of(Technology.APP),
                         false, true, Category.GRAPHICAL_MODELING_TOOL, getModelingLanguages(List.of("UML")), true,
-                        false, null, null, List.of("Volunteer developers"),
+                        false,  License.FREE, null, List.of("Volunteer developers"),
                         null, false, null)
         );
         tools.add(
@@ -198,6 +206,12 @@ public class ModelingToolDataGenerator {
                         false, false, Category.MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL, getModelingLanguages(List.of("ER")), true,
                         true, License.FREE, false, List.of("Volunteer developers"),
                         null, false, getProgrammingLanguages(List.of("Java", "JavaScript", "TypeScript")))
+        );
+        tools.add(
+                new ModelingToolVerified("bigUML Modeling Tool", "https://marketplace.visualstudio.com/items?itemName=BIGModelingTools.umldiagram", true, List.of(Technology.FRAMEWORK),
+                        false, false, Category.MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL, getModelingLanguages(List.of("UML")), true,
+                        true, License.FREE, false, List.of("Volunteer developers"),
+                        null, false, getProgrammingLanguages(List.of("Java", "TypeScript", "CSS", "JavaScript")))
         );
         tools.add(
                 new ModelingToolVerified("BPMN.io", "https://bpmn.io", true, List.of(Technology.APP),
@@ -240,6 +254,12 @@ public class ModelingToolDataGenerator {
                         true, false, Category.BUSINESS_TOOL, getModelingLanguages(List.of("UML", "BPMN", "ER")), false,
                         true, License.RESTRICTED_FREE_AND_COMMERCIAL, true, null,
                         null, false, null)
+        );
+        tools.add(
+                new ModelingToolVerified("dbdiagram.io", "https://dbdiagram.io/home", false, List.of(Technology.APP),
+                        true, false, Category.MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL, getModelingLanguages(List.of("ER")), true,
+                        true, License.RESTRICTED_FREE_AND_COMMERCIAL, false, null,
+                        null, true, null)
         );
         tools.add(
                 new ModelingToolVerified("Dia", "https://nulab.com/cacoo/", false, List.of(Technology.APP),
@@ -534,6 +554,12 @@ public class ModelingToolDataGenerator {
                         false, true, Category.MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL, getModelingLanguages(List.of("UML", "ER", "SysML")), true,
                         true, License.RESTRICTED_FREE_AND_COMMERCIAL, false, List.of("MKLabs Co. Ltd."),
                         null, false, null)
+        );
+        tools.add(
+                new ModelingToolVerified("Swimlanes", "https://swimlanes.io/", true, List.of(Technology.APP),
+                        true, false, Category.TEXT_BASED_MODELING_TOOL, getModelingLanguages(List.of("UML")), true,
+                        false, License.FREE, false, List.of("Volunteer developers"),
+                        getPlatforms(List.of("Chrome", "Edge", "Firefox")), false, getProgrammingLanguages(List.of("HTML", "JavaScript")))
         );
         tools.add(
                 new ModelingToolVerified("UMLetino", "https://www.umletino.com/", true, List.of(Technology.APP),
