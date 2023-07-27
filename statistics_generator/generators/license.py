@@ -10,8 +10,8 @@ def generate_licenses_graph(modeling_tools: [ModelingTool]):
     license_counter: [int] = count_licenses(modeling_tools)
 
     # Free, Freemium, Commercial
-    licenses: Tuple[int, int, int] = tuple(license_counter)
-    license_colors: Tuple[str, str, str] = ('yellow', 'orange', 'red')
+    licenses: Tuple[int, int, int, int] = tuple(license_counter)
+    license_colors: Tuple[str, str, str, str] = ('yellow', 'orange', 'red', '#989898')
 
     # the x locations for the groups
     N: int = len(licenses)
@@ -22,13 +22,16 @@ def generate_licenses_graph(modeling_tools: [ModelingTool]):
     ax.bar(ind, licenses, width, color=license_colors)
     ax.set_ylabel('Modeling Tools')
     ax.set_title('Modeling Tool Licenses')
-    ax.set_xticks(ind, ("Free", "Restricted free content,\ncommercial", "Commercial"))
+    ax.set_xticks(ind, ("Free", "Restricted free content,\ncommercial", "Commercial", "Unknown"))
     ax.set_yticks(np.arange(0, 40, 10))
 
     # Add values
     for i in range(len(licenses)):
         # idk, idk, value, text position
-        plt.text(i, licenses[i] - 1.5, licenses[i], ha='center')
+        if licenses[i] > 10:
+            plt.text(i, licenses[i] - 1.5, licenses[i], ha='center')
+        else:
+            plt.text(i, licenses[i] + 0.5, licenses[i], ha='center')
 
     # Save and display the figure
     if not os.path.isdir('./graphics'):
@@ -37,8 +40,8 @@ def generate_licenses_graph(modeling_tools: [ModelingTool]):
     plt.show()
 
 
-def count_licenses(modeling_tools: [ModelingTool]) -> [int]:
-    license_counter: [int] = [0, 0, 0]
+def count_licenses(modeling_tools: [ModelingTool]) -> [int, int, int, int]:
+    license_counter: [int] = [0, 0, 0, 0]
     for tool in modeling_tools:
         license: str = tool.get_license()
         if license == "FREE":
@@ -47,4 +50,6 @@ def count_licenses(modeling_tools: [ModelingTool]) -> [int]:
             license_counter[1] = license_counter[1] + 1
         elif license == "COMMERCIAL":
             license_counter[2] = license_counter[2] + 1
+        else:
+            license_counter[3] = license_counter[3] + 1
     return license_counter

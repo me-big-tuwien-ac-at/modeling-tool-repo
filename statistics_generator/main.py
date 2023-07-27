@@ -17,5 +17,6 @@ if __name__ == "__main__":
 
     os.getcwd()
 
+    print(f'Found {len(modeling_tools)} modeling tools')
     print('Generated statistics for:\n  * True/False Values\n  * Categories\n  * Licenses\n  * Technologies')
     print(f'Output can be found in {os.getcwd()}\graphics')

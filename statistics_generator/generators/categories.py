@@ -23,8 +23,11 @@ def generate_categories_graph(modeling_tools: [ModelingTool]):
     ax.bar(ind, licenses, width, color=license_colors)
     ax.set_ylabel('Modeling Tools')
     ax.set_title('Modeling Tool Categories')
-    ax.set_xticks(ind, ("Drawing\nTool", "Business\nTool", "Graphical\nTool", "Metamodeling\nTool",
-                        "Mixed Textual\nandGraphical\nModeling Tool", "Text-based\nModeling Tool",))
+    # ax.set_xticks(ind, ("Graphical\nTool", "Business\nTool", "Drawing\nTool", "Metamodeling\nTool",
+    #                    "Mixed Textual\nandGraphical\nModeling Tool", "Text-based\nModeling Tool",))
+
+    ax.set_xticks(ind, ("Graphical\nTool", "Business\nTool", "Drawing\nTool", "Text-based\nModeling Tool",
+                        "Metamodeling\nTool", "Mixed Textual\nand Graphical\nModeling Tool",))
     ax.set_yticks(np.arange(0, 40, 10))
 
     # Add values

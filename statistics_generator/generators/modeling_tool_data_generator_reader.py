@@ -1,7 +1,8 @@
 import os
 import re
+import urllib.request
 
-path: str = r'../../backend/src/main/java/com/example/modeling_tools/datagenerator/ModelingToolDataGenerator.java'
+path: str = r'./../backend/src/main/java/com/example/modeling_tools/datagenerator/ModelingToolDataGenerator.java'
 
 
 class ModelingTool:
@@ -155,3 +156,11 @@ def read_modeling_tools() -> [ModelingTool]:
 def print_modeling_tools(modeling_tools: [ModelingTool]):
     for i, tool in enumerate(modeling_tools):
         print(f"{i + 1}. {tool.get_name()} {tool}")
+
+"""
+http_content = urllib.request.urlopen('http://localhost:8080/api/v1/modeling_tools')
+content_decoded = str(http_content.read(), 'UTF-8')
+pattern = re.compile("\{.*?\}")
+for tool in re.findall(pattern, content_decoded):
+    print(tool)
+"""
