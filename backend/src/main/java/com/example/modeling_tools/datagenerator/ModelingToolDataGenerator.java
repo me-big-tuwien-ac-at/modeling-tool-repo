@@ -44,7 +44,7 @@ public class ModelingToolDataGenerator {
     ProgrammingLanguagesRepository programmingLanguagesRepository;
 
     @PostConstruct
-    private void initializeData() throws IOException {
+    private void initializeData() {
         addModelingLanguages();
         addPlatforms();
         addProgrammingLanguages();
@@ -179,13 +179,13 @@ public class ModelingToolDataGenerator {
         );
         tools.add(
                 new ModelingToolVerified("Apache OpenOffice Draw", "https://www.openoffice.org/product/draw.html", true, List.of(Technology.APP),
-                        true, true, Category.GRAPHICAL_MODELING_TOOL, getModelingLanguages(List.of("UML")), false,
+                        true, true, Category.DRAWING_TOOL, getModelingLanguages(List.of("UML")), false,
                         false, License.FREE, true, List.of("Sun Microsystems", "Oracle Corporation"),
                         getPlatforms(List.of("Windows")), false, getProgrammingLanguages(List.of("C++", "Java")))
                 );
         tools.add(
                 new ModelingToolVerified("Archi", "https://www.archimatetool.com/", true, List.of(Technology.APP),
-                        false, true, Category.GRAPHICAL_MODELING_TOOL, getModelingLanguages(List.of("ArchiMate")), false,
+                        false, true, Category.METAMODELING_TOOL, getModelingLanguages(List.of("ArchiMate")), false,
                         false, License.FREE, false, List.of("Phil Beauvoir", "Jean-Baptiste Sarrodie"),
                         getPlatforms(List.of("Windows", "macOS", "Linux")), false, getProgrammingLanguages(List.of("Java", "HTML", "JavaScript", "CSS")))
         );
@@ -347,7 +347,7 @@ public class ModelingToolDataGenerator {
         );
         tools.add(
                 new ModelingToolVerified("GoJS", "https://gojs.net/latest/index.html", true, List.of(Technology.FRAMEWORK),
-                        false, false, Category.MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL, null, false,
+                        false, false, Category.MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL, getModelingLanguages(List.of("UML", "BPMN", "ER", "Flowchart")), false,
                         true, License.RESTRICTED_FREE_AND_COMMERCIAL, false, List.of("Volunteer developers"),
                         null, false, getProgrammingLanguages(List.of("HTML", "JAVASCRIPT", "TYPESCRIPT")))
         );
@@ -502,8 +502,8 @@ public class ModelingToolDataGenerator {
                         null, false, getProgrammingLanguages(List.of("Java")))
         );
         tools.add(
-                new ModelingToolVerified("ProcessOn", "https://www.processon.com/", false, List.of(Technology.APP),
-                        true, false, Category.BUSINESS_TOOL, getModelingLanguages(List.of("UML", "BPMN")), false,
+                new ModelingToolVerified("ProcessOn", "https://www.processon.io/", false, List.of(Technology.APP),
+                        true, false, Category.DRAWING_TOOL, getModelingLanguages(List.of("UML", "BPMN")), false,
                         true, null, false, null,
                         null, true, null)
         );
