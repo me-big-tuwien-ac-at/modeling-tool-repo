@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  cmai_sms_app:
+    container_name: cmai-sms-portal
+    build: .
+    image: cmai-sms-portal:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.cmsw-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.cmai-http.entrypoints=web" #port 80
+      - "traefik.http.routers.cmai-http.rule=Host(`me.big.tuwien.ac.at`) && PathPrefix(`/cmai`)"
+      - "traefik.http.routers.cmai-http.middlewares=cmsw-https@docker"
+      - "traefik.http.routers.cmai.entrypoints=web-secure" #port 443
+      - "traefik.http.routers.cmai.rule=Host(`me.big.tuwien.ac.at`) && PathPrefix(`/cmai`)"
+      - "traefik.http.routers.cmai.tls=true"
+      - "traefik.http.routers.cmai.tls.certresolver=default"
+      - "traefik.http.services.cmai.loadbalancer.server.port=80" #internal port of the application
+    networks:
+      - traefik_proxy
+      - default
+    restart: always
+
+networks:
+    traefik_proxy:
+        external:
+          name: traefik_proxy
+    default:
+        driver: bridge

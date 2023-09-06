@@ -1,0 +1,61 @@
+<!--             <div class="container">-->
+                 <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="mb-5">
+                            {% if publications %}
+                                <h3>Showing results {{start}} - {{end}} </h3>
+                                <h2>Publications Found: {{total_records}} </h2>
+                                <table class="table" id="recordsTable">
+                                    <tr>
+                                        <th style="width:5%" scope="col" id="SrNo">SR.No</th>
+                                        <th style="width:30%" scope="col" id="Title">Title</th>
+                                        <th style="width:5%" scope="col" id="Year">Year</th>
+                                        <th style="width:20%" scope="col" id="Authors">Authors</th>
+                                        <th style="width:10%" scope="col" id="Abstract">Abstract</th>
+                                        <th style="width:30%" scope="col" id="badges">Badges</th>
+                                    </tr>
+                                    {% for publication in publications %}
+                                        <tr>
+                                            <td scope="col" id="{{publication.index}}">{{publication.index}}</td>
+                                            <td scope="col" id="{{publication.Title}}"><strong>{{publication.Title}}</strong>
+                                                {% if publication.DOI %}
+                                                    <a href="{{publication.DOI}}">[Access Paper]</strong></a>
+                                                {% endif %}
+                                            </td>
+                                            <td scope="col" id="{{publication.Year}}">{{publication.Year}}</td>
+                                            <td scope="col" id="{{publication.Authors}}">
+                                                {% for author in publication.Authors %}
+                                                    {% if forloop.first %}
+                                                        {{author.name}}
+                                                    {% else %}
+                                                        , {{author.name}}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </td>
+                                            <td scope="col" id="{{publication.Abstract}}">
+                                                <button type="button" class="btn btn-secondary btn-sm mb-3" data-bs-container="body"
+                                                    data-bs-toggle="popover" data-bs-placement="top" title="Abstract"
+                                                    data-bs-content="{{publication.Abstract}}">
+                                                    Click to see full abstract
+                                                </button>
+                                            </td>
+                                            <td scope="col" id="#publicationBadges">
+                                                <div class="col">
+                                                    {% for _, badge_category in publication.badges.items %}
+                                                        {% for badge_category_value in badge_category.values %}
+                                                            <span class="badge bg-{{badge_category.badge_color}}">{{badge_category_value}}</span>
+                                                        {% endfor %}
+                                                        <br/>
+                                                    {% endfor %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            {% else %}
+                           <h2>Sorry! No Publications found </h2>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+<!--            </div>-->

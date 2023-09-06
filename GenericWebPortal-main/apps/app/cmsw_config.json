@@ -1,0 +1,100 @@
+{
+    "data_folder": "data",
+    "db_key": "cmsw",
+    "excel_file": {
+        "name": "CMSW_Full_dataset_wit_affiliation_data.xlsx",
+        "sheet": "Sheet1"
+    },
+    "data_analysis": {
+        "country-by-author": {
+            "label": "Country By Authors"
+        },
+        "country-by-publication": {
+            "label": "Country By Papers"
+        },
+        "university-by-publication": {
+            "label": "Institute By Papers"
+        },
+        "university-by-author": {
+            "label": "Institute By Authors"
+        },
+        "modeling-language-count": {
+            "filename": "Modeling_Languages_Count-CMSW.xlsx",
+            "label": "Modeling Languages By Publications"
+        },
+        "author-by-publication": {
+            "label": "Author By Papers"
+        }
+    },
+    "logging": {
+        "name": "request_logs.log"
+    },
+    "taxonomies": [
+        {
+            "name": "SW Filters",
+            "label": "Semantic Web",
+            "badge": "SW",
+            "badge_color": "success",
+            "columns": [
+                "W3C Main Areas of Semantic Web", 
+                "Semantic Web Activity Areas", 
+                "Semantic Technology Segments", 
+                "Semantic Web Standards",
+                "SW & CM Combination Value"
+            ]
+        },
+        {
+            "name": "CM Filters",
+            "badge": "CM",
+            "badge_color": "warning",
+            "label": "Conceptual Modeling",
+            "columns": [
+                "Modeling purpose",
+                "Conceptual Modeling Language"
+            ]
+        },
+        {
+            "name": "Others",
+            "badge": "Others",
+            "badge_color": "danger",
+            "label": "Research Methods",
+            "columns": [
+                "Contribution Type",
+                "Research Type"
+            ]
+        }
+    ],
+    "year": {
+        "min": 1980,
+        "max": 2022
+    },
+    "UI-Labels": {
+        "title": "Conceptual Modeling & Semantic Web KB",
+        "main_header": "Conceptual Modeling & Semantic Web",
+        "sub_header": "A Web Knowledge Base",
+        "navbar_title": "CMSW Web Knowledge Base"
+
+    },
+    "kb_column_labels_map": {
+        "Title": "Title",
+        "Authors": "Authors",
+        "Year": "Year",
+        "DocumentType": "Document.Type",
+        "DOI": "DOI",
+        "Venue": "Source.Title",
+        "Abstract": "Abstract"
+    },
+    "DocumentTypeValues": {
+        "Article": "Article",
+        "Conference Paper": "Proceedings Paper",
+        "Book Chapter": "Book Chapter"
+    },
+    "search-cases": {
+        "top_search_cases": {
+                "Publications": ["Title", "Abstract"],
+                "Venues": ["Venue"],
+                "Authors": ["Authors"]
+        }
+    },
+    "column_values_delimiter": ";"
+}

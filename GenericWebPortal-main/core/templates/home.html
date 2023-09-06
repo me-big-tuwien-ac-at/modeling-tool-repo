@@ -1,0 +1,66 @@
+{% extends "layouts/base.html" %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+    <main>
+        <nav class="navbar fixed-top navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">{{ui_labels.navbar_title}}</a>
+              {% comment %} {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}?next={% url 'login' %}"><button class="btn btn btn-outline-success">Logout {{user.username}}</button></a>
+              {% else %} {% endcomment %}
+<!--                <button class="btn btn btn-outline-success"><a href="{% url 'login' %}"> </a>Sign In</button>-->
+<!--                <button class="btn btn btn-outline-success"><a href="{% url 'register' %}"> </a>Sign Up</button>-->
+              {% comment %} {% endif %} {% endcomment %}
+          </div>
+        </nav>
+        <form action="{% url 'search_results' %}" method="post" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <section class="section-header">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-8 text-center">
+                            <h1 class="display-2 mb-3">{{ui_labels.main_header}}</h1>
+                            <h4>{{ui_labels.sub_header}}</h4>
+                            <div class="mb-3">
+                                <label for="search-box"></label>
+                                <div class="input-group">
+                                    <input id="search-box" type="text" name='search-box' class="form-control"
+                                           placeholder="Search for Publications" aria-label="Search" aria-describedby="basic-addon2">
+                                    <button type="submit" class="input-group-text" id="basic-addon2">Search</button>
+                                </div>
+                            </div>
+                            {% include 'search_types.html' with search_types=search_types %}
+                        </div>
+                    </div>
+                </div>
+                 <div class="section section-md">
+                    <div class="container">
+                        <!-- End of Title -->
+                        <div class="row mt-5">
+                            <div class="col-lg-12 d-block d-md-flex justify-content-around">
+                                {% for analysis_type, analysis_values in data_analysis.items %}
+                                    <a href="{% url 'comprehensive_analysis' %}?analysis-type={{analysis_type}}"><button class="btn btn-sm btn-primary" type="button">{{analysis_values.label}}</button></a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </main>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+<script>
+    var button = document.getElementsById("search-type");
+
+    button.addEventListener("click", function(e) {
+    this.classList.toggle("is-active");
+});
+</script>
+{% block javascripts %}
+{% endblock javascripts %}

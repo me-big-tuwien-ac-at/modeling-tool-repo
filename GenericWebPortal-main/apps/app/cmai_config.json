@@ -1,0 +1,99 @@
+{
+    "data_folder": "data",
+    "db_key": "cmai",
+    "excel_file": {
+        "name": "CMAI_Full_dataset_With_Affiliations.xlsx",
+        "sheet": "Sheet1"
+    },
+    "data_analysis": {
+        "country-by-author": {
+            "label": "Country By Authors"
+        },
+        "country-by-publication": {
+            "label": "Country By Papers"
+        },
+        "university-by-publication": {
+            "label": "Institute By Papers"
+        },
+        "university-by-author": {
+            "label": "Institute By Authors"
+        },
+        "modeling-language-count": {
+            "filename": "Modelling Language_count.xlsx",
+            "label": "Modeling Languages By Publications"
+        },
+        "author-by-publication": {
+            "label": "Author By Papers"
+        }
+    },
+    "logging": {
+        "name": "request_logs.log"
+    },
+    "taxonomies": [
+        {
+            "name": "AI Filters",
+            "label": "Artificial Intelligence",
+            "badge": "AI",
+            "badge_color": "success",
+            "columns": [
+                "AI Taxonomy Domain", 
+                "AI Taxonomy Subdomain", 
+                "AI Technique", 
+                "AI model Value to CM"
+            ]
+        },
+        {
+            "name": "CM Filters",
+            "badge": "CM",
+            "badge_color": "warning",
+            "label": "Conceptual Modeling",
+            "columns": [
+                "Modeling Purpose",
+                "Modelling Language"
+            ]
+        },
+        {
+            "name": "Others",
+            "badge": "Others",
+            "badge_color": "danger",
+            "label": "Research Methods",
+            "columns": [
+                "Contribution Type",
+                "Research Type"
+            ]
+        }
+    ],
+    "year": {
+        "min": 1980,
+        "max": 2022
+    },
+    "UI-Labels": {
+        "title": "Conceptual Modeling and AI Web KB",
+        "main_header": "Conceptual Modeling & AI",
+        "sub_header": "A Web Knowledge Base",
+        "navbar_title": "CMAI Web Knowledge Base"
+
+    },
+    "kb_column_labels_map": {
+        "Title": "Title",
+        "Authors": "Authors",
+        "Year": "Year",
+        "DocumentType": "DocumentType",
+        "DOI": "DOI",
+        "Venue": "SourceTitle",
+        "Abstract": "Abstract"
+    },
+    "DocumentTypeValues": {
+        "Article": "Article",
+        "Conference Paper": "Conference Paper",
+        "Book Chapter": "Book Chapter"
+    },
+    "search-cases": {
+        "top_search_cases": {
+                "Publications": ["Title", "Abstract"],
+                "Venues": ["Venue"],
+                "Authors": ["Authors"]
+        }
+    },
+    "column_values_delimiter": ","
+}

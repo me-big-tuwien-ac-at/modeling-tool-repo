@@ -1,0 +1,20 @@
+ <div class="col-2">
+        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+          <span class="fs-15 fw-semibold">Taxonomy Filters</span>
+        </a>
+        <ul class="list-unstyled">
+            {% for _, taxonomy_values  in form.taxonomies.items %}
+                <span> {{taxonomy_values.label}} </span>
+                    {% include 'taxonomy.html' with taxonomies=taxonomy_values.columns %}
+                <li class="border-top my-3"></li>
+            {% endfor %}
+
+            <span>Year </span>
+            {% include 'non_taxonomy.html' with taxonomy=form.years %}
+            {% if countries == "true" %}
+            <span>Country </span>
+                {% include 'non_taxonomy.html' with taxonomy=form.countries %}
+            {% endif %}
+<!--            <li class="border-top my-3"></li>-->
+        </ul>
+</div>

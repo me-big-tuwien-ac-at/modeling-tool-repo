@@ -1,0 +1,11 @@
+pip
+django
+unipath
+python-decouple
+pandas
+whitenoise
+django-cors-headers
+openpyxl
+nltk
+geoip2
+
