@@ -7,6 +7,7 @@ from datetime import datetime
 from django import template
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 
@@ -173,3 +174,7 @@ def pages(request):
     except:
         html_template = loader.get_template('page-500.html')
         return HttpResponse(html_template.render(context, request))
+
+
+def modeling_tools(request):
+    return render(request, 'modeling_tool/modeling_tool.html', {})
