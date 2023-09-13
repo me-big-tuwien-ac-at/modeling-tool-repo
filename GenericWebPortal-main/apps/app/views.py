@@ -11,6 +11,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 
+from apps.app.models import ModelingTool, ModelingLanguage, Platform, ProgrammingLanguage
 from apps.app.searchapi import *
 from apps.app.forms import CompleteForm
 from apps.app.request_processing import process_request_parameters, searchFor, \
@@ -177,4 +178,15 @@ def pages(request):
 
 
 def modeling_tools(request):
-    return render(request, 'modeling_tool/modeling_tool.html', {})
+    modeling_tools = ModelingTool.objects.all()
+    modeling_languages = ModelingLanguage.objects.all()
+    platforms = Platform.objects.all()
+    programming_languages = ProgrammingLanguage.objects.all()
+
+    context = {
+        'modeling_tools': modeling_tools,
+        'modeling_languages': modeling_languages,
+        'platforms': platforms,
+        'programming_languages': programming_languages
+    }
+    return render(request, 'modeling_tool/modeling_tool.html', context)
