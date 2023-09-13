@@ -1,0 +1,10 @@
+[
+  {"model": "app.platform", "pk": 1, "fields": {"name": "Chrome", "deletable": false}},
+  {"model": "app.platform", "pk": 2, "fields": {"name": "Edge", "deletable": false}},
+  {"model": "app.platform", "pk": 3, "fields": {"name": "Firefox", "deletable": false}},
+  {"model": "app.platform", "pk": 4, "fields": {"name": "Linux", "deletable": false}},
+  {"model": "app.platform", "pk": 5, "fields": {"name": "macOS", "deletable": false}},
+  {"model": "app.platform", "pk": 6, "fields": {"name": "Solaris", "deletable": false}},
+  {"model": "app.platform", "pk": 7, "fields": {"name": "Unix", "deletable": false}},
+  {"model": "app.platform", "pk": 8, "fields": {"name": "Windows", "deletable": false}}
+]

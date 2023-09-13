@@ -17,17 +17,26 @@ class Category(models.TextChoices):
     METAMODELING_TOOL = 'MTT', _('Metamodeling Tool')
     MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL = 'MTG', _('Mixed textual and graphical Modeling Tool')
 
+    class Meta:
+        ordering = ['-updated', '-created']  # - orders it descending, default is ascending
+
 
 class License(models.TextChoices):
     FREE = 'FR', _('Free')
     COMMERCIAL = 'CO', _('Commercial')
     FREEMIUM = 'FM', _('Freemium')
 
+    class Meta:
+        ordering = ['-updated', '-created']  # - orders it descending, default is ascending
+
 
 class Property(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
-    deletable = models.BooleanField()
+    deletable = models.BooleanField(default=True)
+
+    class Meta:
+        abstract = True
 
 
 class ModelingLanguage(Property):
@@ -46,9 +55,8 @@ class Technology(Property):
     pass
 
 
-class Creator(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)
+class Creator(Property):
+    pass
 
 
 # Create your models here.
@@ -60,11 +68,11 @@ class ModelingTool(models.Model):
     technology = models.ManyToManyField(Technology, blank=True)
     web_app = models.BooleanField(null=True, blank=True)
     desktop_app = models.BooleanField(null=True, blank=True)
-    category = models.CharField(max_length=3, choices=Category.choices, default=Category.GRAPHICAL_MODELING_TOOL)
+    category = models.CharField(max_length=100, choices=Category.choices, default=Category.GRAPHICAL_MODELING_TOOL)  # TODO: Adjust
     modeling_languages = models.ManyToManyField(ModelingLanguage, blank=True)
     source_code_generation = models.BooleanField(null=True, blank=True)
     cloud_service = models.BooleanField(null=True, blank=True)
-    license = models.CharField(max_length=2, choices=License.choices, default=License.FREE)
+    license = models.CharField(max_length=100, choices=License.choices, default=License.FREE)  # TODO: Adjust
     login_required = models.BooleanField(null=True, blank=True)
     creators = models.ManyToManyField(Creator, blank=True)
     platforms = models.ManyToManyField(Platform, blank=True)
