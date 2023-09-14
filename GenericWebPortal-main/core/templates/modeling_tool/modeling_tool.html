@@ -1,2 +1,979 @@
+{% extends "modeling_tool/index.html" %}
+{% load static %}
 
-<h1>TEST HERE</h1>
+{% block content %}
+<h1 class="title">
+  Modeling Tools
+</h1>
+
+<div id="information">
+  <section>
+    <h2 class="information-title" >
+    <span>
+      <i class="bi bi-chevron-down" *ngIf="sections.generalExpanded"></i>
+      <i class="bi bi-chevron-right" *ngIf="!sections.generalExpanded"></i>
+    </span>
+      <span>General</span>
+    </h2>
+    <div class="information-details" *ngIf="sections.generalExpanded">
+      <h3>What is a Modeling Tool?</h3>
+      <div>
+        <div>
+          <p>
+            Modeling Tools aim to provide their users with a set of graphical symbols so that a certain
+            concept (e.g. a process, a model or a system) can be abstracted to its core components
+            providing a comprehensive overview of all the necessary information on first glance. The
+            resulting models generally take of the form of a diagram.
+          </p>
+          <p>
+            As of right now there is a
+            large variety of modeling tools but the current trend leans towards the area of "Web
+            Modeling". Web-based modeling tools allow a user to access a modeling application over
+            the network using HTTP. This provides a variety of advantages in some cases, such as as
+            open cloud storage or real time collaboration.
+          </p>
+          <p>
+            An important subset of modeling is also
+            "Metamodeling". It is the process of modeling a model of a model, meaning it is a model
+            defining the structure, syntax and rules by which other models have to abide to.
+          </p>
+        </div>
+        <div class="image ">
+          <img id="big-er" src="{% static 'assets/img/tool_screenshots/bigER.png' %}" alt="bigER diagram"
+               >
+          <div>
+            An Entity-Relationship (ER) diagram modelled with
+            <a href="https://marketplace.visualstudio.com/items?itemName=BIGModelingTools.erdiagram" class="">
+              bigER Modeling Tool
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="information-title" >
+      <span>
+        <i class="bi bi-chevron-down" *ngIf="sections.examplesExpanded"></i>
+        <i class="bi bi-chevron-right" *ngIf="!sections.examplesExpanded"></i>
+      </span>
+      <span>Examples</span>
+    </h2>
+    <div id="gallery" *ngIf="sections.examplesExpanded">
+      <div class="image ">
+        <img id="bpmn-io" src="{% static 'assets/img/tool_screenshots/BPMN.io.png' %}" alt="bigER diagram"
+             >
+        <div>
+          A Business Process Model modelled with
+          <a href="https://bpmn.io/" class="">
+            BPMN.io
+          </a>
+        </div>
+      </div>
+      <div class="image ">
+        <img id="diagrams-net" src="{% static 'assets/img/tool_screenshots/diagrams.net.png' %}" alt="diagrams.net"
+             >
+        <div>
+          A diagram modelled with
+          <a href="https://app.diagrams.net/" class="">
+            app.diagrams.net
+          </a>
+        </div>
+      </div>
+      <div class="image ">
+        <img id="umletino" src="{% static 'assets/img/tool_screenshots/UMLetino.png' %}" alt="UMLetino"
+             >
+        <div>
+          A UML Class diagram modelled with
+          <a href="https://www.umletino.com/umletino.html" class="">
+            UMLetino
+          </a>
+        </div>
+      </div>
+      <div class="image ">
+        <img id="dotuml" src="{% static 'assets/img/tool_screenshots/DotUML.png' %}" alt="DotUML"
+             >
+        <div>
+          A UML Use Case diagram modelled with
+          <a href="https://dotuml.com/index.html#" class="">
+            DotUML
+          </a>
+        </div>
+      </div>
+      <div class="image ">
+        <img id="plantuml" src="{% static 'assets/img/tool_screenshots/plantUML.png' %}" alt="plantUML"
+             >
+        <div>
+          A UML sequence diagram modelled with
+          <a href="https://plantuml.com/en/" class="">
+            PlantUML
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="information-title" >
+      <span>
+        <i class="bi bi-chevron-down" *ngIf="sections.detailsExpanded"></i>
+        <i class="bi bi-chevron-right" *ngIf="!sections.detailsExpanded"></i>
+      </span>
+      <span>Table columns</span>
+    </h2>
+    <div class="information-details" *ngIf="sections.detailsExpanded">
+      <section>
+        <h3>Technology</h3>
+        <p>
+          Not all modeling tools in the list below are not just applications, but also frameworks/libraries, which can be
+          integrated into your own application.
+        </p>
+        <ul>
+          <li>
+            <b>App:</b> The features of the computer program are accessible as soon as the user
+            gains access to it (e.g., connecting to the website of the modeling tool).
+          </li>
+          <li>
+            <b>Framework:</b> Can be incorporated into a users own project without needing to
+            do changes to the implementation.
+          </li>
+          <li>
+            <b>Library:</b> The user can download the functionalities but cannot incorporate
+            them into the frontend. Instead can use it during the development of code.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>Category</h3>
+        <p>
+          Each modeling application targets a different type of user which can be expressed many ways, such as
+          usability, enforcing syntax for modeling rules, allowing real time collaboration, and much more. Based on
+          similar characteristics, we outlined the following categories, which might make it easier for a user to find
+          a tool which matches her or his expectations.
+        </p>
+        <ul>
+          <li>
+            <b>Text-based Modeling Tools:</b> Tools that are usually either frameworks or libraries which the user can
+            install and include in their projects. While the user can see the output visually, there is
+            no "draw and drop" functionality, meaning a user cannot use the mouse cursor and drag
+            a shape onto the modeling window, but instead must type the diagram.
+          </li>
+          <li>
+            <b>Graphical Modeling Tools:</b> Following category usually provides usability and syntactical support when creating a
+            model. The design occurs graphically, where the user most of the times has a window in
+            the center where the diagram can be modelled with shapes and arrows being provided in
+            a tool bar on the side.
+          </li>
+          <li>
+            <b>Drawing Tools:</b> The main goal of drawing tools lies in providing an easy to use application where a user
+            can use any shapes he or she wants and position as well connect arbitrarily. Unlike
+            graphical modeling tools, they do not provide any additional support and warnings if a
+            user designs a diagram that does not follow a set of rules of a certain modeling language.
+            Drawing tools are usually free and open source as it allows users to submit additional
+            templates as well as shapes.
+          </li>
+          <li>
+            <b>Business Tools:</b> Modeling tools below usually do not provide syntactical support, therefore not belonging
+            to the category "graphical modeling tools", but they also are not available for free nor
+            are they open source. These tools are usually licensed but provide perks such as real
+            time collaboration, linking the diagrams to excel tables etc. Following tools are usually
+            intended for brainstorming and planning overviews in simple fashions such as mind maps
+            or flowcharts. The reason for categorizing the tools as "business tools" is that while a
+            regular person will avoid the fees required for the license and instead use a graphical
+            modeling tool or a drawing tools, employees in a business will most likely already have
+            these apps on their working computer, paid for by their employer.
+          </li>
+          <li>
+            <b>Metamodeling Tools:</b> Following modeling tools usually do not provide syntactical support, therefore do not
+            belong to the category "graphical modeling tools", but they also are not available for free nor
+            are they open source. These tools are usually licensed but provide perks such as real
+            time collaboration, linking the diagrams to excel tables etc. Following tools are usually
+            intended for brainstorming and planning overviews in simple fashions such as mind maps
+            or flowcharts. The reason for categorizing the tools as "business tools" is that while a
+            regular person will avoid the fees required for the license and instead use a graphical
+            modeling tool or a drawing tools, employees in a business will most likely already have
+            these apps on their working computer, paid for by their employer.
+          </li>
+          <li>
+            <b>Mixed textual and graphical modeling tools:</b> Modeling tools from this category are a combination of
+            text-based modeling tools and graphical modeling tools, meaning the choice is up to the user if the model
+            will be created by typing the structure, or by creating it with the mouse cursor.
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h3>License</h3>
+        <p>
+          Each modeling tool falls under a specific license, e.g., the software license for ArgoUML is Eclipse Public
+          License (EPL), which is a free software license. To allow a better overview over which modeling tool is
+          either free, paid or a combination of both, we simply differentiate between the following three license types
+          below:
+        </p>
+        <ul>
+          <li><b>Free:</b> All of the contents within the modeling tool are accessible to the user</li>
+          <li>
+            <b>Restricted free content, commercial:</b> Some contents within the modeling tool are accessible to the user,
+            the rest is only available if the user pays for an additional license.
+          </li>
+          <li><b>Commercial:</b> The contents within the application are only available if the user pays for the access.</li>
+        </ul>
+      </section>
+    </div>
+  </section>
+</div>
+
+<h2 class="information-title">List of Modeling Tools</h2>
+
+<div id="options">
+  <div class="option" >
+    <span>
+      <i class="bi bi-chevron-down" *ngIf="filterDisplayed"></i>
+      <i class="bi bi-chevron-right" *ngIf="!filterDisplayed"></i>
+    </span>
+    <span>Filter Options</span>
+    <span></span>
+  </div>
+  <div id="download">
+    <span>Found  results</span>
+    <span>
+    <button class="btn btn-primary">
+        <a title="Download Modeling Tools as JSON" download="modeling_tools.json" [href]="downloadModelingToolsAsJson()">
+          <span><i class="bi bi-download"></i></span>
+          <span *ngIf="!phoneMode">Download as JSON</span>
+          <span *ngIf="phoneMode">JSON</span>
+        </a>
+      </button>
+
+      <button class="btn btn-success">
+        <a title="Download Modeling Tools as CSV" download="modeling_tools.csv" [href]="downloadModelingToolsAsCsv()">
+          <span><i class="bi bi-download"></i></span>
+          <span *ngIf="!phoneMode">Download as CSV</span>
+          <span *ngIf="phoneMode">CSV</span>
+        </a>
+      </button>
+    </span>
+  </div>
+</div>
+
+<div class="web-modeling-grid ">
+  <div class="search-column" *ngIf="filterDisplayed">
+    <div id="filter-columns">
+      <h4 >
+        <span>
+          <i class="bi bi-chevron-down" *ngIf="filterColumnsDisplayed"></i>
+          <i class="bi bi-chevron-right" *ngIf="!filterColumnsDisplayed"></i>
+        </span>
+        <span>Filter Table Columns</span>
+        <span></span>
+      </h4>
+      <form class="filter-columns" *ngIf="filterColumnsDisplayed">
+        <div class="property-column" >
+          <span>Open Source</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.openSource"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Technology</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.appFramework"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Available as Web App</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.webApp"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Available as Desktop App</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.desktopApp"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Category</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.category"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Modeling Languages</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.modelingLanguages"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Source Code Generation</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.sourceCodeGeneration"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Cloud Service</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.cloudService"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>License</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.license"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Log-in required</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.loginRequired"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Real Time Collaboration</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.realTimeCollab"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Creator</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.creator"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Platform</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.os"></i>
+          </span>
+        </div>
+        <div class="property-column" >
+          <span>Programming Language used</span>
+          <span class="checkbox ">
+            <i class="bi bi-check-lg" *ngIf="checkedColumns.programmingLanguage"></i>
+          </span>
+        </div>
+        <button class="reset-btn" >
+          Optimize columns
+        </button>
+      </form>
+    </div>
+
+    <div id="filter-tools">
+      <h4 >
+        <span>
+          <i class="bi bi-chevron-down" *ngIf="filterToolsDisplayed"></i>
+          <i class="bi bi-chevron-right" *ngIf="!filterToolsDisplayed"></i>
+        </span>
+        <span>Filter Modeling Tools</span>
+        <span></span>
+      </h4>
+      <form class="filter-columns" *ngIf="filterToolsDisplayed">
+        <div>
+          <label for="searchTool">
+            Modeling Tool Name
+          </label>
+          <input type="text" name="searchTool" id="searchTool" class="form-control"
+                 [(ngModel)]="modelingToolSearch.name" (ngModelChange)="searchModelingTool()">
+        </div>
+        <div>
+          <label for="open-source">
+            Open Source
+          </label>
+          <div class="input-group">
+            <select id="open-source"
+                    name="open-source"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.openSource"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div class="form-group" (clickOutside)="searchTechnologyChecked = false">
+          <label for="searchTechnology">Technology</label>
+          <div class="input-group">
+            <div style="border-radius: .375rem"
+                 class="form-select bg-white form-select-height"
+                 >
+              <span class="mult-item"
+                    *ngFor="let tech of modelingToolSearch.technology"
+                    >
+                
+                <i class="bi bi-x"></i>
+              </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="searchTechnology" *ngIf="searchTechnologyChecked">
+            <ul class="list-items">
+              <li class="item "
+                  *ngFor="let tech of getTechnologyEnum()"
+                  >
+              <span class="checkbox">
+                <i class="bi bi-check-lg" *ngIf="searchTechStored(tech)"></i>
+              </span>
+                <span class="item-text"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <label for="web-app">
+            Web App
+          </label>
+          <div class="input-group">
+            <select id="web-app"
+                    name="web-app"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.webApp"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="desktop-app">
+            Desktop App
+          </label>
+          <div class="input-group">
+            <select id="desktop-app"
+                    name="desktop-app"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.desktopApp"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="category">
+            Category
+          </label>
+          <div class="input-group">
+            <select id="category"
+                    name="category"
+                    style="border-radius: .375rem"
+                    class="form-select bg-white"
+                    [(ngModel)]="modelingToolSearch.category"
+                    (ngModelChange)="searchModelingTool()">
+              <option [ngValue]="undefined"></option>
+              <option [ngValue]="'BUSINESS_TOOL'">Business Tool</option>
+              <option [ngValue]="'DRAWING_TOOL'">Drawing Tool</option>
+              <option [ngValue]="'GRAPHICAL_MODELING_TOOL'">Graphical Modeling Tool</option>
+              <option [ngValue]="'TEXT_BASED_MODELING_TOOL'">Text-based Modeling Tool</option>
+              <option [ngValue]="'METAMODELING_TOOL'">Metamodeling Tool</option>
+              <option [ngValue]="'MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL'">Mixed Textual and Graphical Modeling Tool</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div class="form-group" (clickOutside)="searchModelingLanguagesChecked = false">
+          <label for="modeling-languages">Modeling Languages</label>
+          <div class="input-group">
+            <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
+                 >
+              <span class="mult-item"
+                    *ngFor="let language of modelingToolSearch.modelingLanguages"
+                    >
+                
+                <i class="bi bi-x"></i>
+              </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="modeling-languages" *ngIf="searchModelingLanguagesChecked">
+            <ul class="list-items">
+              <li class="item "
+                  *ngFor="let language of modelingLanguages"
+                  >
+                <span class="checkbox">
+                  <i class="bi bi-check-lg"></i>
+                </span>
+                <span class="item-text">
+                  
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <label for="selectLicense">
+            License
+          </label>
+          <select name="selectLicense"
+                  id="selectLicense"
+                  style="border-radius: .375rem"
+                  class="form-select"
+                  [(ngModel)]="modelingToolSearch.license"
+                  (ngModelChange)="searchModelingTool()">
+            <option [ngValue]="undefined"></option>
+            <option [ngValue]="'FREE'">Free</option>
+            <option [ngValue]="'RESTRICTED_FREE_AND_COMMERCIAL'">Restricted free content and additional commercial features</option>
+            <option [ngValue]="'COMMERCIAL'">Commercial</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div>
+          <label for="login">
+            Log-in required?
+          </label>
+          <div class="input-group">
+            <select id="login"
+                    name="login"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.loginRequired"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="real-time-collab">
+            Real Time Collaboration
+          </label>
+          <div class="input-group">
+            <select name="real-time-collab"
+                    id="real-time-collab"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.realTimeCollab"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="undefined"></option>
+              <option class="false-value" [ngValue]="false">Unavailable</option>
+              <option class="true-value" [ngValue]="true">Available</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="searchCreator">
+            Creator
+          </label>
+          <input type="text"
+                 name="searchCreator"
+                 id="searchCreator"
+                 class="form-control"
+                 [(ngModel)]="modelingToolSearch.creator"
+                 (ngModelChange)="searchModelingTool()">
+        </div>
+        <div class="form-group" (clickOutside)="searchPlatformChecked = false">
+          <label for="searchPlatform">Platform</label>
+          <div class="input-group">
+            <div class="form-select bg-white form-select-height"
+                 style="border-radius: .375rem"
+                 >
+              <span class="mult-item"
+                    *ngFor="let platform of modelingToolSearch.platform"
+                    >
+                
+                <i class="bi bi-x"></i>
+              </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="searchPlatform" *ngIf="searchPlatformChecked">
+            <ul class="list-items">
+              <li class="item "
+                  *ngFor="let platform of platforms"
+                  >
+              <span class="checkbox">
+                <i class="bi bi-check-lg" *ngIf="searchPlatformStored(platform)"></i>
+              </span>
+                <span class="item-text"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group" (clickOutside)="searchProgrammingLanguageChecked = false">
+          <label for="searchProgrammingLanguage">Programming Language</label>
+          <div class="input-group">
+            <div class="form-select bg-white form-select-height"
+                 style="border-radius: .375rem"
+                 >
+            <span class="mult-item"
+                  *ngFor="let language of modelingToolSearch.programmingLanguage"
+                  >
+              
+              <i class="bi bi-x"></i>
+            </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="searchProgrammingLanguage" *ngIf="searchProgrammingLanguageChecked">
+            <ul class="list-items">
+              <li class="item "
+                  *ngFor="let language of programmingLanguages"
+                  >
+              <span class="checkbox">
+                <i class="bi bi-check-lg" *ngIf="searchProgrammingLanguageStored(language)"></i>
+              </span>
+                <span class="item-text"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <button class="reset-btn" >
+          Reset
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="modeling-tools-column">
+    <table *ngIf="modelingToolsFiltered.length > 0">
+      <thead>
+      <tr>
+        <th class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Name</span>
+            <span>
+              <div>
+                <i class="bi bi-triangle-fill "></i>
+              </div>
+              <div>
+                <i class="bi bi-triangle-fill downwards "></i>
+              </div>
+            </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.openSource" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Open Source</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.appFramework" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Technology</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.webApp"
+            class="sorting-arrows"
+            >
+          <div>
+            <span></span>
+            <span>Available as Web App</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.desktopApp"
+            class="sorting-arrows"
+            >
+          <div>
+            <span></span>
+            <span>Available as Desktop App</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.category" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Category</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.modelingLanguages"
+            class="sorting-arrows"
+            >
+          <div>
+            <span></span>
+            <span>Modeling Language(s)</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.sourceCodeGeneration" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Source Code Generation</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.cloudService" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Cloud Service Available</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.license" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>License</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.loginRequired" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Log-in required?</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.realTimeCollab" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Real Time Collaboration Available</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.creator" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Creator(s)</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.os" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Platform</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th *ngIf="checkedColumns.programmingLanguage" class="sorting-arrows" >
+          <div>
+            <span></span>
+            <span>Programming Language(s) used</span>
+            <span>
+                <div>
+                  <i class="bi bi-triangle-fill "></i>
+                </div>
+                <div>
+                  <i class="bi bi-triangle-fill downwards "></i>
+                </div>
+              </span>
+          </div>
+        </th>
+        <th></th> <!-- Reserved for the edit of a modeling tool column -->
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let tool of modelingToolsFiltered">
+        <td>
+          <a href=""></a>
+        </td>
+        <td *ngIf="checkedColumns.openSource"
+            class="">
+          
+        </td>
+        <td *ngIf="checkedColumns.appFramework"
+            class="">
+          <div *ngFor="let technology of tool.technology">
+            
+          </div>
+          <div *ngIf="tool.technology === undefined || tool.technology === null || tool.technology.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td *ngIf="checkedColumns.webApp"
+            class="">
+          
+        </td>
+        <td *ngIf="checkedColumns.desktopApp"
+            class="">
+          
+        </td>
+        <td *ngIf="checkedColumns.category"
+            class="">
+          
+        </td>
+        <td *ngIf="checkedColumns.modelingLanguages"
+            class="">
+          <div *ngFor="let language of tool.modelingLanguages">
+            
+          </div>
+          <div *ngIf="tool.modelingLanguages === undefined || tool.modelingLanguages === null || tool.modelingLanguages.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td *ngIf="checkedColumns.sourceCodeGeneration"
+            class="">
+          
+        </td>
+        <td *ngIf="checkedColumns.cloudService"
+            class="">
+          
+        </td>
+        <td *ngIf="checkedColumns.license"
+            class="">
+          
+        </td>
+        <td *ngIf="checkedColumns.loginRequired"
+            class="">
+          
+        </td>
+        <td *ngIf="checkedColumns.realTimeCollab"
+            class="">
+          
+        </td>
+        <td *ngIf="checkedColumns.creator"
+            class="">
+          <div *ngFor="let creator of tool.creator">
+            
+          </div>
+          <div *ngIf="tool.creator === undefined || tool.creator === null || tool.creator.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td *ngIf="checkedColumns.os"
+            class="">
+          <div *ngFor="let platform of tool.platform">
+            
+          </div>
+          <div *ngIf="tool.platform === undefined || tool.platform === null || tool.platform.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td *ngIf="checkedColumns.programmingLanguage"
+            class="">
+          <div *ngFor="let language of tool.programmingLanguage">
+            
+          </div>
+          <div *ngIf="tool.programmingLanguage === undefined || tool.programmingLanguage === null || tool.programmingLanguage.length === 0">
+            Unknown
+          </div>
+        </td>
+        <td class=""><i class="bi bi-pencil-fill" [routerLink]="'modeling_tool/edit/' + tool.id"></i></td>
+      </tr>
+      </tbody>
+    </table>
+    <div id="no-match" *ngIf="modelingToolsFiltered.length === 0">
+      There are no matches to your query
+    </div>
+  </div>
+</div>
+
+        <!--
+<div *ngIf="imgZoomedIn.zoomedIn">
+  <span id="close">×</span>
+  <div class="image-bg"></div>
+  <img class="image-zoom " src="" alt="" (clickOutside)="zoomOut()">
+</div>
+
+<div *ngIf="displayConfirmation">
+  <div id="confirmation"
+       class="fadeInTop pop-up-position"
+       (clickOutside)="closeConfirmationWindow()">
+    <div>
+      <span id="close-confirmation" >×</span>
+    </div>
+    <div>
+      <p>Thank you for your Modeling Tool suggestion!</p>
+      <i class="bi bi-check"></i>
+    </div>
+  </div>
+  <div class="image-bg"></div>
+</div>
+-->
+{% endblock content %}

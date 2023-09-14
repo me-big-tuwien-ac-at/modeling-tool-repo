@@ -116,10 +116,12 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = 'cmai/static/'
+STATIS_MODELING_TOOL_URL = 'modeling_tools/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(STATIC_ROOT, 'cmai/static'),
+    os.path.join(STATIC_ROOT, 'modeling_tools/static')
 )
 print(STATIC_ROOT, STATICFILES_DIRS)
 print(f"Base dir:{BASE_DIR}, Core: {CORE_DIR}")

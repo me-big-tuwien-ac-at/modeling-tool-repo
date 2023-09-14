@@ -190,3 +190,18 @@ def modeling_tools(request):
         'programming_languages': programming_languages
     }
     return render(request, 'modeling_tool/modeling_tool.html', context)
+
+
+def modeling_tools_home(request):
+    modeling_tools = ModelingTool.objects.all()
+    modeling_languages = ModelingLanguage.objects.all()
+    platforms = Platform.objects.all()
+    programming_languages = ProgrammingLanguage.objects.all()
+
+    context = {
+        'modeling_tools': modeling_tools,
+        'modeling_languages': modeling_languages,
+        'platforms': platforms,
+        'programming_languages': programming_languages
+    }
+    return render(request, 'modeling_tool/modeling_tool.html', context)

@@ -1,0 +1,163 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '../bootstrap/css';
+@import "../bootstrap-icons";
+@import "header.component.css";
+@import "footer.component.css";
+@import "modeling-tools.component.css";
+
+:root {
+  --android-green: #32DE84;
+  --light-blue: #E6F3FF;
+  --light-blue-2: #CCE6FF;
+  --dark-blue: #021f54;
+  --light-theme: whitesmoke;
+  --dark-theme: #212529;
+  --td-light-theme: #E8E8E8;
+  --td-dark-theme: #373b3e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--light-theme);
+}
+
+.bg-white {
+  background: #FFFFFF;
+}
+.bg-dark-light {
+  background: var(--td-light-theme);
+}
+.bg-light-dark {
+  background: var(--td-dark-theme);
+}
+
+.font-light {
+  color: #FFFFFF;
+  caret-color: #FFFFFF;
+}
+.font-dark {
+  color: #000000;
+  caret-color: #000000;
+}
+
+.link-dark-theme {
+  color: #6ea8fe;
+}
+.link-dark-theme:hover {
+  color: #3d8bfd;
+}
+
+/***********************************
+ TABLE CELL PROPERTIES
+************************************/
+.true-value {
+  background: #9EFF9E;
+  text-align: center;
+  color: #000000;
+}
+.false-value {
+  background: #FFC7C7;
+  text-align: center;
+  color: #000000;
+}
+.unknown-value {
+  color: #FFFFFF;
+  background: #A0A0A0;
+  text-align: center;
+}
+td {
+  background: #E8E8E8;
+}
+.td-light {
+  background: var(--td-light-theme);
+}
+.td-dark {
+  background: var(--td-dark-theme);
+}
+
+/***********************************
+ SEARCH BAR
+************************************/
+#no-match {
+  justify-content: center;
+  display: flex;
+  position: sticky;
+  left: 0;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 2rem 0;
+}
+
+/***********************************
+ CUSTOM SELECT
+************************************/
+.list-items {
+  position: absolute;
+  border-radius: 8px;
+  padding: 16px;
+  background: #FFFFFF;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 6;
+  width: 100%;
+  border: 1px solid #ced4da;
+  max-height: 325px;
+  overflow: scroll;
+}
+.list-items .item {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  height: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 0 15px;
+  border-radius: 8px;
+}
+.list-items .item:hover {
+  background: #e7edfe;
+}
+.item .item-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+}
+
+/***********************************
+ RESET BUTTON
+************************************/
+.reset-btn {
+  background: #000;
+  color: #FFF;
+  border: none;
+  margin: 5px 16px;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  transition: .3s;
+}
+.reset-btn:hover {
+  background: var(--td-dark-theme);
+}
+
+/***********************************
+ INPUTS
+************************************/
+.bi.bi-chevron-down.custom-select {
+  color: #000;
+  display: flex;
+  height: 0;
+  position: relative;
+  right: 27.5px;
+  top: 11px;
+  width: 0;
+  z-index: 5;
+  -webkit-text-stroke: 1px #000;
+}
+.form-select > .false-value, .form-select > .true-value {
+  text-align: left;
+}

@@ -1,3 +1,5 @@
+from django.contrib import admin
+
 # -*- encoding: utf-8 -*-
 """
 Copyright (c) 2019 - present AppSeed.us
@@ -15,7 +17,10 @@ urlpatterns = [
     path(kb.DB_KEY, views.index, name='home'),
     path(kb.DB_KEY + '/search', views.search_results, name='search_results'),
     path(kb.DB_KEY + '/analysis', views.comprehensive_analysis, name='comprehensive_analysis'),
-    path('modelingtools', views.modeling_tools, name='modeling_tools')
+    path('modelingtools', views.modeling_tools, name='modeling_tools'),
+    path('modelingtoolshome', views.modeling_tools_home, name='modeling_tools_home'),
     # Matches any html file
     # re_path(r'^.*\.*', views.pages, name='pages'),
+    path('admin/', admin.site.urls)
+
 ]
