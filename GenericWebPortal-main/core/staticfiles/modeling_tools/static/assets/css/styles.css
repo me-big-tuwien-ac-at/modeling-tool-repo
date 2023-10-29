@@ -1,8 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import '../bootstrap/css';
-@import "../bootstrap-icons";
 @import "header.component.css";
 @import "footer.component.css";
 @import "modeling-tools.component.css";

@@ -1,4 +1,5 @@
 {% load static %}
+{% load bootstrap_icons %}
 
 <div id="disclaimer">
   <span style="font-weight: bold">Disclaimer:</span>
@@ -10,9 +11,9 @@
 <header>
   <div>
     <span>
-      <button  aria-label="Suggest a Modeling Tool"
+      <button aria-label="Suggest a Modeling Tool"
               class="create-edit-link btn btn-success"
-              > <!-- TODO:  -->
+              >
         <span >Suggest a Modeling Tool</span>
         <i class="bi bi-plus-lg"></i>
         <i class="bi bi-diagram-2-fill"></i>
@@ -34,14 +35,21 @@
       </button>
     </span>
     <span id="tool-categories">
+      <a href="{% url 'modeling_tools' %}" aria-label="Homepage">
+        {% bs_icon 'diagram-2-fill' %}
+      </a>
+      <!--
       <a aria-label="Homepage" >
         <i class="bi bi-diagram-2-fill logo"></i>
       </a>
+      -->
     </span>
-    <span>
-      <i class="bi bi-sun-fill"></i>
-      <i class="bi bi-moon-fill"></i>
-    </span>
+    <ul id="theme-setter">
+      <li id="moon-fill">{% bs_icon 'moon-fill' %}</li>
+      <li id="sun-fill">{% bs_icon 'sun-fill' %}</li>
+    </ul>
   </div>
   <div id="sub-header-design"></div>
 </header>
+
+<script src="{% static 'assets/js/header.js' %}"></script>

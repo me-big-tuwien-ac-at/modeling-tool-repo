@@ -53,11 +53,6 @@ header > div > span:last-child {
 /***********************************
  LOGO
 ************************************/
-.bi-diagram-2-fill::before {
-  color: #FFFFFF;
-  cursor: pointer;
-  font-size: 40px;
-}
 #tool-categories > a {
   align-items: center;
   border-radius: 50%;
@@ -69,6 +64,12 @@ header > div > span:last-child {
 }
 #tool-categories > a:hover {
   background: #1e2125;
+}
+#tool-categories > a > svg {
+  color: #FFFFFF;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
 }
 
 /***********************************
@@ -109,12 +110,32 @@ header > div > span:last-child {
 }
 
 /***********************************
- THEME
+ THEME ICONS
 ************************************/
 .bi.bi-sun-fill::before, .bi.bi-moon-fill::before {
   cursor: pointer;
 }
 
+#theme-setter {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: end;
+}
+
+#sun-fill {
+  display: none;
+}
+
+#theme-setter > li > svg {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+/***********************************
+ MOBILE SETTINGS
+************************************/
 @media (max-width: 1400px) {
   .create-edit-phone {
     align-items: center;
@@ -138,6 +159,8 @@ header > div > span:last-child {
     gap: 15px;
   }
 }
+
+
 
 @media (max-width: 1150px) {
   #disclaimer {

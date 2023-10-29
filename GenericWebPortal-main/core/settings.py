@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.app'  # Enable the inner app
+    'apps.app',  # Enable the inner app
+    'django_bootstrap_icons'
 ]
 
 MIDDLEWARE = [
