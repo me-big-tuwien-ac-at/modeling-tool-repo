@@ -19,6 +19,8 @@ urlpatterns = [
     path(kb.DB_KEY + '/analysis', views.comprehensive_analysis, name='comprehensive_analysis'),
     path('modelingtools', views.modeling_tools, name='modeling_tools'),
     path('modelingtoolshome', views.modeling_tools_home, name='modeling_tools_home'),
+    path('create-modeling-tool', views.create_modeling_tool, name='create_modeling_tools'),
+    path('edit-modeling-tool/<str:pk>', views.edit_modeling_tool, name='edit_modeling_tools'),
     # Matches any html file
     # re_path(r'^.*\.*', views.pages, name='pages'),
     path('admin/', admin.site.urls)

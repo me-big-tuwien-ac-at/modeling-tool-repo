@@ -205,3 +205,11 @@ def modeling_tools_home(request):
         'programming_languages': programming_languages
     }
     return render(request, 'modeling_tool/modeling_tool.html', context)
+
+
+def create_modeling_tool(request):
+    return render(request, 'modeling_tool/create_modeling_tool.html', {})
+
+
+def edit_modeling_tool(request, pk):
+    return render(request, 'modeling_tool/edit_modeling_tool.html', {})
