@@ -1,6 +1,9 @@
 # GenericWebPortal
 A generic web portal to access records from systematic mapping studies
 
+# How to prefill the database
+
+
 # TODO's
 
 ## Data

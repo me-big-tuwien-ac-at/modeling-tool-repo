@@ -183,6 +183,12 @@ def modeling_tools(request):
     platforms = Platform.objects.all()
     programming_languages = ProgrammingLanguage.objects.all()
 
+    print('TESTING FUNCTIONALITY OF THIS METHOD')
+    print(len(modeling_tools))
+    print(len(modeling_languages))
+    print(len(platforms))
+    print(len(programming_languages))
+
     context = {
         'modeling_tools': modeling_tools,
         'modeling_languages': modeling_languages,

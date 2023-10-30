@@ -393,9 +393,6 @@ checked .bi-check-lg {
 .bi.bi-pencil-fill {
   cursor: pointer;
 }
-.bi.bi-pencil-fill:hover {
-  color: #006bab;
-}
 .form-control.readonly {
   background: #e9ecef;
   color: #495057;

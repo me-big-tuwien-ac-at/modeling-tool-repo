@@ -51,6 +51,50 @@ header > div > span:last-child {
 }
 
 /***********************************
+ SUGGEST AND UPDATE MODELING TOOL LINKS
+************************************/
+#modeling-tool-suggestion-update-mobile {
+  display: none;
+}
+.create-edit-phone {
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  transition: .4s;
+  cursor: pointer;
+}
+.create-edit-phone > span {
+  display: block;
+  height: 0;
+  width: 0;
+}
+.create-edit-phone > svg {
+  color: #FFF;
+  height: 40px;
+  width: 40px;
+}
+.create-edit-phone.btn.btn-success {
+  background: #28a745;
+}
+.create-edit-phone.btn.btn-success:hover {
+  background: #218838;
+}
+.create-edit-phone.btn.btn-success > span > svg > path {
+  stroke: #000;
+  stroke-width: 3px;
+}
+.create-edit-phone.btn.btn-primary {
+  background: #007bff;
+}
+.create-edit-phone.btn.btn-primary:hover {
+  background: #0069d9;
+}
+.create-edit-phone.btn.btn-success > span > svg > path {
+  stroke: #000;
+  stroke-width: 3px;
+}
+
+/***********************************
  LOGO
 ************************************/
 #tool-categories > a {
@@ -90,14 +134,15 @@ header > div > span:last-child {
   font-size: 40px;
 }
 .bi-plus-lg {
-  left: 14px;
+  left: -3px;
   position: relative;
-  top: 13px;
+  top: 24px;
 }
 .bi-pencil-fill {
-  left: 17px;
+  left: -3px;
   position: relative;
-  top: 13px;
+  top: 24px;
+  transform: scale(-1, 1);
 }
 .bi-plus-lg::before {
   font-size: 20px;

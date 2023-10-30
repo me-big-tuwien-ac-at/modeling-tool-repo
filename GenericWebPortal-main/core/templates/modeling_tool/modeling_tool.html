@@ -859,6 +859,47 @@
       </tr>
       </thead>
       <tbody>
+
+      <tr>
+        {% for tool in modeling_tools %}
+          <td>{{ tool.name }}</td>
+          <td>{{ tool.open_source }}</td>
+          <td>
+          {% for tech in tool.technology.all %}
+            {{ tech.name }}
+          {% endfor %}
+          </td>
+          <td>{{ tool.web_app }}</td>
+          <td>{{ tool.desktop_app }}</td>
+          <td>{{ tool.category }}</td>
+          <td>
+            {% for language in tool.modeling_languages.all %}
+              {{ language.name }}
+            {% endfor %}
+          </td>
+          <td>{{ tool.source_code_generation }}</td>
+          <td>{{ tool.cloud_service }}</td>
+          <td>{{ tool.license }}</td>
+          <td>{{ tool.login_required }}</td>
+          <td>{{ tool.real_time_collab }}</td>
+          <td>
+            {% for creator in tool.creators.all %}
+              {{ creator.name }}
+            {% endfor %}
+          </td>
+          <td>
+            {% for platform in tool.platforms.all %}
+              {{ platform.name }}
+            {% endfor %}
+          </td>
+          <td>
+            {% for prog_language in tool.programming_languages.all %}
+              {{ prog_language.name }}
+            {% endfor %}
+          </td>
+        {% endfor %}
+      </tr>
+
       <tr *ngFor="let tool of modelingToolsFiltered">
         <td>
           <a href=""></a>
