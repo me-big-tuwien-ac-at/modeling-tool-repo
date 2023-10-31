@@ -4,6 +4,7 @@
 @import "header.component.css";
 @import "footer.component.css";
 @import "modeling-tools.component.css";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 :root {
   --android-green: #32DE84;
@@ -23,6 +24,7 @@
 
 body {
   background-color: var(--light-theme);
+  font-family: 'Open Sans', sans-serif;
 }
 
 .bg-white {
