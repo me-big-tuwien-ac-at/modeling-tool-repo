@@ -53,6 +53,12 @@ body {
   color: #3d8bfd;
 }
 
+#modeling-tools-container {
+  margin: 0 8rem;
+  min-height: 100vh;
+  position: relative;
+}
+
 /***********************************
  TABLE CELL PROPERTIES
 ************************************/
@@ -160,4 +166,10 @@ td {
 }
 .form-select > .false-value, .form-select > .true-value {
   text-align: left;
+}
+
+@media (max-width: 800px) {
+  #modeling-tools-container {
+    margin: 0 4rem;
+  }
 }
