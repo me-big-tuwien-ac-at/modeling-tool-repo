@@ -10,6 +10,9 @@ window.addEventListener('resize', function(event){
     adaptHeaderToPhoneOrWebMode();
 });
 
+/**
+ * Adapts CSS properties based on the window width.
+ */
 function adaptHeaderToPhoneOrWebMode() {
     if (window.innerWidth <= 1400) {
         createEditModelingToolWebSection.style.display = 'flex';

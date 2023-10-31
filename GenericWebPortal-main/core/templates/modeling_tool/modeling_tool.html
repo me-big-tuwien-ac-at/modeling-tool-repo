@@ -1,5 +1,7 @@
 {% extends "modeling_tool/index.html" %}
 {% load static %}
+{% load bootstrap_icons %}
+
 
 {% block content %}
 <h1 class="title">
@@ -10,8 +12,8 @@
   <section>
     <h2 class="information-title" >
     <span>
-      <i class="bi bi-chevron-down" *ngIf="sections.generalExpanded"></i>
-      <i class="bi bi-chevron-right" *ngIf="!sections.generalExpanded"></i>
+      {% bs_icon 'chevron-down' %}
+      {% bs_icon 'chevron-right' %}
     </span>
       <span>General</span>
     </h2>
@@ -55,12 +57,13 @@
   <section>
     <h2 class="information-title" >
       <span>
-        <i class="bi bi-chevron-down" *ngIf="sections.examplesExpanded"></i>
-        <i class="bi bi-chevron-right" *ngIf="!sections.examplesExpanded"></i>
+        {% bs_icon 'chevron-down' %}
+        {% bs_icon 'chevron-right' %}
+
       </span>
       <span>Examples</span>
     </h2>
-    <div id="gallery" *ngIf="sections.examplesExpanded">
+    <div class="information-details" id="gallery" *ngIf="sections.examplesExpanded">
       <div class="image ">
         <img id="bpmn-io" src="{% static 'assets/img/tool_screenshots/BPMN.io.png' %}" alt="bigER diagram"
              >
@@ -117,8 +120,8 @@
   <section>
     <h2 class="information-title" >
       <span>
-        <i class="bi bi-chevron-down" *ngIf="sections.detailsExpanded"></i>
-        <i class="bi bi-chevron-right" *ngIf="!sections.detailsExpanded"></i>
+        {% bs_icon 'chevron-down' %}
+        {% bs_icon 'chevron-right' %}
       </span>
       <span>Table columns</span>
     </h2>
@@ -1017,4 +1020,6 @@
   <div class="image-bg"></div>
 </div>
 -->
+<script src="{% static 'assets/js/modeling-tools.js' %}"></script>
+
 {% endblock content %}
