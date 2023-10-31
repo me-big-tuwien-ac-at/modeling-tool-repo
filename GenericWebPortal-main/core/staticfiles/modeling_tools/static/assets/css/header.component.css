@@ -73,7 +73,7 @@ header > div > span:last-child {
   height: 0;
   width: 0;
 }
-.create-edit-phone > svg {
+.create-edit-phone > svg, .create-edit-link > svg {
   color: #FFF;
   height: 40px;
   width: 40px;
@@ -84,20 +84,24 @@ header > div > span:last-child {
 .btn.btn-success:hover {
   background: #218838;
 }
+/*
 .create-edit-phone.btn.btn-success > span > svg > path {
   stroke: #000;
   stroke-width: 3px;
 }
+ */
 .btn.btn-primary {
   background: #007bff;
 }
 .btn.btn-primary:hover {
   background: #0069d9;
 }
+/*
 .create-edit-phone.btn.btn-success > span > svg > path {
   stroke: #000;
   stroke-width: 3px;
 }
+*/
 
 /***********************************
  LOGO
@@ -139,15 +143,29 @@ header > div > span:last-child {
   font-size: 40px;
 }
 .bi-plus-lg {
-  left: -3px;
   position: relative;
+  /*
+  left: -3px;
   top: 24px;
+   */
+  left: 13px;
+  top: 13px;
+  color: #000;
 }
 .bi-pencil-fill {
-  left: -3px;
   position: relative;
-  top: 24px;
   transform: scale(-1, 1);
+  /*
+  left: -3px;
+  top: 24px;
+   */
+  left: 13px;
+  top: 14px;
+  color: #000;
+}
+.bi-plus-lg > path {
+  stroke: #000;
+  stroke-width: 3px;
 }
 .bi-plus-lg::before {
   font-size: 20px;
@@ -186,7 +204,7 @@ header > div > span:last-child {
 /***********************************
  MOBILE SETTINGS
 ************************************/
-@media (max-width: 1400px) {
+@media (max-width: 1399px) {
   .create-edit-phone {
     align-items: center;
     display: flex;

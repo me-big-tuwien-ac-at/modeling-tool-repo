@@ -4,17 +4,21 @@
 const createEditModelingToolWebSection = document.getElementById('modeling-tool-suggestion-update-web');
 const createEditModelingToolMobileSection = document.getElementById('modeling-tool-suggestion-update-mobile');
 
+adaptHeaderToPhoneOrWebMode();
+
 window.addEventListener('resize', function(event){
-    if (window.innerWidth < 1400) {
-        console.log('Phone mode');
+    adaptHeaderToPhoneOrWebMode();
+});
+
+function adaptHeaderToPhoneOrWebMode() {
+    if (window.innerWidth <= 1400) {
         createEditModelingToolWebSection.style.display = 'flex';
         createEditModelingToolMobileSection.style.display = 'none';
     } else {
-        console.log('Web mode');
         createEditModelingToolWebSection.style.display = 'none';
         createEditModelingToolMobileSection.style.display = 'flex';
     }
-});
+}
 
 /***********************************
  THEME
