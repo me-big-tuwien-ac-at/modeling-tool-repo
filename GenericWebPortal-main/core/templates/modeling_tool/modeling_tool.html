@@ -860,8 +860,8 @@
       </thead>
       <tbody>
 
+      {% for tool in modeling_tools %}
       <tr>
-        {% for tool in modeling_tools %}
           <td>{{ tool.name }}</td>
           <td>{{ tool.open_source }}</td>
           <td>
@@ -897,8 +897,8 @@
               {{ prog_language.name }}
             {% endfor %}
           </td>
-        {% endfor %}
       </tr>
+      {% endfor %}
 
       <tr *ngFor="let tool of modelingToolsFiltered">
         <td>

@@ -55,6 +55,11 @@ header > div > span:last-child {
 ************************************/
 #modeling-tool-suggestion-update-mobile {
   display: none;
+  gap: 20px;
+}
+#modeling-tool-suggestion-update-web {
+  display: flex;
+  gap: 20px;
 }
 .create-edit-phone {
   border: none;
@@ -73,20 +78,20 @@ header > div > span:last-child {
   height: 40px;
   width: 40px;
 }
-.create-edit-phone.btn.btn-success {
+.btn.btn-success {
   background: #28a745;
 }
-.create-edit-phone.btn.btn-success:hover {
+.btn.btn-success:hover {
   background: #218838;
 }
 .create-edit-phone.btn.btn-success > span > svg > path {
   stroke: #000;
   stroke-width: 3px;
 }
-.create-edit-phone.btn.btn-primary {
+.btn.btn-primary {
   background: #007bff;
 }
-.create-edit-phone.btn.btn-primary:hover {
+.btn.btn-primary:hover {
   background: #0069d9;
 }
 .create-edit-phone.btn.btn-success > span > svg > path {
@@ -186,6 +191,7 @@ header > div > span:last-child {
     align-items: center;
     display: flex;
   }
+  /*
   .bi-plus-lg {
     height: 0;
     left: -7px;
@@ -199,6 +205,15 @@ header > div > span:last-child {
     position: relative;
     top: 1px;
     width: 0;
+  }
+   */
+  .bi-plus-lg {
+    left: -3px;
+    top: 4px;
+  }
+  .bi-pencil-fill {
+    left: -3px;
+    top: 4px;
   }
   header > div > span:first-child {
     gap: 15px;

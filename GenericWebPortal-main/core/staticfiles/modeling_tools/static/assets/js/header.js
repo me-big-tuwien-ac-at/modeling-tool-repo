@@ -1,4 +1,22 @@
 /***********************************
+ CREATE/EDIT MODELING TOOL
+************************************/
+const createEditModelingToolWebSection = document.getElementById('modeling-tool-suggestion-update-web');
+const createEditModelingToolMobileSection = document.getElementById('modeling-tool-suggestion-update-mobile');
+
+window.addEventListener('resize', function(event){
+    if (window.innerWidth < 1400) {
+        console.log('Phone mode');
+        createEditModelingToolWebSection.style.display = 'flex';
+        createEditModelingToolMobileSection.style.display = 'none';
+    } else {
+        console.log('Web mode');
+        createEditModelingToolWebSection.style.display = 'none';
+        createEditModelingToolMobileSection.style.display = 'flex';
+    }
+});
+
+/***********************************
  THEME
 ************************************/
 // Setting the size of the theme switches to an adjustable size

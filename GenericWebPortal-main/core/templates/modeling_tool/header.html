@@ -10,24 +10,32 @@
 </div>
 <header>
   <div>
-    <span>
+    <div>
       <span id="modeling-tool-suggestion-update-mobile">
         <button aria-label="Suggest a Modeling Tool"
                 class="create-edit-link btn btn-success"
                 >
           <span >Suggest a Modeling Tool</span>
-          <i class="bi bi-plus-lg"></i>
-          <i class="bi bi-diagram-2-fill"></i>
+          <span>
+            <span>
+              {% bs_icon 'plus-lg' %}
+            </span>
+            {% bs_icon 'diagram-2-fill' %}
+          </span>
         </button>
         <button  aria-label="Update a Modeling Tool"
                 class="create-edit-link btn btn-primary"
                 >
           <span >Update a Modeling Tool</span>
-          <i class="bi bi-pencil-fill"></i>
-          <i class="bi bi-diagram-2-fill"></i>
+          <span>
+            <span>
+              {% bs_icon 'pencil-fill' %}
+            </span>
+            {% bs_icon 'diagram-2-fill' %}
+          </span>
         </button>
       </span>
-      <span id="modeling-tool-suggestion-update-web">
+      <div id="modeling-tool-suggestion-update-web">
         <button class="create-edit-phone btn btn-success" href="{% url 'create_modeling_tools' %}">
           <span>
             {% bs_icon 'plus-lg' %}
@@ -40,8 +48,8 @@
           </span>
           {% bs_icon 'diagram-2-fill' %}
         </button>
-      </span>
-    </span>
+      </div>
+    </div>
     <span id="tool-categories">
       <a href="{% url 'modeling_tools' %}" aria-label="Homepage">
         {% bs_icon 'diagram-2-fill' %}
