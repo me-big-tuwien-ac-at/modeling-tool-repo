@@ -1,6 +1,4 @@
-import os
 import re
-import urllib.request
 
 path: str = r'./../backend/src/main/java/com/example/modeling_tools/datagenerator/ModelingToolDataGenerator.java'
 
@@ -8,16 +6,21 @@ path: str = r'./../backend/src/main/java/com/example/modeling_tools/datagenerato
 class Property(object):
     name: str
     deletable: bool
+    pk: int
 
-    def __init__(self, name: str, deletable: bool):
+    def __init__(self, name: str, deletable: bool, pk: int):
         self.name = name
         self.deletable = deletable
+        self.pk = pk
 
     def __get_name(self) -> str:
         return self.name
 
     def __get_deletable(self) -> bool:
         return self.deletable
+
+    def __get_pk(self) -> int:
+        return self.pk
 
 
 class ModelingLanguage(Property):
@@ -75,7 +78,7 @@ class ModelingTool:
         self.__license = self.__extract_license_category(license)
         self.__login_required = self.__get_bool_value(login_required)
         self.__creators = self.__extract_list_of_values(creators)
-        self.__platforms = platforms
+        self.__platforms = self.__extract_platforms(platforms)
         self.__real_time_collab = self.__get_bool_value(real_time_collab)
         self.__programming_languages = self.__extract_programming_languages_modeling_languages(programming_languages)
 
@@ -116,6 +119,16 @@ class ModelingTool:
                     else [list_of_entries.group(1)]
                     )
 
+    def __extract_platforms(self, entry: str) -> [str]:
+        # Form: 'getPlatforms(List.of("Windows"))'
+        list_of_platforms = re.match('^\s*getPlatforms\((.*?)\)\s*$', entry)
+        if list_of_platforms is None:
+            return None
+        entries_within_list = re.match("\s*List.of\((.*?)\)$|^\s*(null)$", list_of_platforms.group(1))
+        if entries_within_list is None:
+            return None
+        return re.findall('"(.*?)"', entries_within_list.group(1))
+
     def __extract_programming_languages_modeling_languages(self, entry: str) -> [str]:
         """
         Extracts values from strings contained within "List.of(x)", whereby x represents the value we wish to extract.
@@ -135,6 +148,9 @@ class ModelingTool:
     def get_name(self) -> str:
         return self.__name
 
+    def get_link(self) -> str:
+        return self.__link
+
     def get_open_source(self) -> bool:
         return self.__open_source
 
@@ -150,23 +166,67 @@ class ModelingTool:
     def get_category(self) -> str:
         return self.__category
 
+    def get_category_short(self) -> str:
+        if self.__category == "GRAPHICAL_MODELING_TOOL":
+            return "GMT"
+        if self.__category == "BUSINESS_TOOL":
+            return "BUT"
+        if self.__category == "DRAWING_TOOL":
+            return "DRT"
+        if self.__category == "TEXT_BASED_MODELING_TOOL":
+            return "TMT"
+        if self.__category == "METAMODELING_TOOL":
+            return 'MTT'
+        if self.__category == "MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL":
+            return 'MTG'
+
+    def get_modeling_languages(self) -> [str]:
+        return self.__modeling_languages
+
+    def get_source_code_generation(self) -> bool:
+        return self.__source_code_generation
+
+    def get_cloud_service(self) -> bool:
+        return self.__cloud_service
+
     def get_license(self) -> str:
         return self.__license
+
+    def get_license_short(self) -> str:
+        if self.__license is None:
+            return ""
+        if self.__license == "FREE":
+            return "FR"
+        if self.__license == "COMMERCIAL":
+            return "CO"
+        if self.__license == "FREEMIUM" or self.__license == "RESTRICTED_FREE_AND_COMMERCIAL":
+            return "FM"
+
 
     def get_login_required(self) -> bool:
         return self.__login_required
 
+    def get_creators(self) -> [str]:
+        return self.__creators
+
+    def get_platforms(self) -> [str]:
+        return self.__platforms
+
     def get_real_time_collab(self) -> bool:
         return self.__real_time_collab
 
-    def get_creators(self) -> [str]:
-        return self.__creators
+    def get_programming_languages(self) -> [str]:
+        return self.__programming_languages
 
     def __str__(self):
         return f"{self.__name}: {self.__category} | {self.__creators} | {self.__programming_languages}"
 
 
 def read_modeling_tools() -> [ModelingTool]:
+    """
+    Reads all modeling tools from the previous project and extracts each attribute using regex-matching.
+    :return: a list of Modeling Tools
+    """
     modeling_tools: [str] = []
     with open(path, "r") as data_generator:
         file: str = data_generator.read()
@@ -191,18 +251,34 @@ def read_modeling_tools() -> [ModelingTool]:
     return modeling_tools
 
 
-def print_modeling_tools(modeling_tools: [ModelingTool]):
+def print_modeling_tools(modeling_tools: [ModelingTool]) -> None:
+    """
+    Prints all modeling tools, numbered.
+    :param modeling_tools: list of modeling tools expected to be printed
+    :return: modeling tools printed
+    """
     for i, tool in enumerate(modeling_tools):
         print(f"{i + 1}. {tool.get_name()} {tool}")
 
 
-def read_properties() -> ([ModelingLanguage], [Platform], [ProgrammingLanguage], [Technology], [Creator], [ModelingLanguage]):
+def read_properties() -> (
+        {str: ModelingLanguage},
+        {str: Platform},
+        {str: ProgrammingLanguage},
+        {str: Technology},
+        {str: Creator},
+        {str: ModelingLanguage}
+):
+    """
+    Reads all properties contained within the data-generator of the previous project.
+    :return: properties structurally stored as Python objects
+    """
     modeling_tools: [ModelingTool] = read_modeling_tools()
-    modeling_languages: [ModelingLanguage] = []
-    platforms: [Platform] = []
-    programming_languages: [ProgrammingLanguage] = []
-    technologies: [Technology] = [Technology("APP", False), Technology("FRAMEWORK", False)]
-    creators: [Creator] = []
+    modeling_languages: {str: ModelingLanguage} = {}
+    platforms: {str: Platform} = {}
+    programming_languages: {str: ProgrammingLanguage} = {}
+    technologies: {str: Technology} = {"APP": Technology("APP", False, 1), "FRAMEWORK": Technology("FRAMEWORK", False, 2)}
+    creators: {str: Creator} = {}
 
     reg_pattern = r'\s*%s [a-zA-Z0-9]+\s*=\s*new %s\("(.*?)",\s*(.*?)\)'
     with open(path, "r") as data_generator:
@@ -216,35 +292,40 @@ def read_properties() -> ([ModelingLanguage], [Platform], [ProgrammingLanguage],
             if modeling_language_reg_groups:
                 modeling_language: ModelingLanguage = ModelingLanguage(
                     modeling_language_reg_groups.group(1),
-                    True if modeling_language_reg_groups.group(2) == "true" else False
+                    True if modeling_language_reg_groups.group(2) == "true" else False,
+                    len(modeling_languages) + 1
                 )
-                modeling_languages.append(modeling_language)
+                modeling_languages[modeling_language.name] = modeling_language
             elif modeling_platform_reg_groups:
                 platform: Platform = Platform(
                     modeling_platform_reg_groups.group(1),
-                    True if modeling_platform_reg_groups.group(2) == "true" else False
+                    True if modeling_platform_reg_groups.group(2) == "true" else False,
+                    len(platforms) + 1
                 )
-                platforms.append(platform)
+                platforms[platform.name] = platform
             elif modeling_programming_language_reg_groups:
                 programming_language: ProgrammingLanguage = ProgrammingLanguage(
                     modeling_programming_language_reg_groups.group(1),
-                    True if modeling_programming_language_reg_groups.group(2) == "true" else False
+                    True if modeling_programming_language_reg_groups.group(2) == "true" else False,
+                    len(programming_languages) + 1
                 )
-                programming_languages.append(programming_language)
+                programming_languages[programming_language.name] = programming_language
             i += 1
 
     for tool in modeling_tools:
         tool_creators: [str] = tool.get_creators()
+        i = 0
         if tool_creators:
-            for tool_creator in tool_creators:
+            while i < len(tool_creators):
                 creator_added: bool = False
                 for added_creator in creators:
-                    if added_creator.name == tool_creator.replace("\"", "").strip():
+                    if added_creator == tool_creators[i].replace("\"", "").strip():
                         creator_added = True
                         break
                 if not creator_added:
-                    creator: Creator = Creator(tool_creator.replace("\"", "").strip(), True)
-                    creators.append(creator)
+                    creator: Creator = Creator(tool_creators[i].replace("\"", "").strip(), True, len(creators) + 1)
+                    creators[creator.name] = creator
+                i = i + 1
 
     return modeling_languages, platforms, programming_languages, technologies, creators, modeling_tools
 
@@ -255,61 +336,120 @@ def print_properties(
         programming_languages: bool = True,
         technologies: bool = True,
         creators: bool = True
-):
+) -> None:
+    """
+    Prints all existing properties.
+    :param modeling_languages: Specifies if modeling languages should be printed
+    :param platforms: Specifies if platforms should be printed
+    :param programming_languages: Specifies if programming languages should be printed
+    :param technologies: Specifies if technologies should be printed
+    :param creators: Specifies if creators should be printed
+    :return: a printed list of properties
+    """
     result = read_properties()
     if modeling_languages:
         print(" MODELING LANGUAGES (" + str(len(result[0])) + ")")
-        for counter, r in enumerate(result[0]):
-            print(f"{counter + 1}. {r.name}")
+        for r in result[0]:
+            print(f"{result[0][r].pk}. {r}")
     if platforms:
         print("\nPLATFORMS (" + str(len(result[1])) + ")")
-        for counter, r in enumerate(result[1]):
-            print(f"{counter + 1}. {r.name}")
+        for r in result[1]:
+            print(f"{result[1][r].pk}. {r}")
     if programming_languages:
         print("\nPROGRAMMING LANGUAGES (" + str(len(result[2])) + ")")
-        for counter, r in enumerate(result[2]):
-            print(f"{counter + 1}. {r.name}")
+        for r in result[2]:
+            print(f"{result[2][r].pk}. {r}")
     if technologies:
         print("\nTECHNOLOGIES (" + str(len(result[3])) + ")")
-        for counter, r in enumerate(result[3]):
-            print(f"{counter + 1}. {r.name}")
+        for r in result[3]:
+            print(f"{result[3][r].pk}. {r}")
     if creators:
         print("\nCREATORS (" + str(len(result[4])) + ")")
-        for counter, r in enumerate(result[4]):
-            print(f"{counter + 1}. {r.name}")
+        for r in result[4]:
+            print(f"{result[4][r].pk}. {r}")
 
 
-def generate_all_data_json():
+def extract_property_pk(tool_properties: [str], properties: {str: Property}) -> [int]:
+    """
+    Extracts the corresponding primary key (pk) of a property based on the name of the property within tool_properties.
+    :param tool_properties: Tool properties whose name are expected to be checked for the pk
+    :param properties: Property objects containing the pk
+    :return: a list of pk's
+    """
+    pks: [int] = []
+    if tool_properties:
+        for tool_prop in tool_properties:
+            # TODO: Decide on whether LIBRARY should be permanently omitted
+            if tool_prop == "LIBRARY":
+                pks.append(2)
+            else:
+                prop = properties[tool_prop.strip().replace('"', '')]
+                pks.append(prop.pk)
+        return pks
+    return []
+
+
+def generate_all_data_json() -> None:
+    """
+    Key method in this file, generates the JSON output later used as a fixture by Django.
+    :return: generates a JSON file
+    """
     properties = read_properties()
-    modeling_languages: [ModelingLanguage] = properties[0]
-    platforms: [Platform] = properties[1]
-    programming_languages: [Platform] = properties[2]
-    technologies: [Platform] = properties[3]
-    creators: [Platform] = properties[4]
-    modeling_tools: [ModelingTool] = properties[5]
-    with open("all_data_generated.json", "w+") as f:
+    modeling_languages: {str: ModelingLanguage} = properties[0]
+    platforms: {str: Platform} = properties[1]
+    programming_languages: {str: Platform} = properties[2]
+    technologies: {str: Platform} = properties[3]
+    creators: {str: Platform} = properties[4]
+    modeling_tools: {str: ModelingTool} = properties[5]
+
+    # Output path
+    output_path: str = 'apps/app/fixtures/all_data_generated.json'
+
+    with open(output_path, "w+") as f:
         f.write("[\n")
-        for counter, ml in enumerate(modeling_languages):
-            f.write('  {"model": "app.modelinglanguage", "pk": ' + str(counter + 1) + ', "fields": {"name": "' + ml.name + '", "deletable": ' + str(ml.deletable).lower() + '}},\n')
+        for ml in modeling_languages:
+            f.write('  {"model": "app.modelinglanguage", "pk": ' + str(modeling_languages[ml].pk) + ', "fields": {"name": "' + ml + '", "deletable": ' + str(modeling_languages[ml].deletable).lower() + '}},\n')
         f.write("\n")
-        for counter, platform in enumerate(platforms):
-            f.write('  {"model": "app.platform", "pk": ' + str(counter + 1) + ', "fields": {"name": "' + platform.name + '", "deletable": ' + str(platform.deletable).lower() + '}},\n')
+        for platform in platforms:
+            f.write('  {"model": "app.platform", "pk": ' + str(platforms[platform].pk) + ', "fields": {"name": "' + platform + '", "deletable": ' + str(platforms[platform].deletable).lower() + '}},\n')
         f.write("\n")
-        for counter, pl in enumerate(programming_languages):
-            f.write('  {"model": "app.programminglanguage", "pk": ' + str(counter + 1) + ', "fields": {"name": "' + pl.name + '", "deletable": ' + str(pl.deletable).lower() + '}},\n')
+        for pl in programming_languages:
+            f.write('  {"model": "app.programminglanguage", "pk": ' + str(programming_languages[pl].pk) + ', "fields": {"name": "' + pl + '", "deletable": ' + str(programming_languages[pl].deletable).lower() + '}},\n')
         f.write("\n")
-        for counter, technology in enumerate(technologies):
-            f.write('  {"model": "app.technology", "pk": ' + str(counter + 1) + ', "fields": {"name": "' + technology.name + '", "deletable": ' + str(technology.deletable).lower() + '}},\n')
+        for technology in technologies:
+            f.write('  {"model": "app.technology", "pk": ' + str(technologies[technology].pk) + ', "fields": {"name": "' + technology + '", "deletable": ' + str(technologies[technology].deletable).lower() + '}},\n')
         f.write("\n")
-        for counter, creator in enumerate(creators):
-            f.write('  {"model": "app.creator", "pk": ' + str(counter + 1) + ', "fields": {"name": "' + creator.name + '", "deletable": ' + str(creator.deletable).lower() + '}},\n')
+        for creator in creators:
+            f.write('  {"model": "app.creator", "pk": ' + str(creators[creator].pk) + ', "fields": {"name": "' + creator + '", "deletable": ' + str(creators[creator].deletable).lower() + '}},\n')
         f.write("\n")
         for counter, tool in enumerate(modeling_tools):
-            f.write('  {"model": "app.creator", "pk": ' + str(counter + 1) + ', "fields": {"name": "' + tool.get_name() + '", "link": ' + tool.get_link() + '", "open_source": ' + tool.get_open_source() + '", "technology": ' +  '}},\n')
+            f.write('  {"model": "app.modelingtool", "pk": ' + str(counter + 1) + ', "fields": {"name": "' + tool.get_name() + '", "link": ' + tool.get_link() + ', "open_source": ' + extract_boolean_value(tool.get_open_source()) + ', "technology": ' + str(extract_property_pk(tool.get_technologies(), technologies)) + ', "web_app": ' + extract_boolean_value(tool.get_web_app()) + ', "desktop_app": ' + extract_boolean_value(tool.get_desktop_app()) + ', "category": "' + tool.get_category_short() + '", "modeling_languages": ' + str(extract_property_pk(tool.get_modeling_languages(), modeling_languages)) + ', "source_code_generation": ' + extract_boolean_value(tool.get_source_code_generation()) + ', "cloud_service": ' + extract_boolean_value(tool.get_cloud_service()) + ', "license": ' + extract_json_null_value(tool.get_license_short()) + ', "login_required": ' + extract_boolean_value(tool.get_login_required()) + ', "creators": ' + str(extract_property_pk(tool.get_creators(), creators)) + ', "platforms": ' + str(extract_property_pk(tool.get_platforms(), platforms)) + ', "real_time_collab": ' + extract_boolean_value(tool.get_real_time_collab()) + ', "programming_languages": ' + str(extract_property_pk(tool.get_programming_languages(), programming_languages)) + '}}')
+            if counter + 1 != len(modeling_tools):
+                f.write(",\n")
         f.write("\n")
         f.write("]")
-    print("Generated new fixture \"all_data_generated.json\"")
+    print(f"Generated new fixture \"{output_path}\"")
 
 
-print_properties()
+def extract_json_null_value(value: str):
+    """
+    Extracts the null value as a string in a JSON-appropriate format, otherwise return the value back but surrounded
+    with quotation marks.
+    :param value: value that is checked if it is null or empty
+    :return: null of type JSON, else the initial value surrounded by strings
+    """
+    return "null" if value is None or len(value) == 0 else f'"{value}"'
+
+
+def extract_boolean_value(value: bool) -> str:
+    """
+    Extracts values into a JSON-appropriate value.
+    :param value: boolean value
+    :return: JSON-appropriate value
+    """
+    return "null" if value is None else str(value).lower()
+
+
+# print_modeling_tools(read_modeling_tools())
+# print_properties()
 generate_all_data_json()
