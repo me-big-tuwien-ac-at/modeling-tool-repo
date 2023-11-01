@@ -49,6 +49,21 @@
 }
 
 /***********************************
+ DOWNLOAD AS JSON/CSV BUTTONS
+************************************/
+#download .create-edit-link {
+  border-radius: 8px;
+  padding: .5rem 1rem;
+}
+#download-csv svg, #download-json svg {
+  height: 20px;
+  width: 20px;
+}
+#download-csv svg > path, #download-json svg > path {
+  stroke: #FFF;
+}
+
+/***********************************
  TABLE PROPERTIES
 ************************************/
 .bi.bi-triangle-fill.downwards::before {

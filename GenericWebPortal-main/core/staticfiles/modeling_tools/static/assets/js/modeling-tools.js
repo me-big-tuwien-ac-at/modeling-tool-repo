@@ -32,3 +32,39 @@ for (let i = 0; i < informationHeader.length; i++) {
         }
     })
 }
+
+/***********************************
+ ELEMENTS WHERE PROPERTIES ADAPT TO WEB/PHONE MODE
+************************************/
+phoneWebModeCssSetter();
+
+window.addEventListener('resize', function(event){
+    phoneWebModeCssSetter();
+});
+
+function phoneWebModeCssSetter() {
+    const webElements = document.getElementsByClassName('web-block-mode');
+    const phoneElements = document.getElementsByClassName('phone-block-mode');
+    if (window.innerWidth <= 1400) {
+        for (let i = 0; i < webElements.length && i < phoneElements.length; i++) {
+            webElements[i].style.display = 'none';
+            phoneElements[i].style.display = 'block';
+        }
+    } else {
+        for (let i = 0; i < webElements.length && i < phoneElements.length; i++) {
+            webElements[i].style.display = 'block';
+            phoneElements[i].style.display = 'none';
+        }
+    }
+}
+
+/***********************************
+ DOWNLOADING MODELING TOOLS AS CSV/JSON
+************************************/
+const modelingToolsRows = document.getElementById('modeling-tools-column').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+for (let i = 0; i < modelingToolsRows.length; i++) {
+    const modelingToolCells = modelingToolsRows[i].getElementsByTagName('td');
+    for (let j = 0; j < modelingToolCells.length; j++) {
+        console.log(modelingToolCells[j]);
+    }
+}

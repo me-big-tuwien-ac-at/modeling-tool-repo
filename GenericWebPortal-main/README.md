@@ -49,6 +49,7 @@ python manage.py loaddata all_data.json
 
 ## Overall
 * Change font
+* Move phone/web adjusting properties into a single file, which is then imported to each js-file
 
 ## Homepage
 ### Header

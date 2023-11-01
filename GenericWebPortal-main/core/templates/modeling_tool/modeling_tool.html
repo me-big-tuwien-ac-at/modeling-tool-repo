@@ -17,7 +17,7 @@
     </span>
       <span>General</span>
     </h2>
-    <div class="information-details" *ngIf="sections.generalExpanded">
+    <div class="information-details">
       <h3>What is a Modeling Tool?</h3>
       <div>
         <div>
@@ -240,19 +240,19 @@
   <div id="download">
     <span>Found  results</span>
     <span>
-    <button class="btn btn-primary">
+    <button class="create-edit-link btn btn-primary" id="download-json">
         <a title="Download Modeling Tools as JSON" download="modeling_tools.json" [href]="downloadModelingToolsAsJson()">
-          <span><i class="bi bi-download"></i></span>
-          <span *ngIf="!phoneMode">Download as JSON</span>
-          <span *ngIf="phoneMode">JSON</span>
+          <span>{% bs_icon 'download' %}</span>
+          <span class="web-block-mode">Download as JSON</span>
+          <span class="phone-block-mode">JSON</span>
         </a>
       </button>
 
-      <button class="btn btn-success">
+      <button class="create-edit-link btn btn-success" id="download-csv">
         <a title="Download Modeling Tools as CSV" download="modeling_tools.csv" [href]="downloadModelingToolsAsCsv()">
-          <span><i class="bi bi-download"></i></span>
-          <span *ngIf="!phoneMode">Download as CSV</span>
-          <span *ngIf="phoneMode">CSV</span>
+          <span>{% bs_icon 'download' %}</span>
+          <span class="web-block-mode">Download as CSV</span>
+          <span class="phone-block-mode">CSV</span>
         </a>
       </button>
     </span>
