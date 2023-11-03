@@ -68,12 +68,12 @@ header > div > span:last-child {
   transition: .4s;
   cursor: pointer;
 }
-.create-edit-phone > span {
+.create-edit-phone > a > span {
   display: block;
   height: 0;
   width: 0;
 }
-.create-edit-phone > svg, .create-edit-link > svg {
+.create-edit-phone > a > svg, .create-edit-link > a > svg {
   color: #FFF;
   height: 40px;
   width: 40px;
@@ -138,29 +138,37 @@ header > div > span:last-child {
   font-size: 14px;
   padding: 0.3rem 1rem;
 }
+.create-edit-link > a {
+  align-items: center;
+  color: #FFF;
+  display: flex;
+}
+.create-edit-link > a:hover {
+  text-decoration: none;
+}
 .bi-diagram-2-fill::before {
   content: "\f2eb";
   font-size: 40px;
 }
 .bi-plus-lg {
   position: relative;
-  /*
   left: -3px;
   top: 24px;
-   */
+  /*
   left: 13px;
   top: 13px;
+   */
   color: #000;
 }
 .bi-pencil-fill {
   position: relative;
   transform: scale(-1, 1);
-  /*
   left: -3px;
   top: 24px;
-   */
+  /*
   left: 13px;
   top: 14px;
+   */
   color: #000;
 }
 .bi-plus-lg > path {
@@ -227,11 +235,11 @@ header > div > span:last-child {
    */
   .bi-plus-lg {
     left: -3px;
-    top: 4px;
+    top: 24px;
   }
   .bi-pencil-fill {
     left: -3px;
-    top: 4px;
+    top: 24px;
   }
   header > div > span:first-child {
     gap: 15px;

@@ -15,34 +15,42 @@
         <button aria-label="Suggest a Modeling Tool"
                 class="create-edit-link btn btn-success"
                 >
-          <span>Suggest a Modeling Tool</span>
+          <a href="{% url 'create_modeling_tools' %}">
+            <span>Suggest a Modeling Tool</span>
             <span>
               {% bs_icon 'plus-lg' %}
             </span>
             {% bs_icon 'diagram-2-fill' %}
+          </a>
         </button>
-        <button  aria-label="Update a Modeling Tool"
+        <button aria-label="Update a Modeling Tool"
                 class="create-edit-link btn btn-primary"
                 >
-          <span >Update a Modeling Tool</span>
+          <a href="{% url 'edit_modeling_tools_no_pk' %}">
+            <span >Update a Modeling Tool</span>
             <span>
               {% bs_icon 'pencil-fill' %}
             </span>
             {% bs_icon 'diagram-2-fill' %}
+          </a>
         </button>
       </span>
       <div id="modeling-tool-suggestion-update-web">
         <button class="create-edit-phone btn btn-success" href="{% url 'create_modeling_tools' %}">
-          <span>
-            {% bs_icon 'plus-lg' %}
-          </span>
+          <a href="{% url 'create_modeling_tools' %}">
+            <span>
+              {% bs_icon 'plus-lg' %}
+            </span>
           {% bs_icon 'diagram-2-fill' %}
+          </a>
         </button>
-        <button class="create-edit-phone btn btn-primary" href="{% url 'edit_modeling_tools' %}">
-          <span>
-            {% bs_icon 'pencil-fill' %}
-          </span>
-          {% bs_icon 'diagram-2-fill' %}
+        <button class="create-edit-phone btn btn-primary" href="{% url 'edit_modeling_tools_no_pk' %}">
+          <a href="{% url 'edit_modeling_tools_no_pk' %}">
+            <span>
+              {% bs_icon 'pencil-fill' %}
+            </span>
+            {% bs_icon 'diagram-2-fill' %}
+          </a>
         </button>
       </div>
     </div>

@@ -217,5 +217,9 @@ def create_modeling_tool(request):
     return render(request, 'modeling_tool/create_modeling_tool.html', {})
 
 
+def edit_modeling_tool_no_pk(request):
+    return render(request, 'modeling_tool/edit_modeling_tool.html', {})
+
+
 def edit_modeling_tool(request, pk):
     return render(request, 'modeling_tool/edit_modeling_tool.html', {})
