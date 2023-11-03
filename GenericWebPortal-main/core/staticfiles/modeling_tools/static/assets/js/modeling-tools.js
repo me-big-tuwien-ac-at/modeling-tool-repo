@@ -30,7 +30,7 @@ for (let i = 0; i < informationHeader.length; i++) {
             chevronDown.style.display = 'none';
             chevronRight.style.display = 'block';
         }
-    })
+    });
 }
 
 /***********************************
@@ -58,6 +58,40 @@ function phoneWebModeCssSetter() {
     }
 }
 
+// TODO: Finish
+/***********************************
+ ZOOMING IN A PICTURE
+************************************/
+const bodyElement = document.getElementsByTagName('body')[0];
+const modelingToolExamples = document.getElementsByClassName('modeling-tool-example');
+
+for (let i = 0; i < modelingToolExamples.length; i++) {
+    modelingToolExamples[i].addEventListener('click', function () {
+        const zoomedInElement = document.createElement('div');
+        zoomedInElement.setAttribute('id', 'image-zoom-in');
+        zoomedInElement.setAttribute('class', 'image-zoom-in');
+        zoomedInElement.innerHTML = `
+          <span id="close">×</span>
+          <div class="image-bg"></div>
+          <img class="image-zoom" src="${modelingToolExamples[i].src}" alt="">
+    `;
+
+        bodyElement.appendChild(zoomedInElement);
+        closeZoomIn('close', 'image-bg');
+    });
+}
+
+const closeZoomIn = (xButton, bg, event = 'click') => {
+  document.getElementById(xButton).addEventListener(event, function() {
+      document.getElementById('image-zoom-in').remove();
+  });
+    document.getElementsByClassName(bg)[0].addEventListener(event, function() {
+      document.getElementById('image-zoom-in').remove();
+  });
+}
+
+
+// TODO: Finish
 /***********************************
  DOWNLOADING MODELING TOOLS AS CSV/JSON
 ************************************/
@@ -65,6 +99,6 @@ const modelingToolsRows = document.getElementById('modeling-tools-column').getEl
 for (let i = 0; i < modelingToolsRows.length; i++) {
     const modelingToolCells = modelingToolsRows[i].getElementsByTagName('td');
     for (let j = 0; j < modelingToolCells.length; j++) {
-        console.log(modelingToolCells[j]);
+        // console.log(modelingToolCells[j]);
     }
 }

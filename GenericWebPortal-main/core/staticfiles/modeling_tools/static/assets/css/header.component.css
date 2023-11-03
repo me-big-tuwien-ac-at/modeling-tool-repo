@@ -152,23 +152,23 @@ header > div > span:last-child {
 }
 .bi-plus-lg {
   position: relative;
+  /*
   left: -3px;
   top: 24px;
-  /*
+   */
   left: 13px;
   top: 13px;
-   */
   color: #000;
 }
 .bi-pencil-fill {
   position: relative;
   transform: scale(-1, 1);
+  /*
   left: -3px;
   top: 24px;
-  /*
-  left: 13px;
-  top: 14px;
    */
+  left: 14px;
+  top: 14px;
   color: #000;
 }
 .bi-plus-lg > path {
