@@ -470,7 +470,7 @@ section > .information-title {
 .bi-chevron-down, .bi-chevron-right {
   font-size: 75%;
 }
-.information-details > div {
+#modeling-tool-definition {
   display: flex;
   gap: 20px;
 }
@@ -598,6 +598,17 @@ section > .information-title {
     transform: translateY(0);
   }
 }
+
+/***********************************
+ PROPERTIES ADAPTED TO THE THEME
+************************************/
+.bg-dark-light {
+  background: var(--td-light-theme);
+}
+.bg-light-dark {
+  background: var(--td-dark-theme);
+}
+
 
 @media (max-width: 1150px) {
 .information-details > div {

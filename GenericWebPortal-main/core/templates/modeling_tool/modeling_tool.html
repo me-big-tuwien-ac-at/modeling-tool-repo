@@ -19,7 +19,7 @@
     </h2>
     <div class="information-details">
       <h3>What is a Modeling Tool?</h3>
-      <div>
+      <div id="modeling-tool-definition">
         <div>
           <p>
             Modeling Tools aim to provide their users with a set of graphical symbols so that a certain
@@ -63,9 +63,9 @@
       </span>
       <span>Examples</span>
     </h2>
-    <div class="information-details" id="gallery" *ngIf="sections.examplesExpanded">
+    <div class="information-details" id="gallery">
       <div class="image ">
-        <img id="bpmn-io" src="{% static 'assets/img/tool_screenshots/BPMN.io.png' %}" alt="bigER diagram"
+        <img id="bpmn-io" class="modeling-tool-example" src="{% static 'assets/img/tool_screenshots/BPMN.io.png' %}" alt="bigER diagram"
              >
         <div>
           A Business Process Model modelled with
@@ -75,7 +75,7 @@
         </div>
       </div>
       <div class="image ">
-        <img id="diagrams-net" src="{% static 'assets/img/tool_screenshots/diagrams.net.png' %}" alt="diagrams.net"
+        <img id="diagrams-net" class="modeling-tool-example" src="{% static 'assets/img/tool_screenshots/diagrams.net.png' %}" alt="diagrams.net"
              >
         <div>
           A diagram modelled with
@@ -85,7 +85,7 @@
         </div>
       </div>
       <div class="image ">
-        <img id="umletino" src="{% static 'assets/img/tool_screenshots/UMLetino.png' %}" alt="UMLetino"
+        <img id="umletino" class="modeling-tool-example" src="{% static 'assets/img/tool_screenshots/UMLetino.png' %}" alt="UMLetino"
              >
         <div>
           A UML Class diagram modelled with
@@ -95,7 +95,7 @@
         </div>
       </div>
       <div class="image ">
-        <img id="dotuml" src="{% static 'assets/img/tool_screenshots/DotUML.png' %}" alt="DotUML"
+        <img id="dotuml" class="modeling-tool-example" src="{% static 'assets/img/tool_screenshots/DotUML.png' %}" alt="DotUML"
              >
         <div>
           A UML Use Case diagram modelled with
@@ -105,7 +105,7 @@
         </div>
       </div>
       <div class="image ">
-        <img id="plantuml" src="{% static 'assets/img/tool_screenshots/plantUML.png' %}" alt="plantUML"
+        <img id="plantuml" class="modeling-tool-example" src="{% static 'assets/img/tool_screenshots/plantUML.png' %}" alt="plantUML"
              >
         <div>
           A UML sequence diagram modelled with

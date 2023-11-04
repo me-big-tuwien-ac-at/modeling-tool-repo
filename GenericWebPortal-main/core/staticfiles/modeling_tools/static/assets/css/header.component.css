@@ -199,14 +199,15 @@ header > div > span:last-child {
   text-align: end;
 }
 
-#sun-fill {
-  display: none;
-}
-
 #theme-setter > li > svg {
   cursor: pointer;
   width: 20px;
   height: 20px;
+}
+
+#sun-fill, #moon-fill {
+  display: flex;
+  justify-content: end;
 }
 
 /***********************************

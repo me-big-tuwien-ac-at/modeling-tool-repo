@@ -1,7 +1,41 @@
 /***********************************
+ THEME
+************************************/
+const bodyElement = document.getElementsByTagName('body')[0];
+// TODO (Optional): Dynamically add svg's, instead of switching between "display: none;"
+const sunSvg = document.getElementsByClassName('bi-sun-fill')[0];
+const moonSvg = document.getElementsByClassName('bi-moon-fill')[0];
+const images = document.getElementsByClassName('image');
+setImageTheme();
+
+moonSvg.addEventListener('click', () => {
+   setImageTheme();
+});
+
+sunSvg.addEventListener('click', () => {
+   setImageTheme();
+});
+
+function setImageTheme() {
+    for (let i = 0; i < images.length; i++) {
+        if (
+            bodyElement.style.backgroundColor === 'var(--light-theme)' ||
+            bodyElement.style.backgroundColor === '#FFF' ||
+            bodyElement.style.backgroundColor === '#FFFFFF' ||
+            bodyElement.style.backgroundColor === ''
+        ) {
+            images[i].classList.add('bg-dark-light');
+            images[i].classList.remove('bg-light-dark');
+    } else {
+            images[i].classList.add('bg-light-dark');
+            images[i].classList.remove('bg-dark-light');
+        }
+    }
+}
+
+/***********************************
  COLLAPSIBLE/EXPANDABLE SECTIONS
 ************************************/
-
 const informationSection = document.getElementById('information');
 const informationSectionChevronRight = informationSection.getElementsByClassName('bi-chevron-right');
 const informationSectionChevronDown = informationSection.getElementsByClassName('bi-chevron-down');
@@ -22,9 +56,11 @@ for (let i = 0; i < informationHeader.length; i++) {
         const chevronDown = informationHeader[i].getElementsByClassName('bi-chevron-down')[0];
         const chevronRight = informationHeader[i].getElementsByClassName('bi-chevron-right')[0];
         if (chevronDown.style.display === 'none') {
-            informationHeader[i].nextElementSibling.style.display = 'block';
+            // informationHeader[i].nextElementSibling.style.display = 'block';
+            informationHeader[i].nextElementSibling.style.display = null;
             chevronDown.style.display = 'block';
             chevronRight.style.display = 'none';
+            galleryListeners();
         } else {
             informationHeader[i].nextElementSibling.style.display = 'none';
             chevronDown.style.display = 'none';
@@ -62,19 +98,35 @@ function phoneWebModeCssSetter() {
 /***********************************
  ZOOMING IN A PICTURE
 ************************************/
-const bodyElement = document.getElementsByTagName('body')[0];
 const modelingToolExamples = document.getElementsByClassName('modeling-tool-example');
+const expandedExample = modelingToolExamples[0];
 
-for (let i = 0; i < modelingToolExamples.length; i++) {
-    modelingToolExamples[i].addEventListener('click', function () {
+imgListener(expandedExample);
+
+const galleryListeners = (event = 'click') => {
+    for (let i = 0; i < modelingToolExamples.length; i++) {
+        imgListener(modelingToolExamples[i]);
+    }
+}
+
+function imgListener(modelingToolExample) {
+    modelingToolExample.addEventListener('click', function () {
         const zoomedInElement = document.createElement('div');
         zoomedInElement.setAttribute('id', 'image-zoom-in');
         zoomedInElement.setAttribute('class', 'image-zoom-in');
-        zoomedInElement.innerHTML = `
+        if (modelingToolExample.src.width > modelingToolExample.src.height) {
+            zoomedInElement.innerHTML = `
           <span id="close">×</span>
           <div class="image-bg"></div>
-          <img class="image-zoom" src="${modelingToolExamples[i].src}" alt="">
+          <img class="image-zoom" src="${modelingToolExample.src}" width="70%" alt="${modelingToolExample.alt}">
     `;
+        } else {
+            zoomedInElement.innerHTML = `
+          <span id="close">×</span>
+          <div class="image-bg"></div>
+          <img class="image-zoom" src="${modelingToolExample.src}" height="70%" alt="${modelingToolExample.alt}">
+    `;
+        }
 
         bodyElement.appendChild(zoomedInElement);
         closeZoomIn('close', 'image-bg');
