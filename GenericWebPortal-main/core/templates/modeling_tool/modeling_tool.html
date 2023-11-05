@@ -231,8 +231,8 @@
 <div id="options">
   <div class="option" >
     <span>
-      <i class="bi bi-chevron-down" *ngIf="filterDisplayed"></i>
-      <i class="bi bi-chevron-right" *ngIf="!filterDisplayed"></i>
+      {% bs_icon 'chevron-down' %}
+      {% bs_icon 'chevron-right' %}
     </span>
     <span>Filter Options</span>
     <span></span>
@@ -241,7 +241,7 @@
     <span>Found  results</span>
     <span>
     <button class="create-edit-link btn btn-primary" id="download-json">
-        <a title="Download Modeling Tools as JSON" download="modeling_tools.json" [href]="downloadModelingToolsAsJson()">
+        <a title="Download Modeling Tools as JSON" download="modeling_tools.json">
           <span>{% bs_icon 'download' %}</span>
           <span class="web-block-mode">Download as JSON</span>
           <span class="phone-block-mode">JSON</span>
@@ -249,7 +249,7 @@
       </button>
 
       <button class="create-edit-link btn btn-success" id="download-csv">
-        <a title="Download Modeling Tools as CSV" download="modeling_tools.csv" [href]="downloadModelingToolsAsCsv()">
+        <a title="Download Modeling Tools as CSV" download="modeling_tools.csv">
           <span>{% bs_icon 'download' %}</span>
           <span class="web-block-mode">Download as CSV</span>
           <span class="phone-block-mode">CSV</span>
@@ -260,12 +260,12 @@
 </div>
 
 <div class="web-modeling-grid ">
-  <div class="search-column" *ngIf="filterDisplayed">
+  <div class="search-column">
     <div id="filter-columns">
       <h4 >
         <span>
-          <i class="bi bi-chevron-down" *ngIf="filterColumnsDisplayed"></i>
-          <i class="bi bi-chevron-right" *ngIf="!filterColumnsDisplayed"></i>
+          {% bs_icon 'chevron-down' %}
+          {% bs_icon 'chevron-right' %}
         </span>
         <span>Filter Table Columns</span>
         <span></span>

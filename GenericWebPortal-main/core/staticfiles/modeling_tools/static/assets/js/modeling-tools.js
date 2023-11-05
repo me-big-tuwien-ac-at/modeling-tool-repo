@@ -143,7 +143,6 @@ const closeZoomIn = (xButton, bg, event = 'click') => {
 }
 
 
-// TODO: Finish
 /***********************************
  DOWNLOADING MODELING TOOLS AS CSV/JSON
 ************************************/
@@ -177,10 +176,8 @@ for (let i = 0; i < modelingToolsRows.length; i++) {
 
     let csvRowArrTmp = [];
     for (let key in mtJson) {
-        // csvRows += mtJson[key] + (key === 'programmingLanguages' ? "\n" : ";");
         csvRowArrTmp.push(mtJson[key]) // += mtJson[key] + (key === 'programmingLanguages' ? "\n" : ";");
     }
-    // csvRows += mtJson["name"] + ";" + mtJson["link"] + ";" + mtJson["openSource"] + "\n";
     csvRowsArr.push(csvRowArrTmp);
 }
 console.log(csvRows);
@@ -208,83 +205,9 @@ jsonDownload.addEventListener('click', () => {
     downloadAnchorNode.remove();
 });
 
-console.log(rows[0]);
-console.log(rows[0]['name']);
-
 csvDownload.addEventListener('click', () => {
     downloadBlob(arrayToCsv(csvRowsArr), 'export.csv', 'text/csv;charset=utf-8;')
-    // download_csv_file();
-    /*
-    const jsonArray = [];
-    for (let i = 0; i < rows.length; i++) {
-        const jsonRow = []
-        for (let row in rows[i]) {
-            jsonRow.push(rows[i][row]);
-        }
-        jsonArray.push(jsonRow);
-    }
-    let csvString = "";
-    for (let i = 0; i < jsonArray.length; i++) {
-        csvString += jsonArray[i][0] + ";" + jsonArray[i][1] + "\n";
-        console.log(i);
-    }
-        console.log(jsonArray[50][0] + ";" + jsonArray[50][1]);
-     */
-    // const csvContent = "data:text/csv;charset=utf-8," + jsonArray.map(e => e.join(";")).join("\n");
-    // const csvContent = "data:text/csv;charset=utf-8," + csvRows;
-
-    /*
-    const csvContent = csvRows;
-    const encodedUri = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
-    const link = document.createElement("a");
-
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "my_data.csv");
-    link.setAttribute("id", "download-csv-link");
-    document.body.appendChild(link); // Required for FF
-
-    link.click(); // This will download the data file named "my_data.csv".
-
-     */
 });
-
-//create a user-defined function to download CSV file
-function download_csv_file() {
-    const csvFileData = [
-       ['Alan Walker', 'Singer'],
-       ['Cristiano Ronaldo', 'Footballer'],
-       ['Saina Nehwal', 'Badminton Player'],
-       ['Arijit Singh', 'Singer'],
-       ['Terence Lewis', 'Dancer']
-    ];
-
-    //define the heading for each row of the data
-    let csv = 'Name,Profession\n';
-
-    //merge the data with CSV
-    /*
-    csvFileData.forEach(function(row) {
-            csv += row.join(',');
-            csv += "\n";
-    });
-     */
-    csvRowsArr.forEach(function(row) {
-            csv += row.join(',');
-            csv += "\n";
-    });
-
-    //display the created CSV data on the web browser
-    document.write(csv);
-
-
-    var hiddenElement = document.createElement('a');
-    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-    hiddenElement.target = '_blank';
-
-    //provide the name for the CSV file to be downloaded
-    hiddenElement.download = 'Famous Personalities.csv';
-    hiddenElement.click();
-}
 
 function arrayToCsv(data){
   return data.map(row =>
@@ -301,12 +224,63 @@ function arrayToCsv(data){
  */
 function downloadBlob(content, filename, contentType) {
   // Create a blob
-  var blob = new Blob([content], { type: contentType });
-  var url = URL.createObjectURL(blob);
+  const blob = new Blob([content], { type: contentType });
+  const url = URL.createObjectURL(blob);
 
   // Create a link to download it
-  var pom = document.createElement('a');
+  const pom = document.createElement('a');
   pom.href = url;
   pom.setAttribute('download', filename);
   pom.click();
 }
+
+
+/***********************************
+ FILTER MODELING TOOL TABLE COLUMNS
+************************************/
+const filterOptions = document.getElementById('options').children[0];
+const chevronDown = filterOptions.getElementsByClassName('bi-chevron-down')[0];
+const chevronRight = filterOptions.getElementsByClassName('bi-chevron-right')[0];
+// chevronDown.style.display = 'none';
+switchFilteringOptionsDisplay();
+
+filterOptions.addEventListener('click', () => {
+    switchFilteringOptionsDisplay();
+});
+
+function switchFilteringOptionsDisplay() {
+    const webModelingGrid = document.getElementsByClassName('web-modeling-grid')[0];
+    const searchColumn = document.getElementsByClassName('search-column')[0];
+    if (chevronDown.style.display === 'none') {
+        searchColumn.style.display = null;
+        webModelingGrid.style.display = null;
+        chevronDown.style.display = 'block';
+        chevronRight.style.display = 'none';
+        // galleryListeners();
+    } else {
+        searchColumn.style.display = 'none';
+        webModelingGrid.style.display = 'block';
+        chevronDown.style.display = 'none';
+        chevronRight.style.display = 'block';
+    }
+}
+
+/*
+for (let i = 0; i < informationHeader.length; i++) {
+    informationHeader[i].addEventListener('click', function () {
+        const chevronDown = informationHeader[i].getElementsByClassName('bi-chevron-down')[0];
+        const chevronRight = informationHeader[i].getElementsByClassName('bi-chevron-right')[0];
+        if (chevronDown.style.display === 'none') {
+            // informationHeader[i].nextElementSibling.style.display = 'block';
+            informationHeader[i].nextElementSibling.style.display = null;
+            chevronDown.style.display = 'block';
+            chevronRight.style.display = 'none';
+            galleryListeners();
+        } else {
+            informationHeader[i].nextElementSibling.style.display = 'none';
+            chevronDown.style.display = 'none';
+            chevronRight.style.display = 'block';
+        }
+    });
+}
+ */

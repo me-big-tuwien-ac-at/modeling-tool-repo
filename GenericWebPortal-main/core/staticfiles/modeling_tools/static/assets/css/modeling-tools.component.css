@@ -34,6 +34,7 @@
   column-gap: 2vw;
 }
 .option {
+  align-items: center;
   background: #000000;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
