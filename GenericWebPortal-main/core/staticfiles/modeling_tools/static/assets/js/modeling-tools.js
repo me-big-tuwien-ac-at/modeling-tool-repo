@@ -238,10 +238,10 @@ function downloadBlob(content, filename, contentType) {
 /***********************************
  FILTER MODELING TOOL TABLE COLUMNS
 ************************************/
+// "Filter Options"
 const filterOptions = document.getElementById('options').children[0];
 const chevronDown = filterOptions.getElementsByClassName('bi-chevron-down')[0];
 const chevronRight = filterOptions.getElementsByClassName('bi-chevron-right')[0];
-// chevronDown.style.display = 'none';
 switchFilteringOptionsDisplay();
 
 filterOptions.addEventListener('click', () => {
@@ -256,7 +256,6 @@ function switchFilteringOptionsDisplay() {
         webModelingGrid.style.display = null;
         chevronDown.style.display = 'block';
         chevronRight.style.display = 'none';
-        // galleryListeners();
     } else {
         searchColumn.style.display = 'none';
         webModelingGrid.style.display = 'block';
@@ -265,22 +264,24 @@ function switchFilteringOptionsDisplay() {
     }
 }
 
-/*
-for (let i = 0; i < informationHeader.length; i++) {
-    informationHeader[i].addEventListener('click', function () {
-        const chevronDown = informationHeader[i].getElementsByClassName('bi-chevron-down')[0];
-        const chevronRight = informationHeader[i].getElementsByClassName('bi-chevron-right')[0];
-        if (chevronDown.style.display === 'none') {
-            // informationHeader[i].nextElementSibling.style.display = 'block';
-            informationHeader[i].nextElementSibling.style.display = null;
-            chevronDown.style.display = 'block';
-            chevronRight.style.display = 'none';
-            galleryListeners();
-        } else {
-            informationHeader[i].nextElementSibling.style.display = 'none';
-            chevronDown.style.display = 'none';
-            chevronRight.style.display = 'block';
-        }
-    });
-}
- */
+// "Filter Table Columns"
+const filterTableColumns = document.getElementById('filter-columns');
+const filterTableColumnsHeader = document.getElementById('filter-columns').children[0];
+const filterTableColumnsChevronDown = filterTableColumns.getElementsByClassName('bi-chevron-down')[0];
+const filterTableColumnsChevronRight = filterTableColumns.getElementsByClassName('bi-chevron-right')[0];
+filterTableColumnsChevronRight.style.display = 'none';
+
+filterTableColumnsHeader.addEventListener('click', () => {
+    const filterColumns = document.getElementsByClassName('filter-columns')[0];
+    if (filterTableColumnsChevronDown.style.display === 'none') {
+        filterColumns.style.display = null;
+        filterTableColumnsChevronDown.style.display = 'block';
+        filterTableColumnsChevronRight.style.display = 'none';
+    } else if (filterTableColumnsChevronRight.style.display === 'none') {
+        filterColumns.style.display = 'none';
+        filterTableColumnsChevronDown.style.display = 'none';
+        filterTableColumnsChevronRight.style.display = 'block';
+    } else {
+        console.error('While expanding/collapsing the "Filter Table Columns"-block, neither of the expected if conditions were met!');
+    }
+});
