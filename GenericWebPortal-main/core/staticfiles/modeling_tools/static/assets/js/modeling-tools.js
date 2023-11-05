@@ -285,3 +285,38 @@ filterTableColumnsHeader.addEventListener('click', () => {
         console.error('While expanding/collapsing the "Filter Table Columns"-block, neither of the expected if conditions were met!');
     }
 });
+
+/***********************************
+ SETTING TABLE CSS PROPERTIES
+************************************/
+const openSourceCells = document.getElementsByClassName('td-open-source');
+const webAppCells = document.getElementsByClassName('td-web-app');
+const desktopAppCells = document.getElementsByClassName('td-desktop-app');
+const sourceCodeGenerationCells = document.getElementsByClassName('td-source-code-generation');
+const cloudServiceCells = document.getElementsByClassName('td-cloud-service-available');
+const loginRequiredCells = document.getElementsByClassName('td-log-in-required');
+
+setBooleanCellCssStyle(openSourceCells);
+setBooleanCellCssStyle(webAppCells);
+setBooleanCellCssStyle(desktopAppCells);
+setBooleanCellCssStyle(sourceCodeGenerationCells);
+setBooleanCellCssStyle(cloudServiceCells);
+setBooleanCellCssStyle(loginRequiredCells);
+
+function setBooleanCellCssStyle(cells) {
+    for (let i = 0; i < cells.length; i++) {
+        const boolCell = cells[i];
+        const innerContent = removeTrailingWhitespaces(boolCell.innerHTML);
+        if (innerContent === 'True') {
+            boolCell.classList.add('true-value');
+        } else if (innerContent === 'False') {
+            boolCell.classList.add('false-value');
+        } else if (innerContent === 'Unknown') {
+            boolCell.classList.add('unknown-value');
+        }
+    }
+}
+
+function removeTrailingWhitespaces(value) {
+    return value.trim().replace(/\n/g, "")
+}

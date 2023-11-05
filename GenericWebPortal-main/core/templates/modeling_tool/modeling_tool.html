@@ -656,7 +656,7 @@
             </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.openSource" class="sorting-arrows" >
+        <th class="sorting-arrows th-open-source">
           <div>
             <span></span>
             <span>Open Source</span>
@@ -670,7 +670,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.appFramework" class="sorting-arrows" >
+        <th class="sorting-arrows th-technology">
           <div>
             <span></span>
             <span>Technology</span>
@@ -684,9 +684,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.webApp"
-            class="sorting-arrows"
-            >
+        <th class="sorting-arrows th-web-app">
           <div>
             <span></span>
             <span>Available as Web App</span>
@@ -700,9 +698,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.desktopApp"
-            class="sorting-arrows"
-            >
+        <th class="sorting-arrows th-desktop-app">
           <div>
             <span></span>
             <span>Available as Desktop App</span>
@@ -716,13 +712,13 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.category" class="sorting-arrows" >
+        <th class="sorting-arrows th-category">
           <div>
             <span></span>
             <span>Category</span>
             <span>
                 <div>
-                  <i class="bi bi-triangle-fill "></i>
+                  <i class="bi bi-triangle-fill"></i>
                 </div>
                 <div>
                   <i class="bi bi-triangle-fill downwards "></i>
@@ -730,9 +726,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.modelingLanguages"
-            class="sorting-arrows"
-            >
+        <th class="sorting-arrows th-modeling-languages">
           <div>
             <span></span>
             <span>Modeling Language(s)</span>
@@ -746,7 +740,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.sourceCodeGeneration" class="sorting-arrows" >
+        <th class="sorting-arrows th-source-code-generation">
           <div>
             <span></span>
             <span>Source Code Generation</span>
@@ -760,7 +754,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.cloudService" class="sorting-arrows" >
+        <th class="sorting-arrows th-cloud-service-available">
           <div>
             <span></span>
             <span>Cloud Service Available</span>
@@ -774,7 +768,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.license" class="sorting-arrows" >
+        <th class="sorting-arrows th-license">
           <div>
             <span></span>
             <span>License</span>
@@ -788,7 +782,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.loginRequired" class="sorting-arrows" >
+        <th class="sorting-arrows th-log-in-required">
           <div>
             <span></span>
             <span>Log-in required?</span>
@@ -802,7 +796,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.realTimeCollab" class="sorting-arrows" >
+        <th class="sorting-arrows th-real-time-collab">
           <div>
             <span></span>
             <span>Real Time Collaboration Available</span>
@@ -816,7 +810,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.creator" class="sorting-arrows" >
+        <th class="sorting-arrows th-creators">
           <div>
             <span></span>
             <span>Creator(s)</span>
@@ -830,10 +824,10 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.os" class="sorting-arrows" >
+        <th class="sorting-arrows th-platforms">
           <div>
             <span></span>
-            <span>Platform</span>
+            <span>Platform(s)</span>
             <span>
                 <div>
                   <i class="bi bi-triangle-fill "></i>
@@ -844,7 +838,7 @@
               </span>
           </div>
         </th>
-        <th *ngIf="checkedColumns.programmingLanguage" class="sorting-arrows" >
+        <th class="sorting-arrows th-programming-languages">
           <div>
             <span></span>
             <span>Programming Language(s) used</span>
@@ -870,36 +864,72 @@
               {{ tool.name }}
             </a>
           </td>
-          <td>{{ tool.open_source }}</td>
-          <td>
+          <td class="td-open-source">
+            {% if tool.open_source is None %}
+              Unknown
+            {% else %}
+              {{ tool.open_source }}
+            {% endif %}
+          </td>
+          <td class="td-technology">
           {% for tech in tool.technology.all %}
             {{ tech.name }}
           {% endfor %}
           </td>
-          <td>{{ tool.web_app }}</td>
-          <td>{{ tool.desktop_app }}</td>
-          <td>{{ tool.category }}</td>
-          <td>
+          <td class="td-web-app">
+            {% if tool.web_app is None %}
+              Unknown
+            {% else %}
+              {{ tool.web_app }}
+            {% endif %}
+          </td>
+          <td class="td-desktop-app">
+            {% if tool.desktop_app is None %}
+              Unknown
+            {% else %}
+              {{ tool.desktop_app }}
+            {% endif %}
+          </td>
+          <td class="td-category">{{ tool.category }}</td>
+          <td class="td-modeling-languages">
             {% for language in tool.modeling_languages.all %}
               {{ language.name }}
             {% endfor %}
           </td>
-          <td>{{ tool.source_code_generation }}</td>
-          <td>{{ tool.cloud_service }}</td>
-          <td>{{ tool.license }}</td>
-          <td>{{ tool.login_required }}</td>
-          <td>{{ tool.real_time_collab }}</td>
-          <td>
+          <td class="td-source-code-generation">
+            {% if tool.source_code_generation is None %}
+              Unknown
+            {% else %}
+              {{ tool.source_code_generation }}
+            {% endif %}
+          </td>
+          <td class="td-cloud-service-available">
+            {% if tool.cloud_service is None %}
+              Unknown
+            {% else %}
+              {{ tool.cloud_service }}
+            {% endif %}
+          </td>
+          <td class="td-license">{{ tool.license }}</td>
+          <td class="td-log-in-required">
+            {% if tool.login_required is None %}
+              Unknown
+            {% else %}
+              {{ tool.login_required }}
+            {% endif %}
+          </td>
+          <td class="td-real-time-collab">{{ tool.real_time_collab }}</td>
+          <td class="td-creators">
             {% for creator in tool.creators.all %}
               {{ creator.name }}
             {% endfor %}
           </td>
-          <td>
+          <td class="td-platforms">
             {% for platform in tool.platforms.all %}
               {{ platform.name }}
             {% endfor %}
           </td>
-          <td>
+          <td class="td-programming-languages">
             {% for prog_language in tool.programming_languages.all %}
               {{ prog_language.name }}
             {% endfor %}
