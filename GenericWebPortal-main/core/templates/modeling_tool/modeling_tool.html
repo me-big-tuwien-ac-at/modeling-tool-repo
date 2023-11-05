@@ -865,7 +865,11 @@
 
       {% for tool in modeling_tools %}
       <tr>
-          <td>{{ tool.name }}</td>
+          <td>
+            <a href="{{ tool.link }}">
+              {{ tool.name }}
+            </a>
+          </td>
           <td>{{ tool.open_source }}</td>
           <td>
           {% for tech in tool.technology.all %}
@@ -903,6 +907,7 @@
       </tr>
       {% endfor %}
 
+      <!--
       <tr *ngFor="let tool of modelingToolsFiltered">
         <td>
           <a href=""></a>
@@ -990,6 +995,7 @@
         </td>
         <td class=""><i class="bi bi-pencil-fill" [routerLink]="'modeling_tool/edit/' + tool.id"></i></td>
       </tr>
+      -->
       </tbody>
     </table>
     <div id="no-match" *ngIf="modelingToolsFiltered.length === 0">
