@@ -350,7 +350,7 @@ td:first-child {
   color: #fff;
   font-size: 15px;
 }
-checked .bi-check-lg {
+.checked .bi-check-lg {
   transform: scale(1);
 }
 .own-property-input-list {

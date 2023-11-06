@@ -176,11 +176,10 @@ for (let i = 0; i < modelingToolsRows.length; i++) {
 
     let csvRowArrTmp = [];
     for (let key in mtJson) {
-        csvRowArrTmp.push(mtJson[key]) // += mtJson[key] + (key === 'programmingLanguages' ? "\n" : ";");
+        csvRowArrTmp.push(mtJson[key]);
     }
     csvRowsArr.push(csvRowArrTmp);
 }
-console.log(csvRows);
 
 /**
  * Evaluates a data entry from within the "modeling tools"-table and checks if it is null or empty
@@ -295,6 +294,7 @@ const desktopAppCells = document.getElementsByClassName('td-desktop-app');
 const sourceCodeGenerationCells = document.getElementsByClassName('td-source-code-generation');
 const cloudServiceCells = document.getElementsByClassName('td-cloud-service-available');
 const loginRequiredCells = document.getElementsByClassName('td-log-in-required');
+const realTimeCollab = document.getElementsByClassName('td-real-time-collab');
 
 setBooleanCellCssStyle(openSourceCells);
 setBooleanCellCssStyle(webAppCells);
@@ -302,7 +302,12 @@ setBooleanCellCssStyle(desktopAppCells);
 setBooleanCellCssStyle(sourceCodeGenerationCells);
 setBooleanCellCssStyle(cloudServiceCells);
 setBooleanCellCssStyle(loginRequiredCells);
+setBooleanCellCssStyle(realTimeCollab);
 
+/**
+ * Sets the CSS properties of binary values.
+ * @param cells HTML-element expected to have an adjusted style
+ */
 function setBooleanCellCssStyle(cells) {
     for (let i = 0; i < cells.length; i++) {
         const boolCell = cells[i];
@@ -317,6 +322,185 @@ function setBooleanCellCssStyle(cells) {
     }
 }
 
+/**
+ * Removes trailing spaces and newlines within a string.
+ * @param value string expected to be trimmed
+ * @returns {string} a trimmed string
+ */
 function removeTrailingWhitespaces(value) {
     return value.trim().replace(/\n/g, "")
 }
+
+/***********************************
+ FILTERING TABLE COLUMNS
+************************************/
+const TableColumn = {
+    openSource: 'open-source',
+    technology: 'technology',
+    webApp: 'web-app',
+    desktopApp: 'desktop-app',
+    category: 'category',
+    modelingLanguages: 'modeling-languages',
+    sourceCode: 'source-code-generation',
+    cloudService: 'cloud-service-available',
+    license: 'license',
+    login: 'log-in-required',
+    realTimeCollab: 'real-time-collab',
+    creators: 'creators',
+    platforms: 'platforms',
+    programmingLanguages: 'programming-languages'
+}
+
+optimizeColumns();
+
+const propertyColumns = document.getElementsByClassName('property-column');
+for (let i = 0; i < propertyColumns.length; i++) {
+    const property = propertyColumns[i];
+    property.addEventListener('click', () => {
+        const checkbox = property.getElementsByClassName('checkbox')[0];
+        if (checkbox.classList.contains('checked')) {
+            checkTableColumn(property.getAttribute('id').substring(9), false);
+        } else {
+            checkTableColumn(property.getAttribute('id').substring(9), true);
+        }
+    })
+}
+
+document.getElementById('optimize-columns').addEventListener('click', () => {
+    optimizeColumns();
+});
+
+/**
+ * Optimizes the amount of columns showed within the "Modeling Tools" table, meaning if it does not fit within the
+ * screen, it gets hidden.
+ */
+function optimizeColumns() {
+    const searchColumn = document.getElementsByClassName('search-column');
+    const filterExpanded = searchColumn.length > 0 && searchColumn[0].style.display !== 'none' ? 310 : 0;
+    const windowWidth = window.innerWidth - filterExpanded;
+
+    if (windowWidth >= 1780) {
+        setCheckedColumns(true, true, true, true, true, true, true, true, true);
+    }
+    if (windowWidth < 1780 && windowWidth >= 1700) {
+        setCheckedColumns(true, true, true, true, true, true, true, true);
+    }
+    if (windowWidth < 1700 && windowWidth >= 1560) {
+        setCheckedColumns(true, true, true, true, true, true, true);
+    }
+    if (windowWidth < 1560 && windowWidth >= 1430) {
+        setCheckedColumns(true, true, true, true, true, true);
+    }
+    if (windowWidth < 1430 && windowWidth >= 1290) {
+        setCheckedColumns(true, true, true, true, true);
+    }
+    if (windowWidth < 1290 && windowWidth >= 1180) {
+        setCheckedColumns(true, true, true, true);
+    }
+    if (windowWidth < 1180 && windowWidth >= 1060) {
+        setCheckedColumns(true, true, true);
+    }
+    if (windowWidth < 1060 && windowWidth >= 950) {
+        setCheckedColumns(true, true);
+    }
+    if (windowWidth < 950 && windowWidth >= 850) {
+        setCheckedColumns(true);
+    }
+    if (windowWidth < 850) {
+        setCheckedColumns();
+    }
+}
+
+/**
+ * Sets which columns within the modeling tools table are going to be displayed.
+ * @param openSource sets the visibility of the "Open Source"-column
+ * @param technology sets the visibility of the "Technology"-column
+ * @param webApp sets the visibility of the "Web App"-column
+ * @param desktopApp sets the visibility of the "Desktop App"-column
+ * @param category sets the visibility of the "Category"-column
+ * @param modelingLanguages sets the visibility of the "Modeling Languages"-column
+ * @param sourceCode sets the visibility of the "Source Code"-column
+ * @param cloudService sets the visibility of the "Cloud Service"-column
+ * @param license sets the visibility of the "License"-column
+ * @param login sets the visibility of the "Login"-column
+ * @param realTimeCollab sets the visibility of the "Real Time Collaboration"-column
+ * @param creators sets the visibility of the "Creators"-column
+ * @param platforms sets the visibility of the "Platforms"-column
+ * @param programmingLanguages sets the visibility of the "Programming Languages"-column
+ */
+function setCheckedColumns(
+    openSource = false,
+    technology = false,
+    webApp = false,
+    desktopApp = false,
+    category = false,
+    modelingLanguages = false,
+    sourceCode = false,
+    cloudService = false,
+    license = false,
+    login = false,
+    realTimeCollab = false,
+    creators = false,
+    platforms = false,
+    programmingLanguages = false
+)
+{
+    checkTableColumn(TableColumn.openSource, openSource);
+    checkTableColumn(TableColumn.technology, technology);
+    checkTableColumn(TableColumn.webApp, webApp);
+    checkTableColumn(TableColumn.desktopApp, desktopApp);
+    checkTableColumn(TableColumn.category, category);
+    checkTableColumn(TableColumn.modelingLanguages, modelingLanguages);
+    checkTableColumn(TableColumn.sourceCode, sourceCode);
+    checkTableColumn(TableColumn.cloudService, cloudService);
+    checkTableColumn(TableColumn.license, license);
+    checkTableColumn(TableColumn.login, login);
+    checkTableColumn(TableColumn.realTimeCollab, realTimeCollab);
+    checkTableColumn(TableColumn.creators, creators);
+    checkTableColumn(TableColumn.platforms, platforms);
+    checkTableColumn(TableColumn.programmingLanguages, programmingLanguages);
+}
+
+/**
+ * Hides or displays a column within the modeling tools table.
+ * @param tableColumn column expected to be hidden or displayed
+ * @param check sets the visibility (hide/display)
+ */
+function checkTableColumn(tableColumn, check) {
+    const header = document.getElementsByClassName(`th-${tableColumn}`)[0];
+    const cells = document.getElementsByClassName(`td-${tableColumn}`);
+    if (check) {
+        setTableColumnCheckCss(document.getElementById(`property-${tableColumn}`), true);
+        header.style.display = null;
+        for (let i = 0; i < cells.length; i++) {
+            cells[i].style.display = null;
+        }
+    } else {
+        setTableColumnCheckCss(document.getElementById(`property-${tableColumn}`), false);
+        header.style.display = 'none';
+        for (let i = 0; i < cells.length; i++) {
+            cells[i].style.display = 'none';
+        }
+    }
+
+    /**
+     * Updates the CSS properties of a checkbox within the "Filter Table Columns" section.
+     * @param property HTML-element, within the checkbox is contained
+     * @param check sets the status of the checkbox, meaning checked or not
+     */
+    function setTableColumnCheckCss(property, check) {
+        const checkbox = property.getElementsByClassName('checkbox')[0];
+        const biCheck = property.getElementsByClassName('bi-check')[0];
+        if (check) {
+            checkbox.classList.add('checked');
+            biCheck.style.display = null;
+        } else {
+            checkbox.classList.remove('checked');
+            biCheck.style.display = 'none';
+        }
+    }
+}
+
+// Update the amount of found results
+const resultAmount = document.getElementById('modeling-tool-amount');
+resultAmount.innerHTML = `Found ${rows.length} results`;

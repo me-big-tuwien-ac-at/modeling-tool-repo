@@ -139,11 +139,12 @@ td {
 ************************************/
 .reset-btn {
   background: #000;
-  color: #FFF;
   border: none;
+  border-radius: 6px;
+  color: #FFF;
+  cursor: pointer;
   margin: 5px 16px;
   padding: 0.5em 1em;
-  border-radius: 6px;
   transition: .3s;
 }
 .reset-btn:hover {

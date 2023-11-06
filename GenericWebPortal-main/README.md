@@ -44,11 +44,15 @@ python manage.py loaddata all_data.json
 
 ### Table
 * Adjust background of table cells when switching the theme
-* Display all programming languages, modeling languages etc. as filtering option
-* Add option to hide columns
-* Fix functionality of hiding the column options
-* Fix the entry fields of the column options
 * Sort columns when clicking on a ``th``-tag
+* Set "Unknown" for empty entries (boolean values done, others not finished yet)
+* Fix the entry fields of the column options
+* Put the edit-pencil option for a modeling tool as the first column, or within the name column
+  * Add a "details" icon
+
+#### Filter functionality
+Ideally have filter functionality implemented for both the backend (Django) and frontend (JavaScript). Primarily 
+probably JavaScript though.
 
 ## Create Modeling Tool Page
 * Implement forms
@@ -79,3 +83,5 @@ python manage.py loaddata all_data.json
 ### Table
 * Fix option to download CSV and JSON
   * Fix the style of the buttons
+* Add functionality to hide columns
+* Fix functionality of hiding the column options

@@ -238,7 +238,7 @@
     <span></span>
   </div>
   <div id="download">
-    <span>Found  results</span>
+    <span id="modeling-tool-amount">Found  results</span>
     <span>
     <button class="create-edit-link btn btn-primary" id="download-json">
         <a title="Download Modeling Tools as JSON" download="modeling_tools.json">
@@ -271,91 +271,91 @@
         <span></span>
       </h4>
       <form class="filter-columns">
-        <div class="property-column">
+        <div class="property-column" id="property-open-source">
           <span>Open Source</span>
           <span class="checkbox">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.openSource"></i>
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-technology">
           <span>Technology</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.appFramework"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-web-app">
           <span>Available as Web App</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.webApp"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-desktop-app">
           <span>Available as Desktop App</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.desktopApp"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-category">
           <span>Category</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.category"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-modeling-languages">
           <span>Modeling Languages</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.modelingLanguages"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-source-code-generation">
           <span>Source Code Generation</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.sourceCodeGeneration"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-cloud-service-available">
           <span>Cloud Service</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.cloudService"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-license">
           <span>License</span>
           <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.license"></i>
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-log-in-required">
           <span>Log-in required</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.loginRequired"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-real-time-collab">
           <span>Real Time Collaboration</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.realTimeCollab"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
-          <span>Creator</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.creator"></i>
+        <div class="property-column" id="property-creators">
+          <span>Creator(s)</span>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
-          <span>Platform</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.os"></i>
+        <div class="property-column" id="property-platforms">
+          <span>Platform(s)</span>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <div class="property-column" >
+        <div class="property-column" id="property-programming-languages">
           <span>Programming Language used</span>
-          <span class="checkbox ">
-            <i class="bi bi-check-lg" *ngIf="checkedColumns.programmingLanguage"></i>
+          <span class="checkbox">
+            {% bs_icon 'check' %}
           </span>
         </div>
-        <button class="reset-btn" >
+        <button class="reset-btn" id="optimize-columns" type="button">
           Optimize columns
         </button>
       </form>
@@ -732,10 +732,10 @@
             <span>Modeling Language(s)</span>
             <span>
                 <div>
-                  <i class="bi bi-triangle-fill "></i>
+                  <i class="bi bi-triangle-fill"></i>
                 </div>
                 <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
+                  <i class="bi bi-triangle-fill downwards"></i>
                 </div>
               </span>
           </div>
@@ -893,7 +893,9 @@
           <td class="td-category">{{ tool.category }}</td>
           <td class="td-modeling-languages">
             {% for language in tool.modeling_languages.all %}
-              {{ language.name }}
+              <div>
+                {{ language.name }}
+              </div>
             {% endfor %}
           </td>
           <td class="td-source-code-generation">
@@ -918,7 +920,13 @@
               {{ tool.login_required }}
             {% endif %}
           </td>
-          <td class="td-real-time-collab">{{ tool.real_time_collab }}</td>
+          <td class="td-real-time-collab">
+            {% if tool.real_time_collab is None %}
+              Unknown
+            {% else %}
+              {{ tool.real_time_collab }}
+            {% endif %}
+          </td>
           <td class="td-creators">
             {% for creator in tool.creators.all %}
               {{ creator.name }}
