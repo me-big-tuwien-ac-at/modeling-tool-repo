@@ -642,16 +642,16 @@
     <table *ngIf="modelingToolsFiltered.length > 0">
       <thead>
       <tr>
-        <th class="sorting-arrows" >
+        <th class="sorting-arrows th-name" >
           <div>
             <span></span>
-            <span>Name</span>
+            <span class="th-title">Name</span>
             <span>
               <div>
-                <i class="bi bi-triangle-fill "></i>
+                {% bs_icon 'triangle-fill' %}
               </div>
               <div>
-                <i class="bi bi-triangle-fill downwards "></i>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
               </div>
             </span>
           </div>
@@ -659,196 +659,196 @@
         <th class="sorting-arrows th-open-source">
           <div>
             <span></span>
-            <span>Open Source</span>
+            <span class="th-title">Open Source</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-technology">
           <div>
             <span></span>
-            <span>Technology</span>
+            <span class="th-title">Technology</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-web-app">
           <div>
             <span></span>
-            <span>Available as Web App</span>
+            <span class="th-title">Available as Web App</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-desktop-app">
           <div>
             <span></span>
-            <span>Available as Desktop App</span>
+            <span class="th-title">Available as Desktop App</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-category">
           <div>
             <span></span>
-            <span>Category</span>
+            <span class="th-title">Category</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill"></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-modeling-languages">
           <div>
             <span></span>
-            <span>Modeling Language(s)</span>
+            <span class="th-title">Modeling Language(s)</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill"></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards"></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-source-code-generation">
           <div>
             <span></span>
-            <span>Source Code Generation</span>
+            <span class="th-title">Source Code Generation</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-cloud-service-available">
           <div>
             <span></span>
-            <span>Cloud Service Available</span>
+            <span class="th-title">Cloud Service Available</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-license">
           <div>
             <span></span>
-            <span>License</span>
+            <span class="th-title">License</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-log-in-required">
           <div>
             <span></span>
-            <span>Log-in required?</span>
+            <span class="th-title">Log-in required?</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-real-time-collab">
           <div>
             <span></span>
-            <span>Real Time Collaboration Available</span>
+            <span class="th-title">Real Time Collaboration Available</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-creators">
           <div>
             <span></span>
-            <span>Creator(s)</span>
+            <span class="th-title">Creator(s)</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-platforms">
           <div>
             <span></span>
-            <span>Platform(s)</span>
+            <span class="th-title">Platform(s)</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
         <th class="sorting-arrows th-programming-languages">
           <div>
             <span></span>
-            <span>Programming Language(s) used</span>
+            <span class="th-title">Programming Language(s) used</span>
             <span>
-                <div>
-                  <i class="bi bi-triangle-fill "></i>
-                </div>
-                <div>
-                  <i class="bi bi-triangle-fill downwards "></i>
-                </div>
+              <div>
+                {% bs_icon 'triangle-fill' %}
+              </div>
+              <div>
+                {% bs_icon 'triangle-fill' extra_classes="downwards" %}
+              </div>
               </span>
           </div>
         </th>
@@ -859,7 +859,7 @@
 
       {% for tool in modeling_tools %}
       <tr>
-          <td>
+          <td class="td-name">
             <a href="{{ tool.link }}">
               {{ tool.name }}
             </a>

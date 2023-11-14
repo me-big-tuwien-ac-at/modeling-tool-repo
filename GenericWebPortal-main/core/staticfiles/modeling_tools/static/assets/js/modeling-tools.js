@@ -504,3 +504,98 @@ function checkTableColumn(tableColumn, check) {
 // Update the amount of found results
 const resultAmount = document.getElementById('modeling-tool-amount');
 resultAmount.innerHTML = `Found ${rows.length} results`;
+
+/***********************************
+ ORDERING TABLE COLUMNS
+************************************/
+// Array containing all modeling tools, ordering can be changed
+const modelingToolRows = rows;
+
+// Array containing filtered modeling tools
+const modelingToolRowsFiltered = rows;
+
+/*
+const columnsSortedStatus = {
+    'name': false,
+    'openSource': false,
+    'technology': false,
+    'webApp': false,
+    'desktopApp': false,
+    'category': false,
+    'modelingLanguages': false,
+    'sourceCode': false,
+    'cloudService': false,
+    'license': false,
+    'login': false,
+    'realTimeCollab': false,
+    'creators': false,
+    'platforms': false,
+    'programmingLanguages': false
+}
+ */
+const columnsSortedStatus = {
+    'name': false,
+    'open-source': false,
+    'technology': false,
+    'web-app': false,
+    'desktop-app': false,
+    'category': false,
+    'modeling-languages': false,
+    'source-code-generation': false,
+    'cloud-service-available': false,
+    'license': false,
+    'log-in-required': false,
+    'real-time-collab': false,
+    'creators': false,
+    'platforms': false,
+    'programming-languages': false
+}
+
+modelingToolsColumn = document.getElementById('modeling-tools-column');
+tableHeaders = modelingToolsColumn.getElementsByTagName('th');
+tableRows = modelingToolsColumn.getElementsByTagName('tr');
+tableTBody = modelingToolsColumn.getElementsByTagName('tbody').item(0);
+
+// 1. Collecting all table-rows (tr)
+const tableRowElements = [];
+const tableRowTagElements = modelingToolsColumn.getElementsByTagName('tr');
+// We want to exclude table-header row
+for (let i = 1; i < tableRowTagElements.length; i++) {
+    tableRowElements.push(tableRowTagElements[i]);
+}
+
+for (let i = 0; i < tableHeaders.length; i++) {
+    tableHeaders[i].addEventListener('click', () => {
+        const headerClassNames = tableHeaders[i].classList;
+        let headerName = '';
+        for (let j = 0; j < headerClassNames.length; j++) {
+            if (headerClassNames[j].includes('th-')) {
+                headerName = headerClassNames[j];
+            }
+        }
+        const headerAttribute = headerName.substring(3);
+        tableRowElements.sort(function (a, b) {
+            let elA;
+            let elB;
+            if (headerAttribute === 'name') {
+                elA = a.getElementsByTagName('a').item(0).innerText.toLowerCase();
+                elB = b.getElementsByTagName('a').item(0).innerText.toLowerCase();
+            } else {
+                elA = a.getElementsByClassName(`td-${headerAttribute}`)[0].innerText.toLowerCase();
+                elB = b.getElementsByClassName(`td-${headerAttribute}`)[0].innerText.toLowerCase();
+            }
+            // TODO: Make unknowns always last in the table (probably should check if it is boolean value)
+            if (columnsSortedStatus[headerAttribute]) {
+                return elA > elB ? -1 : (elA < elB ? 1 : 0);
+            } else {
+                return elA < elB ? -1 : (elA > elB ? 1 : 0);
+            }
+        });
+        columnsSortedStatus[headerAttribute] = !columnsSortedStatus[headerAttribute];
+
+        tableTBody.innerHTML = '';
+        for (let j = 0; j < tableRowElements.length; j++) {
+            tableTBody.appendChild(tableRowElements[j]);
+        }
+    });
+}
