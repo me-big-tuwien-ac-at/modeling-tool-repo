@@ -7,14 +7,36 @@ const sunSvg = document.getElementsByClassName('bi-sun-fill')[0];
 const moonSvg = document.getElementsByClassName('bi-moon-fill')[0];
 const images = document.getElementsByClassName('image');
 setImageTheme();
+setInformationSectionTitleHover();
 
 moonSvg.addEventListener('click', () => {
    setImageTheme();
+   setInformationSectionTitleHover();
 });
 
 sunSvg.addEventListener('click', () => {
    setImageTheme();
+   setInformationSectionTitleHover();
 });
+
+/**
+ * Switches between the background of the information-title to dark or white, depending on the theme.
+ */
+function setInformationSectionTitleHover() {
+    const theme = localStorage.getItem('theme');
+    if (theme !== null) {
+        const informationTitles = document.getElementsByClassName('information-title');
+        if (theme === 'dark') {
+            for (let i = 0; i < informationTitles.length; i++) {
+                informationTitles[i].classList.add('dark-hover');
+            }
+        } else if (theme !== null && theme === 'light') {
+            for (let i = 0; i < informationTitles.length; i++) {
+                informationTitles[i].classList.remove('dark-hover');
+            }
+        }
+    }
+}
 
 function setImageTheme() {
     for (let i = 0; i < images.length; i++) {

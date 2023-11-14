@@ -491,6 +491,23 @@ section > .information-title {
   display: flex;
   gap: 20px;
 }
+.information-title {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 1rem;
+  border-bottom: solid #a2a9b1 1px;
+  border-radius: 11px 11px 0 0;
+  padding: 0.5rem 1rem;
+}
+.information-title:hover:not(:last-child) {
+  background: #D3D3D3;
+  transition: .4s;
+}
+.information-title.dark-hover:hover:not(:last-child) {
+  background: #484848;
+  transition: .4s;
+}
+
 /***********************************
  IMAGE PROPERTIES
 ************************************/
