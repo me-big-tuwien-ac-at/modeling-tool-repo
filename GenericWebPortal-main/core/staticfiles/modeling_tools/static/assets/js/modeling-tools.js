@@ -575,39 +575,50 @@ for (let i = 0; i < tableHeaders.length; i++) {
             }
         }
         const headerAttribute = headerName.substring(3);
-        tableRowElements.sort(function (a, b) {
-            let elA;
-            let elB;
-            if (headerAttribute === 'name') {
-                elA = a.getElementsByTagName('a').item(0).innerText.toLowerCase();
-                elB = b.getElementsByTagName('a').item(0).innerText.toLowerCase();
-            } else {
-                elA = a.getElementsByClassName(`td-${headerAttribute}`)[0].innerText.toLowerCase();
-                elB = b.getElementsByClassName(`td-${headerAttribute}`)[0].innerText.toLowerCase();
-            }
-            // TODO: Make unknowns always last in the table (probably should check if it is boolean value)
-            for (let j = 0; j < tableHeaders.length; j++) {
-                const allSortTriangles= tableHeaders[j].getElementsByClassName('bi-triangle-fill');
-                for (let k = 0; k < allSortTriangles.length; k++) {
-                    allSortTriangles[k].style.removeProperty('opacity');
-                }
-            }
-            const sortTriangle = tableHeaders[i].getElementsByClassName('bi-triangle-fill');
-            if (columnsSortedStatus[headerAttribute]) {
-                sortTriangle[0].style.opacity = 0.5;
-                sortTriangle[1].style.opacity = 1;
-                return elA > elB ? -1 : (elA < elB ? 1 : 0);
-            } else {
-                sortTriangle[0].style.opacity = 1;
-                sortTriangle[1].style.opacity = 0.5;
-                return elA < elB ? -1 : (elA > elB ? 1 : 0);
-            }
-        });
-        columnsSortedStatus[headerAttribute] = !columnsSortedStatus[headerAttribute];
+        sortColumns(headerAttribute, tableHeaders[i]);
+    });
+}
 
-        tableTBody.innerHTML = '';
-        for (let j = 0; j < tableRowElements.length; j++) {
-            tableTBody.appendChild(tableRowElements[j]);
+sortColumns('name', tableHeaders[0]);
+
+/**
+ * Sorts entries of a column ascending/descending
+ * @param headerAttribute name of the header
+ * @param tableHeader th-tag within the header of the "modeling tools"-table
+ */
+function sortColumns(headerAttribute, tableHeader) {
+    tableRowElements.sort(function (a, b) {
+        let elA;
+        let elB;
+        if (headerAttribute === 'name') {
+            elA = a.getElementsByTagName('a').item(0).innerText.toLowerCase();
+            elB = b.getElementsByTagName('a').item(0).innerText.toLowerCase();
+        } else {
+            elA = a.getElementsByClassName(`td-${headerAttribute}`)[0].innerText.toLowerCase();
+            elB = b.getElementsByClassName(`td-${headerAttribute}`)[0].innerText.toLowerCase();
+        }
+        // TODO: Make unknowns always last in the table (probably should check if it is boolean value)
+        for (let j = 0; j < tableHeaders.length; j++) {
+            const allSortTriangles= tableHeaders[j].getElementsByClassName('bi-triangle-fill');
+            for (let k = 0; k < allSortTriangles.length; k++) {
+                allSortTriangles[k].style.removeProperty('opacity');
+            }
+        }
+        const sortTriangle = tableHeader.getElementsByClassName('bi-triangle-fill');
+        if (columnsSortedStatus[headerAttribute]) {
+            sortTriangle[0].style.opacity = 0.5;
+            sortTriangle[1].style.opacity = 1;
+            return elA > elB ? -1 : (elA < elB ? 1 : 0);
+        } else {
+            sortTriangle[0].style.opacity = 1;
+            sortTriangle[1].style.opacity = 0.5;
+            return elA < elB ? -1 : (elA > elB ? 1 : 0);
         }
     });
+    columnsSortedStatus[headerAttribute] = !columnsSortedStatus[headerAttribute];
+
+    tableTBody.innerHTML = '';
+    for (let j = 0; j < tableRowElements.length; j++) {
+        tableTBody.appendChild(tableRowElements[j]);
+    }
 }
