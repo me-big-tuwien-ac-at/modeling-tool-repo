@@ -121,6 +121,12 @@ tr > td:first-child {
 tr > td:last-child {
   text-align: center;
 }
+.td-light {
+  background: #E8E8E8;
+}
+.td-dark {
+  background: #373b3e;
+}
 
 /***********************************
  SCROLLBAR PROPERTIES

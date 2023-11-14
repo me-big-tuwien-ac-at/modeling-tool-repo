@@ -12,11 +12,13 @@ setInformationSectionTitleHover();
 moonSvg.addEventListener('click', () => {
    setImageTheme();
    setInformationSectionTitleHover();
+   setTableCellBg();
 });
 
 sunSvg.addEventListener('click', () => {
    setImageTheme();
    setInformationSectionTitleHover();
+   setTableCellBg();
 });
 
 /**
@@ -51,6 +53,31 @@ function setImageTheme() {
     } else {
             images[i].classList.add('bg-light-dark');
             images[i].classList.remove('bg-dark-light');
+        }
+    }
+}
+
+function setTableCellBg() {
+    console.log('HERE');
+    const modelingToolsColumn = document.getElementById('modeling-tools-column');
+    const cells = modelingToolsColumn.getElementsByTagName('td');
+    for (let i = 0; i < cells.length; i++) {
+        if (
+            !cells[i].classList.contains('td-name') &&
+            !cells[i].classList.contains('true-value') &&
+            !cells[i].classList.contains('false-value') &&
+            !cells[i].classList.contains('unknown-value')
+        ) {
+            const theme = localStorage.getItem('theme');
+            if (theme !== null) {
+                if (theme === 'dark') {
+                    cells[i].classList.add('td-dark');
+                    cells[i].classList.remove('td-light');
+                } else if (theme === 'light') {
+                    cells[i].classList.add('td-light');
+                    cells[i].classList.remove('td-dark');
+                }
+            }
         }
     }
 }
@@ -325,6 +352,7 @@ setBooleanCellCssStyle(sourceCodeGenerationCells);
 setBooleanCellCssStyle(cloudServiceCells);
 setBooleanCellCssStyle(loginRequiredCells);
 setBooleanCellCssStyle(realTimeCollab);
+setTableCellBg();
 
 /**
  * Sets the CSS properties of binary values.
@@ -530,31 +558,6 @@ resultAmount.innerHTML = `Found ${rows.length} results`;
 /***********************************
  ORDERING TABLE COLUMNS
 ************************************/
-// Array containing all modeling tools, ordering can be changed
-const modelingToolRows = rows;
-
-// Array containing filtered modeling tools
-const modelingToolRowsFiltered = rows;
-
-/*
-const columnsSortedStatus = {
-    'name': false,
-    'openSource': false,
-    'technology': false,
-    'webApp': false,
-    'desktopApp': false,
-    'category': false,
-    'modelingLanguages': false,
-    'sourceCode': false,
-    'cloudService': false,
-    'license': false,
-    'login': false,
-    'realTimeCollab': false,
-    'creators': false,
-    'platforms': false,
-    'programmingLanguages': false
-}
- */
 const columnsSortedStatus = {
     'name': false,
     'open-source': false,

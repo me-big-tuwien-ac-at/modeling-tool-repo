@@ -12,4 +12,7 @@
 | 05.10.2023 | 08:35 - 11:30 | [Homepage] Download CSV/JSON buttons                                                       | 2h55min | 18h34min        |
 | 05.10.2023 | 14:35 - 16:40 | [Homepage] Expandable/Collapsible filters + boolean values are colored                     | 2h5min  | 20h39min        |
 | 06.10.2023 | 13:00 - 16:00 | [Homepage] Filtering table columns                                                         | 3h      | 23h39min        |
+| 13.10.2023 | 18:00 - 23:00 | [Homepage] Sorting table columns                                                           | 5h      | 28h39min        |
+| 14.10.2023 | 9:30 - 11:30  | [Homepage] Sorting table columns                                                           | 2h      | 30h39min        |
+| 14.10.2023 | 17:15 - 18:30 | [Homepage] Image centering fix, table cell theme fix, table column sort CSS fix            | 1h15min | 31h54min        |
 

@@ -3,25 +3,8 @@
 
 ## Homepage
 ### Main body
-* Add hover effect for light + dark theme for the information titles 
-```css
-.information-title {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 1rem;
-  border-bottom: solid #a2a9b1 1px;
-  border-radius: 11px 11px 0 0;
-  padding: 0.5rem 1rem;
-}
-.information-title:hover:not(:last-child) {
-  background: #D3D3D3;
-  transition: .4s;
-}
-```
 
 ### Table
-* Adjust background of table cells when switching the theme
-* Sort columns when clicking on a ``th``-tag
 * Set "Unknown" for empty entries (boolean values done, others not finished yet)
 * Fix the entry fields of the column options
 * Put the edit-pencil option for a modeling tool as the first column, or within the name column
@@ -52,6 +35,7 @@ probably JavaScript though.
 ### Main body
 * Fix image example CSS
 * Add option to zoom in on pictures
+* Add hover effect for light + dark theme for the information titles
 
 ### Header
 * Remove the hover animation over the pencil icon within the "Suggest modeling tool edit"-button
@@ -62,3 +46,5 @@ probably JavaScript though.
   * Fix the style of the buttons
 * Add functionality to hide columns
 * Fix functionality of hiding the column options
+* Sort columns when clicking on a ``th``-tag
+* Adjust background of table cells when switching the theme
