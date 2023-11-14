@@ -564,6 +564,7 @@ for (let i = 1; i < tableRowTagElements.length; i++) {
     tableRowElements.push(tableRowTagElements[i]);
 }
 
+
 for (let i = 0; i < tableHeaders.length; i++) {
     tableHeaders[i].addEventListener('click', () => {
         const headerClassNames = tableHeaders[i].classList;
@@ -585,9 +586,20 @@ for (let i = 0; i < tableHeaders.length; i++) {
                 elB = b.getElementsByClassName(`td-${headerAttribute}`)[0].innerText.toLowerCase();
             }
             // TODO: Make unknowns always last in the table (probably should check if it is boolean value)
+            for (let j = 0; j < tableHeaders.length; j++) {
+                const allSortTriangles= tableHeaders[j].getElementsByClassName('bi-triangle-fill');
+                for (let k = 0; k < allSortTriangles.length; k++) {
+                    allSortTriangles[k].style.removeProperty('opacity');
+                }
+            }
+            const sortTriangle = tableHeaders[i].getElementsByClassName('bi-triangle-fill');
             if (columnsSortedStatus[headerAttribute]) {
+                sortTriangle[0].style.opacity = 0.5;
+                sortTriangle[1].style.opacity = 1;
                 return elA > elB ? -1 : (elA < elB ? 1 : 0);
             } else {
+                sortTriangle[0].style.opacity = 1;
+                sortTriangle[1].style.opacity = 0.5;
                 return elA < elB ? -1 : (elA > elB ? 1 : 0);
             }
         });
