@@ -1,7 +1,6 @@
 /***********************************
  THEME
 ************************************/
-const bodyElement = document.getElementsByTagName('body')[0];
 // TODO (Optional): Dynamically add svg's, instead of switching between "display: none;"
 const sunSvg = document.getElementsByClassName('bi-sun-fill')[0];
 const moonSvg = document.getElementsByClassName('bi-moon-fill')[0];
@@ -41,6 +40,7 @@ function setInformationSectionTitleHover() {
 }
 
 function setImageTheme() {
+    const bodyElement = document.getElementsByTagName('body')[0];
     for (let i = 0; i < images.length; i++) {
         if (
             bodyElement.style.backgroundColor === 'var(--light-theme)' ||
@@ -159,6 +159,7 @@ const galleryListeners = (event = 'click') => {
 }
 
 function imgListener(modelingToolExample) {
+    const bodyElement = document.getElementsByTagName('body')[0];
     modelingToolExample.addEventListener('click', function () {
         const zoomedInElement = document.createElement('div');
         zoomedInElement.setAttribute('id', 'image-zoom-in');

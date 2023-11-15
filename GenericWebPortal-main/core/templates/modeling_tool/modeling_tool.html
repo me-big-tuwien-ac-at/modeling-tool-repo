@@ -405,7 +405,324 @@
               <span class="mult-item"
                     *ngFor="let tech of modelingToolSearch.technology"
                     >
-                
+
+                <i class="bi bi-x"></i>
+              </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="searchTechnology" *ngIf="searchTechnologyChecked">
+            <ul class="list-items" style="display: none">
+              {% for tech in technology %}
+                <li class="item">
+                  <span class="checkbox">
+                    <i class="bi bi-check-lg" *ngIf="searchTechStored(tech)"></i>
+                  </span>
+                  <span class="item-text">{{ tech.name }}</span>
+                </li>
+              {% endfor %}
+            <!--
+              <li class="item "
+                  *ngFor="let tech of getTechnologyEnum()"
+                  >
+              <span class="checkbox">
+                <i class="bi bi-check-lg" *ngIf="searchTechStored(tech)"></i>
+              </span>
+                <span class="item-text"></span>
+              </li>
+              -->
+            </ul>
+          </div>
+        </div>
+        <div>
+          <label for="web-app">
+            Web App
+          </label>
+          <div class="input-group">
+            <select id="web-app"
+                    name="web-app"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.webApp"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="desktop-app">
+            Desktop App
+          </label>
+          <div class="input-group">
+            <select id="desktop-app"
+                    name="desktop-app"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.desktopApp"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="category">
+            Category
+          </label>
+          <div class="input-group">
+            <select id="category"
+                    name="category"
+                    style="border-radius: .375rem"
+                    class="form-select bg-white"
+                    [(ngModel)]="modelingToolSearch.category"
+                    (ngModelChange)="searchModelingTool()">
+              <option [ngValue]="undefined"></option>
+              <option [ngValue]="'BUSINESS_TOOL'">Business Tool</option>
+              <option [ngValue]="'DRAWING_TOOL'">Drawing Tool</option>
+              <option [ngValue]="'GRAPHICAL_MODELING_TOOL'">Graphical Modeling Tool</option>
+              <option [ngValue]="'TEXT_BASED_MODELING_TOOL'">Text-based Modeling Tool</option>
+              <option [ngValue]="'METAMODELING_TOOL'">Metamodeling Tool</option>
+              <option [ngValue]="'MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL'">Mixed Textual and Graphical Modeling Tool</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div class="form-group" (clickOutside)="searchModelingLanguagesChecked = false">
+          <label for="modeling-languages">Modeling Languages</label>
+          <div class="input-group">
+            <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
+                 >
+              <span class="mult-item"
+                    *ngFor="let language of modelingToolSearch.modelingLanguages"
+                    >
+
+                <i class="bi bi-x"></i>
+              </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="modeling-languages" *ngIf="searchModelingLanguagesChecked">
+            <ul class="list-items" style="display: none">
+              {% for language in modeling_languages %}
+                <li class="item">
+                  <span class="checkbox">
+                    <i class="bi bi-check-lg" *ngIf="searchTechStored(tech)"></i>
+                  </span>
+                  <span class="item-text">{{ language.name }}</span>
+                </li>
+              {% endfor %}
+            <!--
+              <li class="item "
+                  *ngFor="let language of modelingLanguages"
+                  >
+                <span class="checkbox">
+                  <i class="bi bi-check-lg"></i>
+                </span>
+                <span class="item-text">
+
+                </span>
+              </li>
+              -->
+            </ul>
+          </div>
+        </div>
+        <div>
+          <label for="selectLicense">
+            License
+          </label>
+          <select name="selectLicense"
+                  id="selectLicense"
+                  style="border-radius: .375rem"
+                  class="form-select"
+                  [(ngModel)]="modelingToolSearch.license"
+                  (ngModelChange)="searchModelingTool()">
+            <option [ngValue]="undefined"></option>
+            <option [ngValue]="'FREE'">Free</option>
+            <option [ngValue]="'RESTRICTED_FREE_AND_COMMERCIAL'">Restricted free content and additional commercial features</option>
+            <option [ngValue]="'COMMERCIAL'">Commercial</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div>
+          <label for="login">
+            Log-in required?
+          </label>
+          <div class="input-group">
+            <select id="login"
+                    name="login"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.loginRequired"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="real-time-collab">
+            Real Time Collaboration
+          </label>
+          <div class="input-group">
+            <select name="real-time-collab"
+                    id="real-time-collab"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.realTimeCollab"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="undefined"></option>
+              <option class="false-value" [ngValue]="false">Unavailable</option>
+              <option class="true-value" [ngValue]="true">Available</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div>
+          <label for="searchCreator">
+            Creator
+          </label>
+          <input type="text"
+                 name="searchCreator"
+                 id="searchCreator"
+                 class="form-control"
+                 [(ngModel)]="modelingToolSearch.creator"
+                 (ngModelChange)="searchModelingTool()">
+        </div>
+        <div class="form-group" (clickOutside)="searchPlatformChecked = false">
+          <label for="searchPlatform">Platform</label>
+          <div class="input-group">
+            <div class="form-select bg-white form-select-height"
+                 style="border-radius: .375rem"
+                 >
+              <span class="mult-item"
+                    *ngFor="let platform of modelingToolSearch.platform"
+                    >
+
+                <i class="bi bi-x"></i>
+              </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="searchPlatform" *ngIf="searchPlatformChecked">
+            <ul class="list-items" style="display: none">
+              {% for platform in platforms %}
+                <li class="item">
+                  <span class="checkbox">
+                    <i class="bi bi-check-lg" *ngIf="searchTechStored(tech)"></i>
+                  </span>
+                  <span class="item-text">{{ platform.name }}</span>
+                </li>
+              {% endfor %}
+              <!--
+              <li class="item "
+                  *ngFor="let platform of platforms"
+                  >
+              <span class="checkbox">
+                <i class="bi bi-check-lg" *ngIf="searchPlatformStored(platform)"></i>
+              </span>
+                <span class="item-text"></span>
+              </li>
+              -->
+            </ul>
+          </div>
+        </div>
+        <div class="form-group" (clickOutside)="searchProgrammingLanguageChecked = false">
+          <label for="searchProgrammingLanguage">Programming Language</label>
+          <div class="input-group">
+            <div class="form-select bg-white form-select-height"
+                 style="border-radius: .375rem"
+                 >
+            <span class="mult-item"
+                  *ngFor="let language of modelingToolSearch.programmingLanguage"
+                  >
+
+              <i class="bi bi-x"></i>
+            </span>
+            </div>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+          <div id="searchProgrammingLanguage" *ngIf="searchProgrammingLanguageChecked">
+            <ul class="list-items" style="display: none;">
+              {% for language in programming_languages %}
+                <li class="item">
+                  <span class="checkbox">
+                    <i class="bi bi-check-lg" *ngIf="searchTechStored(tech)"></i>
+                  </span>
+                  <span class="item-text">{{ language.name }}</span>
+                </li>
+              {% endfor %}
+              <!--
+              <li class="item "
+                  *ngFor="let language of programmingLanguages"
+                  >
+              <span class="checkbox">
+                <i class="bi bi-check-lg" *ngIf="searchProgrammingLanguageStored(language)"></i>
+              </span>
+                <span class="item-text"></span>
+              </li>
+              -->
+            </ul>
+          </div>
+        </div>
+        <button class="reset-btn" >
+          Reset
+        </button>
+      </form>
+    </div>
+
+    <!--
+    <div id="filter-tools">
+      <h4 >
+        <span>
+          <i class="bi bi-chevron-down" *ngIf="filterToolsDisplayed"></i>
+          <i class="bi bi-chevron-right" *ngIf="!filterToolsDisplayed"></i>
+        </span>
+        <span>Filter Modeling Tools</span>
+        <span></span>
+      </h4>
+      <form class="filter-columns" *ngIf="filterToolsDisplayed">
+        <div>
+          <label for="searchTool">
+            Modeling Tool Name
+          </label>
+          <input type="text" name="searchTool" id="searchTool" class="form-control"
+                 [(ngModel)]="modelingToolSearch.name" (ngModelChange)="searchModelingTool()">
+        </div>
+        <div>
+          <label for="open-source">
+            Open Source
+          </label>
+          <div class="input-group">
+            <select id="open-source"
+                    name="open-source"
+                    style="border-radius: .375rem"
+                    class="form-select  "
+                    [(ngModel)]="modelingToolSearch.openSource"
+                    (ngModelChange)="searchModelingTool()">
+              <option class="bg-white" [ngValue]="null"></option>
+              <option class="false-value" [ngValue]="false">No</option>
+              <option class="true-value" [ngValue]="true">Yes</option>
+            </select>
+            <i class="bi bi-chevron-down custom-select"></i>
+          </div>
+        </div>
+        <div class="form-group" (clickOutside)="searchTechnologyChecked = false">
+          <label for="searchTechnology">Technology</label>
+          <div class="input-group">
+            <div style="border-radius: .375rem"
+                 class="form-select bg-white form-select-height"
+                 >
+              <span class="mult-item"
+                    *ngFor="let tech of modelingToolSearch.technology"
+                    >
+
                 <i class="bi bi-x"></i>
               </span>
             </div>
@@ -490,7 +807,7 @@
               <span class="mult-item"
                     *ngFor="let language of modelingToolSearch.modelingLanguages"
                     >
-                
+
                 <i class="bi bi-x"></i>
               </span>
             </div>
@@ -505,7 +822,7 @@
                   <i class="bi bi-check-lg"></i>
                 </span>
                 <span class="item-text">
-                  
+
                 </span>
               </li>
             </ul>
@@ -584,7 +901,7 @@
               <span class="mult-item"
                     *ngFor="let platform of modelingToolSearch.platform"
                     >
-                
+
                 <i class="bi bi-x"></i>
               </span>
             </div>
@@ -612,7 +929,7 @@
             <span class="mult-item"
                   *ngFor="let language of modelingToolSearch.programmingLanguage"
                   >
-              
+
               <i class="bi bi-x"></i>
             </span>
             </div>
@@ -636,6 +953,7 @@
         </button>
       </form>
     </div>
+    -->
   </div>
 
   <div id="modeling-tools-column">
@@ -952,12 +1270,12 @@
         </td>
         <td *ngIf="checkedColumns.openSource"
             class="">
-          
+
         </td>
         <td *ngIf="checkedColumns.appFramework"
             class="">
           <div *ngFor="let technology of tool.technology">
-            
+
           </div>
           <div *ngIf="tool.technology === undefined || tool.technology === null || tool.technology.length === 0">
             Unknown
@@ -965,20 +1283,20 @@
         </td>
         <td *ngIf="checkedColumns.webApp"
             class="">
-          
+
         </td>
         <td *ngIf="checkedColumns.desktopApp"
             class="">
-          
+
         </td>
         <td *ngIf="checkedColumns.category"
             class="">
-          
+
         </td>
         <td *ngIf="checkedColumns.modelingLanguages"
             class="">
           <div *ngFor="let language of tool.modelingLanguages">
-            
+
           </div>
           <div *ngIf="tool.modelingLanguages === undefined || tool.modelingLanguages === null || tool.modelingLanguages.length === 0">
             Unknown
@@ -986,28 +1304,28 @@
         </td>
         <td *ngIf="checkedColumns.sourceCodeGeneration"
             class="">
-          
+
         </td>
         <td *ngIf="checkedColumns.cloudService"
             class="">
-          
+
         </td>
         <td *ngIf="checkedColumns.license"
             class="">
-          
+
         </td>
         <td *ngIf="checkedColumns.loginRequired"
             class="">
-          
+
         </td>
         <td *ngIf="checkedColumns.realTimeCollab"
             class="">
-          
+
         </td>
         <td *ngIf="checkedColumns.creator"
             class="">
           <div *ngFor="let creator of tool.creator">
-            
+
           </div>
           <div *ngIf="tool.creator === undefined || tool.creator === null || tool.creator.length === 0">
             Unknown
@@ -1016,7 +1334,7 @@
         <td *ngIf="checkedColumns.os"
             class="">
           <div *ngFor="let platform of tool.platform">
-            
+
           </div>
           <div *ngIf="tool.platform === undefined || tool.platform === null || tool.platform.length === 0">
             Unknown
@@ -1025,7 +1343,7 @@
         <td *ngIf="checkedColumns.programmingLanguage"
             class="">
           <div *ngFor="let language of tool.programmingLanguage">
-            
+
           </div>
           <div *ngIf="tool.programmingLanguage === undefined || tool.programmingLanguage === null || tool.programmingLanguage.length === 0">
             Unknown
