@@ -58,7 +58,6 @@ function setImageTheme() {
 }
 
 function setTableCellBg() {
-    console.log('HERE');
     const modelingToolsColumn = document.getElementById('modeling-tools-column');
     const cells = modelingToolsColumn.getElementsByTagName('td');
     for (let i = 0; i < cells.length; i++) {
@@ -646,5 +645,47 @@ function sortColumns(headerAttribute, tableHeader) {
     tableTBody.innerHTML = '';
     for (let j = 0; j < tableRowElements.length; j++) {
         tableTBody.appendChild(tableRowElements[j]);
+    }
+}
+
+/***********************************
+ FILTER MODELING TOOLS
+************************************/
+// Filter by typing (name)
+document.getElementById('searchTool').addEventListener('input', (event) => {
+    for (let i = 0; i < modelingToolsRows.length; i++) {
+        const name = modelingToolsRows[i].getElementsByClassName('td-name')[0].getElementsByTagName('a').item(0).innerText;
+        if (!name.toLowerCase().includes(event.target.value.toLowerCase())) {
+            modelingToolsRows[i].style.display = 'none';
+        } else {
+            modelingToolsRows[i].style.display = null;
+        }
+    }
+    noMatches();
+});
+
+// Filter by boolean value
+
+// Filter by enum
+
+// Filter by lists
+
+/**
+ * Hide/Display message that informs if there were matches to a given query.
+ */
+function noMatches() {
+    const notif = document.getElementById('no-match');
+    const rows = tableTBody.getElementsByTagName('tr');
+    let displayedRows = 0;
+    for (let i = 0; i < rows.length; i++) {
+        if (rows[i].style.display === null || rows[i].style.display === undefined || rows[i].style.display === '') {
+            displayedRows++;
+            break;
+        }
+    }
+    if (displayedRows === 0) {
+        notif.style.display = null;
+    } else {
+        notif.style.display = 'none';
     }
 }
