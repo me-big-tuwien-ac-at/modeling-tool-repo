@@ -67,3 +67,15 @@ ul {
 #BIG_logo {
   cursor: pointer;
 }
+#github-repo {
+  align-items: center;
+  color: #6ea8fe;
+  display: flex;
+  gap: 10px;
+  opacity: .7;
+}
+#github-repo:hover {
+  opacity: 1;
+  text-decoration: none;
+  transition: .15s ease;
+}

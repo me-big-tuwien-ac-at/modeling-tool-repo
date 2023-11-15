@@ -1,6 +1,10 @@
 
 # TODO's ✅
 
+## Dependencies
+* Remove bootstrap dependency
+  * Simply replaced with SVG's from the website, as the imports significantly slowed loading time of webpage
+
 ## Homepage
 ### Main body
 
