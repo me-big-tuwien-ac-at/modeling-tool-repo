@@ -533,7 +533,7 @@
             <select id="category"
                     name="category"
                     style="border-radius: .375rem"
-                    class="form-select bg-white"
+                    class="form-select bg-white enum-select"
                     [(ngModel)]="modelingToolSearch.category"
                     (ngModelChange)="searchModelingTool()">
               <option [ngValue]="undefined"></option>
@@ -591,9 +591,9 @@
             License
           </label>
           <select name="selectLicense"
-                  id="selectLicense"
+                  id="license"
                   style="border-radius: .375rem"
-                  class="form-select"
+                  class="form-select enum-select"
                   [(ngModel)]="modelingToolSearch.license"
                   (ngModelChange)="searchModelingTool()">
             <option [ngValue]="undefined"></option>

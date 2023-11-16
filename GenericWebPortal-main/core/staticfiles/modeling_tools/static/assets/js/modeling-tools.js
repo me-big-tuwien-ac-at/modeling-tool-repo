@@ -725,7 +725,33 @@ for (let i = 0; i < booleanSelects.length; i++) {
     });
 }
 
-// Filter by enum
+// Filter by enum (category, license)
+// TODO: Change "Technology" to a select
+const enumSelects = document.getElementsByClassName('enum-select');
+for (let i = 0; i < enumSelects.length; i++) {
+    enumSelects[i].addEventListener('change', (event) => {
+        const value = event.target.value.toLowerCase();
+        const selectId = enumSelects[i].id;
+        const rows = tableTBody.getElementsByTagName('tr');
+
+        for (let j = 0; j < rows.length; j++) {
+            const enumVal = rows[j].getElementsByClassName(`td-${selectId}`)[0].innerText.trim().replace(/\n/g, "").toLowerCase();
+            const canBeChanged = (!rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length === 0) || (rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length <= 1);
+            if (value === enumVal) {
+                if (canBeChanged) {
+                    rows[j].style.display = null;
+                    rows[j].classList.remove(`${selectId}-filtered`);
+                }
+            } else if (value !== undefined || value !== null || value !== '') {
+                rows[j].style.display = 'none';
+                rows[j].classList.remove(`${selectId}-filtered`);
+            } else {
+                rows[j].style.display = null;
+            }
+        }
+        foundMatches();
+    });
+}
 
 // Filter by lists
 
