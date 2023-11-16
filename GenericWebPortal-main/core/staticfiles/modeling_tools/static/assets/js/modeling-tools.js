@@ -553,7 +553,23 @@ function checkTableColumn(tableColumn, check) {
 
 // Update the amount of found results
 const resultAmount = document.getElementById('modeling-tool-amount');
-resultAmount.innerHTML = `Found ${rows.length} results`;
+foundMatches();
+
+/**
+ * Displays to the user the amount of modeling tool matches within the table.
+ */
+function foundMatches() {
+    let amount = 0;
+    const modelingToolsColumn = document.getElementById('modeling-tools-column');
+    const tableTBody = modelingToolsColumn.getElementsByTagName('tbody').item(0);
+    const rows = tableTBody.getElementsByTagName('tr');
+    for (let i = 0; i < rows.length; i++) {
+        if (rows[i].style.display !== 'none') {
+            amount++;
+        }
+    }
+    resultAmount.innerHTML = amount > 1 || amount === 0 ? `Found ${amount} results` : 'Found 1 result';
+}
 
 /***********************************
  ORDERING TABLE COLUMNS
@@ -663,6 +679,7 @@ document.getElementById('name').addEventListener('input', (event) => {
             modelingToolsRows[i].classList.remove('name-filtered');
         }
     }
+    foundMatches();
     noMatches();
 });
 
@@ -675,7 +692,6 @@ for (let i = 0; i < booleanSelects.length; i++) {
         const selectId = booleanSelects[i].id;
         const rows = tableTBody.getElementsByTagName('tr');
 
-        console.log(rows[2].classList);
         for (let j = 0; j < rows.length; j++) {
             const boolVal = rows[j].getElementsByClassName(`td-${selectId}`)[0].innerText.trim().replace(/\n/g, "");
             const canBeChanged = (!rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length === 0) || (rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length <= 1);
@@ -705,6 +721,7 @@ for (let i = 0; i < booleanSelects.length; i++) {
                 }
             }
         }
+        foundMatches();
     });
 }
 
