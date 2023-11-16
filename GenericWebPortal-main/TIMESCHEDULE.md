@@ -16,4 +16,5 @@
 | 14.10.2023 | 09:30 - 11:30 | [Homepage] Sorting table columns                                                           | 2h      | 30h39min        |
 | 14.10.2023 | 17:15 - 18:30 | [Homepage] Image centering fix, table cell theme fix, table column sort CSS fix            | 1h15min | 31h54min        |
 | 15.10.2023 | 20:00 - 21:15 | Replaced Bootstrap Django imports with regular SVG's from the official website             | 1h15min | 33h09min        |
+| 16.10.2023 | 20:00 - 22:00 | [Homepage] Possible to filter by boolean values + paired with name                         | 2h      | 35h09min        |
 
