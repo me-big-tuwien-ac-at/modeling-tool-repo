@@ -427,10 +427,10 @@
       </h4>
       <form class="filter-columns" *ngIf="filterToolsDisplayed">
         <div>
-          <label for="searchTool">
+          <label for="name">
             Modeling Tool Name
           </label>
-          <input type="text" name="searchTool" id="searchTool" class="form-control"
+          <input type="text" name="name" id="name" class="form-control"
                  [(ngModel)]="modelingToolSearch.name" (ngModelChange)="searchModelingTool()">
         </div>
         <div>
@@ -441,7 +441,7 @@
             <select id="open-source"
                     name="open-source"
                     style="border-radius: .375rem"
-                    class="form-select  "
+                    class="form-select boolean-select"
                     [(ngModel)]="modelingToolSearch.openSource"
                     (ngModelChange)="searchModelingTool()">
               <option class="bg-white" [ngValue]="null"></option>
@@ -497,7 +497,7 @@
             <select id="web-app"
                     name="web-app"
                     style="border-radius: .375rem"
-                    class="form-select  "
+                    class="form-select boolean-select"
                     [(ngModel)]="modelingToolSearch.webApp"
                     (ngModelChange)="searchModelingTool()">
               <option class="bg-white" [ngValue]="null"></option>
@@ -515,7 +515,7 @@
             <select id="desktop-app"
                     name="desktop-app"
                     style="border-radius: .375rem"
-                    class="form-select  "
+                    class="form-select boolean-select"
                     [(ngModel)]="modelingToolSearch.desktopApp"
                     (ngModelChange)="searchModelingTool()">
               <option class="bg-white" [ngValue]="null"></option>
@@ -611,7 +611,7 @@
             <select id="login"
                     name="login"
                     style="border-radius: .375rem"
-                    class="form-select  "
+                    class="form-select boolean-select"
                     [(ngModel)]="modelingToolSearch.loginRequired"
                     (ngModelChange)="searchModelingTool()">
               <option class="bg-white" [ngValue]="null"></option>
@@ -629,7 +629,7 @@
             <select name="real-time-collab"
                     id="real-time-collab"
                     style="border-radius: .375rem"
-                    class="form-select  "
+                    class="form-select boolean-select"
                     [(ngModel)]="modelingToolSearch.realTimeCollab"
                     (ngModelChange)="searchModelingTool()">
               <option class="bg-white" [ngValue]="undefined"></option>

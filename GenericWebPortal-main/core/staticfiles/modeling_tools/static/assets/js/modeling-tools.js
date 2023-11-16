@@ -652,19 +652,61 @@ function sortColumns(headerAttribute, tableHeader) {
  FILTER MODELING TOOLS
 ************************************/
 // Filter by typing (name)
-document.getElementById('searchTool').addEventListener('input', (event) => {
+document.getElementById('name').addEventListener('input', (event) => {
     for (let i = 0; i < modelingToolsRows.length; i++) {
         const name = modelingToolsRows[i].getElementsByClassName('td-name')[0].getElementsByTagName('a').item(0).innerText;
         if (!name.toLowerCase().includes(event.target.value.toLowerCase())) {
             modelingToolsRows[i].style.display = 'none';
+            modelingToolsRows[i].classList.add('name-filtered');
         } else {
             modelingToolsRows[i].style.display = null;
+            modelingToolsRows[i].classList.remove('name-filtered');
         }
     }
     noMatches();
 });
 
+// TODO: Login could cause issues, a uniform name for the class is not everywhere
 // Filter by boolean value
+const booleanSelects = document.getElementsByClassName('boolean-select');
+for (let i = 0; i < booleanSelects.length; i++) {
+    booleanSelects[i].addEventListener('change', (event) => {
+        const value = event.target.value.toLowerCase();
+        const selectId = booleanSelects[i].id;
+        const rows = tableTBody.getElementsByTagName('tr');
+
+        console.log(rows[2].classList);
+        for (let j = 0; j < rows.length; j++) {
+            const boolVal = rows[j].getElementsByClassName(`td-${selectId}`)[0].innerText.trim().replace(/\n/g, "");
+            const canBeChanged = (!rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length === 0) || (rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length <= 1);
+            if (value === 'no' || value === 'unavailable') {
+                if (boolVal === 'False') {
+                    if (canBeChanged) {
+                        rows[j].style.display = null;
+                        rows[j].classList.remove(`${selectId}-filtered`);
+                    }
+                } else {
+                    rows[j].style.display = 'none';
+                    rows[j].classList.add(`${selectId}-filtered`);
+                }
+            } else if (value === 'yes' || value === 'available') {
+                if (boolVal === 'True' && canBeChanged) {
+                    if (canBeChanged) {
+                        rows[j].style.display = null;
+                        rows[j].classList.remove(`${selectId}-filtered`);
+                    }
+                } else {
+                    rows[j].style.display = 'none';
+                    rows[j].classList.add(`${selectId}-filtered`);
+                }
+            } else {
+                if (canBeChanged) {
+                    rows[j].style.display = null;
+                }
+            }
+        }
+    });
+}
 
 // Filter by enum
 
