@@ -598,7 +598,7 @@
                   (ngModelChange)="searchModelingTool()">
             <option [ngValue]="undefined"></option>
             <option [ngValue]="'FREE'">Free</option>
-            <option [ngValue]="'RESTRICTED_FREE_AND_COMMERCIAL'">Restricted free content and additional commercial features</option>
+            <option [ngValue]="'RESTRICTED_FREE_AND_COMMERCIAL'">Freemium</option>
             <option [ngValue]="'COMMERCIAL'">Commercial</option>
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
@@ -1323,7 +1323,23 @@
               {{ tool.desktop_app }}
             {% endif %}
           </td>
-          <td class="td-category">{{ tool.category }}</td>
+          <td class="td-category">
+            {% if tool.category == 'GMT' %}
+             Graphical Modeling Tool
+            {% elif tool.category == 'BUT' %}
+              Business Tool
+            {% elif tool.category == 'DRT' %}
+              Drawing Tool
+            {% elif tool.category == 'TMT' %}
+              Text-based Modeling Tool
+            {% elif tool.category == 'MTT' %}
+              Metamodeling Tool
+            {% elif tool.category == 'MTG' %}
+              Mixed textual and graphical Modeling Tool
+            {% else %}
+              {{ tool.category }}
+            {% endif %}
+          </td>
           <td class="td-modeling-languages">
             {% for language in tool.modeling_languages.all %}
               <div>
