@@ -754,6 +754,35 @@ for (let i = 0; i < enumSelects.length; i++) {
 }
 
 // Filter by lists
+window.addEventListener('click', (e) => {
+    if (e.target.classList.contains('list-select')) {
+        const tagId = e.target.id;
+        const property = tagId.substring(7);
+
+        const options = document.getElementById(`options-${property}`);
+        const inputWindow = document.getElementById(`select-${property}`);
+        if (options.style.display === 'none') {
+            options.style.display = null;
+            const optionsList = document.getElementsByClassName('options-list');
+            for (let i = 0; i < optionsList.length; i++) {
+                if (optionsList[i].id !== options.id) {
+                    optionsList[i].style.display = 'none';
+                }
+            }
+        } else if (inputWindow === e.target) {
+            options.style.display = 'none';
+        } else if (inputWindow !== e.target) {
+            options.style.display = 'none';
+        }
+    } else if (!e.target.classList.contains('list-items')) {
+        const listItems = document.getElementsByClassName('list-items');
+        for (let i = 0; i < listItems.length; i++) {
+            if (!listItems[i].contains(e.target) && listItems[i].parentElement.style.display !== 'none') {
+                listItems[i].parentElement.style.display = 'none';
+            }
+        }
+    }
+});
 
 /**
  * Hide/Display message that informs if there were matches to a given query.

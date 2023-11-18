@@ -451,11 +451,12 @@
             <i class="bi bi-chevron-down custom-select"></i>
           </div>
         </div>
-        <div class="form-group" (clickOutside)="searchTechnologyChecked = false">
-          <label for="searchTechnology">Technology</label>
+        <div class="form-group">
+          <label for="select-technology" class="select-list">Technology</label>
           <div class="input-group">
             <div style="border-radius: .375rem"
-                 class="form-select bg-white form-select-height"
+                 id="select-technology"
+                 class="form-select bg-white form-select-height list-select"
                  >
               <span class="mult-item"
                     *ngFor="let tech of modelingToolSearch.technology"
@@ -466,8 +467,8 @@
             </div>
             <i class="bi bi-chevron-down custom-select"></i>
           </div>
-          <div id="searchTechnology" *ngIf="searchTechnologyChecked">
-            <ul class="list-items" style="display: none">
+          <div id="options-technology" class="options-list" style="display: none">
+            <ul class="list-items">
               {% for tech in technology %}
                 <li class="item">
                   <span class="checkbox">
@@ -547,10 +548,12 @@
             <i class="bi bi-chevron-down custom-select"></i>
           </div>
         </div>
-        <div class="form-group" (clickOutside)="searchModelingLanguagesChecked = false">
-          <label for="modeling-languages">Modeling Languages</label>
+        <div class="form-group">
+          <label for="select-modeling-languages" class="select-list">Modeling Languages</label>
           <div class="input-group">
-            <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
+            <div style="border-radius: .375rem"
+                 id="select-modeling-languages"
+                 class="form-select bg-white form-select-height form-custom list-select"
                  >
               <span class="mult-item"
                     *ngFor="let language of modelingToolSearch.modelingLanguages"
@@ -561,8 +564,8 @@
             </div>
             <i class="bi bi-chevron-down custom-select"></i>
           </div>
-          <div id="modeling-languages" *ngIf="searchModelingLanguagesChecked">
-            <ul class="list-items" style="display: none">
+          <div id="options-modeling-languages" class="options-list" style="display: none">
+            <ul class="list-items">
               {% for language in modeling_languages %}
                 <li class="item">
                   <span class="checkbox">
@@ -650,11 +653,12 @@
                  [(ngModel)]="modelingToolSearch.creator"
                  (ngModelChange)="searchModelingTool()">
         </div>
-        <div class="form-group" (clickOutside)="searchPlatformChecked = false">
-          <label for="searchPlatform">Platform</label>
+        <div class="form-group">
+          <label for="select-platforms" class="select-list">Platform</label>
           <div class="input-group">
-            <div class="form-select bg-white form-select-height"
+            <div class="form-select bg-white form-select-height list-select"
                  style="border-radius: .375rem"
+                 id="select-platforms"
                  >
               <span class="mult-item"
                     *ngFor="let platform of modelingToolSearch.platform"
@@ -665,8 +669,8 @@
             </div>
             <i class="bi bi-chevron-down custom-select"></i>
           </div>
-          <div id="searchPlatform" *ngIf="searchPlatformChecked">
-            <ul class="list-items" style="display: none">
+          <div id="options-platforms" class="options-list" style="display: none">
+            <ul class="list-items">
               {% for platform in platforms %}
                 <li class="item">
                   <span class="checkbox">
@@ -688,11 +692,12 @@
             </ul>
           </div>
         </div>
-        <div class="form-group" (clickOutside)="searchProgrammingLanguageChecked = false">
-          <label for="searchProgrammingLanguage">Programming Language</label>
+        <div class="form-group">
+          <label for="select-programming-languages" class="select-list">Programming Language</label>
           <div class="input-group">
-            <div class="form-select bg-white form-select-height"
+            <div class="form-select bg-white form-select-height list-select"
                  style="border-radius: .375rem"
+                 id="select-programming-languages"
                  >
             <span class="mult-item"
                   *ngFor="let language of modelingToolSearch.programmingLanguage"
@@ -703,8 +708,8 @@
             </div>
             <i class="bi bi-chevron-down custom-select"></i>
           </div>
-          <div id="searchProgrammingLanguage" *ngIf="searchProgrammingLanguageChecked">
-            <ul class="list-items" style="display: none;">
+          <div id="options-programming-languages" class="options-list" style="display: none;">
+            <ul class="list-items">
               {% for language in programming_languages %}
                 <li class="item">
                   <span class="checkbox">
