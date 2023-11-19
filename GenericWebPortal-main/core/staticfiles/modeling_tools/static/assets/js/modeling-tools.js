@@ -803,3 +803,29 @@ function noMatches() {
         notif.style.display = 'none';
     }
 }
+
+const listItems = document.getElementsByClassName('list-items');
+for (let i = 0; i < listItems.length; i++) {
+    listItems[i].addEventListener('click', (e) => {
+        const items =listItems[i].getElementsByClassName('item');
+        for (let j = 0; j < items.length; j++) {
+            console.log(items[j]);
+            console.log(e.target);
+            if (items[j].contains(e.target)) {
+                setFilterColumnCheckCss(items[j], true);
+            }
+        }
+    })
+}
+
+function setFilterColumnCheckCss(property) {
+    const checkbox = property.getElementsByClassName('checkbox')[0];
+    const biCheck = property.getElementsByClassName('bi-check')[0];
+    if (!checkbox.classList.contains('checked')) {
+        checkbox.classList.add('checked');
+        biCheck.style.display = null;
+    } else {
+        checkbox.classList.remove('checked');
+        biCheck.style.display = 'none';
+    }
+}

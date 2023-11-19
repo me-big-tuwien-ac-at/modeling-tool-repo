@@ -8,7 +8,7 @@
 |-----------------------------------------------------------------|--------|
 | Set layout in technology to other list properties in HTML-file  | Done   |
 | Add close/open functionality for options                        | Done   |
-| Checkbox                                                        |        |
+| Checkbox                                                        | Done   |
 | Add checked word to the div                                     |        |
 | Filter the table                                                |        |
 

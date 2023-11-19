@@ -19,4 +19,5 @@
 | 16.10.2023 | 20:00 - 22:00 | [Homepage] Possible to filter by boolean values + paired with name                         | 2h 00min | 35h 09min       |
 | 17.10.2023 | 12:20 - 14:00 | [Homepage] Displaying/Hiding list filtering options                                        | 1h 40min | 36h 49min       |
 | 18.10.2023 | 12:50 - 13:30 | [Homepage] Open/Close functionality for Technology/Modeling Languages/Platform/PL          | 0h 40min | 37h 29min       |
+| 19.11.2023 | 12:30 - 01:00 | [Homepage] "Filter Modeling Tools" - checkbox functionality                                | 0h 30min | 37h 59min       |
 
