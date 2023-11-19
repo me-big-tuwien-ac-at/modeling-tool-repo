@@ -807,10 +807,8 @@ function noMatches() {
 const listItems = document.getElementsByClassName('list-items');
 for (let i = 0; i < listItems.length; i++) {
     listItems[i].addEventListener('click', (e) => {
-        const items =listItems[i].getElementsByClassName('item');
+        const items= listItems[i].getElementsByClassName('item');
         for (let j = 0; j < items.length; j++) {
-            console.log(items[j]);
-            console.log(e.target);
             if (items[j].contains(e.target)) {
                 setFilterColumnCheckCss(items[j], true);
             }
@@ -821,11 +819,38 @@ for (let i = 0; i < listItems.length; i++) {
 function setFilterColumnCheckCss(property) {
     const checkbox = property.getElementsByClassName('checkbox')[0];
     const biCheck = property.getElementsByClassName('bi-check')[0];
+
+    const propertyParent = property.parentElement.parentElement.id.substring(8);
+    const htmlProperty = document.getElementById(`select-${propertyParent}`);
+
+    const value = property.getElementsByClassName('item-text')[0].innerText;
+
     if (!checkbox.classList.contains('checked')) {
         checkbox.classList.add('checked');
         biCheck.style.display = null;
+        addFilterOption(htmlProperty, value);
     } else {
         checkbox.classList.remove('checked');
         biCheck.style.display = 'none';
+        removeFilterOption(htmlProperty, value);
     }
+}
+
+function addFilterOption(htmlProperty, value) {
+    htmlProperty.innerHTML = `${htmlProperty.innerHTML}
+    <span class="mult-item" id="mult-item-${value.toLowerCase()}">   
+      ${value}
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    </span>
+    `
+    const filterProperty = document.getElementById(`mult-item-${value.toLowerCase()}`)
+    filterProperty.addEventListener('click', (e) => {
+        filterProperty.remove();
+    })
+}
+
+function removeFilterOption(htmlProperty, value) {
+    document.getElementById(`mult-item-${value.toLowerCase()}`).remove()
 }
