@@ -272,16 +272,16 @@ tr > td:last-child {
   justify-content: space-between;
   gap: 20px;
 }
-
-.filter-columns > div > input.form-control {
-  // background: var(--dark-blue);
-  // color: #FFFFFF;
-  padding: 0.25em 0.5em;
+.boolean-select, .enum-select {
+  height: 2.5em;
+  padding: .25em .5em;
   width: 100%;
+}
+.filter-columns > div > input.form-control {
+  padding: 0.25em 0.5em;
 }
 .form-control {
   display: block;
-  width: 100%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;

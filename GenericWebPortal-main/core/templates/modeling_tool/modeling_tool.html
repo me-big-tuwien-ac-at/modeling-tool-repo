@@ -430,8 +430,7 @@
           <label for="name">
             Modeling Tool Name
           </label>
-          <input type="text" name="name" id="name" class="form-control"
-                 [(ngModel)]="modelingToolSearch.name" (ngModelChange)="searchModelingTool()">
+          <input type="text" name="name" id="name" class="form-control">
         </div>
         <div>
           <label for="open-source">
@@ -451,6 +450,7 @@
             <i class="bi bi-chevron-down custom-select"></i>
           </div>
         </div>
+      <!-- TODO: ADD BACK
         <div class="form-group">
           <label for="select-technology" class="select-list">Technology</label>
           <div class="input-group">
@@ -473,19 +473,10 @@
                   <span class="item-text">{{ tech.name }}</span>
                 </li>
               {% endfor %}
-            <!--
-              <li class="item "
-                  *ngFor="let tech of getTechnologyEnum()"
-                  >
-              <span class="checkbox">
-                <i class="bi bi-check-lg" *ngIf="searchTechStored(tech)"></i>
-              </span>
-                <span class="item-text"></span>
-              </li>
-              -->
             </ul>
           </div>
         </div>
+        -->
         <div>
           <label for="web-app">
             Web App
@@ -544,6 +535,7 @@
             <i class="bi bi-chevron-down custom-select"></i>
           </div>
         </div>
+      <!-- TODO: ADD BACK
         <div class="form-group">
           <label for="select-modeling-languages" class="select-list">Modeling Languages</label>
           <div class="input-group">
@@ -566,21 +558,11 @@
                   <span class="item-text">{{ language.name }}</span>
                 </li>
               {% endfor %}
-            <!--
-              <li class="item "
-                  *ngFor="let language of modelingLanguages"
-                  >
-                <span class="checkbox">
-                  <i class="bi bi-check-lg"></i>
-                </span>
-                <span class="item-text">
 
-                </span>
-              </li>
-              -->
             </ul>
           </div>
         </div>
+      -->
         <div>
           <label for="selectLicense">
             License
@@ -634,6 +616,8 @@
             <i class="bi bi-chevron-down custom-select"></i>
           </div>
         </div>
+      <!-- TODO: ADD BACK
+
         <div>
           <label for="searchCreator">
             Creator
@@ -645,6 +629,9 @@
                  [(ngModel)]="modelingToolSearch.creator"
                  (ngModelChange)="searchModelingTool()">
         </div>
+        -->
+      <!-- TODO: ADD BACK
+
         <div class="form-group">
           <label for="select-platforms" class="select-list">Platform</label>
           <div class="input-group">
@@ -667,19 +654,12 @@
                   <span class="item-text">{{ platform.name }}</span>
                 </li>
               {% endfor %}
-              <!--
-              <li class="item "
-                  *ngFor="let platform of platforms"
-                  >
-              <span class="checkbox">
-                <i class="bi bi-check-lg" *ngIf="searchPlatformStored(platform)"></i>
-              </span>
-                <span class="item-text"></span>
-              </li>
-              -->
             </ul>
           </div>
         </div>
+        -->
+      <!-- TODO: ADD BACK
+
         <div class="form-group">
           <label for="select-programming-languages" class="select-list">Programming Language</label>
           <div class="input-group">
@@ -702,22 +682,16 @@
                   <span class="item-text">{{ language.name }}</span>
                 </li>
               {% endfor %}
-              <!--
-              <li class="item "
-                  *ngFor="let language of programmingLanguages"
-                  >
-              <span class="checkbox">
-                <i class="bi bi-check-lg" *ngIf="searchProgrammingLanguageStored(language)"></i>
-              </span>
-                <span class="item-text"></span>
-              </li>
-              -->
             </ul>
           </div>
         </div>
+        -->
+      <!-- TODO: ADD BACK
+
         <button class="reset-btn" >
           Reset
         </button>
+        -->
       </form>
     </div>
 
