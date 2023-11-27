@@ -1,4 +1,0 @@
-[
-  {"model": "app.technology", "pk": 44, "fields": {"name":  "App", "deletable": false}},
-  {"model": "app.technology", "pk": 45, "fields": {"name":  "Framework", "deletable": false}}
-]
