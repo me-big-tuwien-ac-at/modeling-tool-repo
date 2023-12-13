@@ -17,8 +17,10 @@ class Category(models.TextChoices):
     METAMODELING_TOOL = 'MTT', _('Metamodeling Tool')
     MIXED_TEXTUAL_AND_GRAPHICAL_MODELING_TOOL = 'MTG', _('Mixed textual and graphical Modeling Tool')
 
+    """
     class Meta:
         ordering = ['-updated', '-created']  # - orders it descending, default is ascending
+    """
 
 
 class License(models.TextChoices):
@@ -26,8 +28,10 @@ class License(models.TextChoices):
     COMMERCIAL = 'CO', _('Commercial')
     FREEMIUM = 'FM', _('Freemium')
 
+    """
     class Meta:
         ordering = ['-updated', '-created']  # - orders it descending, default is ascending
+    """
 
 
 class Property(models.Model):
