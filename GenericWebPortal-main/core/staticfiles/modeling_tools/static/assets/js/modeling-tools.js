@@ -314,7 +314,7 @@ function switchFilteringOptionsDisplay() {
 
 // "Filter Table Columns"
 const filterTableColumns = document.getElementById('filter-columns');
-const filterTableColumnsHeader = document.getElementById('filter-columns').children[0];
+const filterTableColumnsHeader = filterTableColumns.children[0];
 const filterTableColumnsChevronDown = filterTableColumns.getElementsByClassName('bi-chevron-down')[0];
 const filterTableColumnsChevronRight = filterTableColumns.getElementsByClassName('bi-chevron-right')[0];
 filterTableColumnsChevronRight.style.display = 'none';
@@ -331,6 +331,28 @@ filterTableColumnsHeader.addEventListener('click', () => {
         filterTableColumnsChevronRight.style.display = 'block';
     } else {
         console.error('While expanding/collapsing the "Filter Table Columns"-block, neither of the expected if conditions were met!');
+    }
+});
+
+// "Filter Modeling Tools"
+const filterModelingTools = document.getElementById('filter-tools');
+const filterModelingToolsHeader = filterModelingTools.children[0];
+const filterModelingToolsChevronDown = filterModelingTools.getElementsByClassName('bi-chevron-down')[0];
+const filterModelingToolsChevronRight = filterModelingTools.getElementsByClassName('bi-chevron-right')[0];
+filterModelingToolsChevronRight.style.display = 'none';
+
+filterModelingToolsHeader.addEventListener('click', () => {
+    const filterTools = document.getElementsByClassName('filter-tools')[0];
+    if (filterModelingToolsChevronDown.style.display === 'none') {
+        filterTools.style.display = null;
+        filterModelingToolsChevronDown.style.display = 'block';
+        filterModelingToolsChevronRight.style.display = 'none';
+    } else if (filterModelingToolsChevronRight.style.display === 'none') {
+        filterTools.style.display = 'none';
+        filterModelingToolsChevronDown.style.display = 'none';
+        filterModelingToolsChevronRight.style.display = 'block';
+    } else {
+        console.error('While expanding/collapsing the "Filter Table Tools"-block, neither of the expected if conditions were met!');
     }
 });
 
