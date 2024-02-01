@@ -364,7 +364,7 @@ const webAppCells = document.getElementsByClassName('td-web-app');
 const desktopAppCells = document.getElementsByClassName('td-desktop-app');
 const sourceCodeGenerationCells = document.getElementsByClassName('td-source-code-generation');
 const cloudServiceCells = document.getElementsByClassName('td-cloud-service-available');
-const loginRequiredCells = document.getElementsByClassName('td-log-in-required');
+const loginRequiredCells = document.getElementsByClassName('td-login');
 const realTimeCollab = document.getElementsByClassName('td-real-time-collab');
 
 setBooleanCellCssStyle(openSourceCells);
@@ -714,6 +714,9 @@ for (let i = 0; i < booleanSelects.length; i++) {
         const selectId = booleanSelects[i].id;
         const rows = tableTBody.getElementsByTagName('tr');
 
+        console.log(value);
+        console.log(selectId);
+
         for (let j = 0; j < rows.length; j++) {
             const boolVal = rows[j].getElementsByClassName(`td-${selectId}`)[0].innerText.trim().replace(/\n/g, "");
             const canBeChanged = (!rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length === 0) || (rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length <= 1);
@@ -759,7 +762,7 @@ for (let i = 0; i < enumSelects.length; i++) {
         for (let j = 0; j < rows.length; j++) {
             const enumVal = rows[j].getElementsByClassName(`td-${selectId}`)[0].innerText.trim().replace(/\n/g, "").toLowerCase();
             const canBeChanged = (!rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length === 0) || (rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length <= 1);
-            if (value === enumVal) {
+            if (value === enumVal || value.trim() === '') {
                 if (canBeChanged) {
                     rows[j].style.display = null;
                     rows[j].classList.remove(`${selectId}-filtered`);
