@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Importing Bootstrap SCSS file. */
 @import "header.component.css";
 @import "footer.component.css";
 @import "modeling-tools.component.css";
+@import "create-modeling-tool.css";
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 :root {

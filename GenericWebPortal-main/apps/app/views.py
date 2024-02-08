@@ -6,10 +6,11 @@ from datetime import datetime
 
 from django import template
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
+from django.utils.safestring import SafeString
 
 from apps.app.models import ModelingTool, ModelingLanguage, Platform, ProgrammingLanguage, Technology
 from apps.app.searchapi import *
@@ -204,7 +205,26 @@ def modeling_tools_home(request):
 
 
 def create_modeling_tool(request):
-    return render(request, 'modeling_tool/create_modeling_tool.html', {})
+    context = {
+        'modeling_tools': SafeString(__get_modeling_tool_names(ModelingTool.objects.all())),
+        'modeling_languages': SafeString(__get_property_names(ModelingLanguage.objects.all())),
+        'platforms': SafeString(__get_property_names(Platform.objects.all())),
+        'programming_languages': SafeString(__get_property_names(ProgrammingLanguage.objects.all()))
+    }
+
+    tools_converted = __convert_modeling_tool_query_set_to_array(ModelingTool.objects.all())
+    print(len(tools_converted))
+
+    tool_names = __get_modeling_tool_names(ModelingTool.objects.all())
+
+    return render(request, 'modeling_tool/create_modeling_tool.html',
+                  context
+                  )
+
+
+def create_modeling_tool_json(request):
+    tools = [{"name": "Jordan"}]
+    return JsonResponse({"tools": tools})
 
 
 def edit_modeling_tool_no_pk(request):
@@ -213,3 +233,52 @@ def edit_modeling_tool_no_pk(request):
 
 def edit_modeling_tool(request, pk):
     return render(request, 'modeling_tool/edit_modeling_tool.html', {})
+
+
+def __convert_modeling_tool_query_set_to_array(tools_raw: [ModelingTool]) -> [{}]:
+    """
+    Converts an object of type ModelingTool to a dictionary that can be forwarded to JavaScript files.
+    :param tools_raw: object of type ModelingTool
+    :return: modeling tool as a dictionary
+    """
+    tools_converted = []
+    for tool in tools_raw:
+        tool_converted = {
+            'name': tool.name,
+            'link': tool.link,
+            'open_source': str(tool.open_source),
+            'technology': __get_property_names(tool.technology),
+            'web_app': str(tool.web_app),
+            'desktop_app': str(tool.desktop_app),
+            'category': tool.category,
+            'modeling_languages': __get_property_names(tool.modeling_languages),
+            'source_code_generation': str(tool.source_code_generation),
+            'cloud_service': str(tool.cloud_service),
+            'license': tool.license,
+            'login_required': str(tool.cloud_service),
+            'creators': __get_property_names(tool.creators),
+            'platforms': __get_property_names(tool.platforms),
+            'real_time_collab': str(tool.cloud_service),
+            'programming_languages': __get_property_names(tool.programming_languages)
+        }
+        tools_converted.append(tool_converted)
+    return tools_converted
+
+
+def __get_modeling_tool_names(tools: [ModelingTool]) -> [str]:
+    names: [str] = []
+    for tool in tools:
+        names.append(tool.name)
+    return names
+
+
+def __get_property_names(tool_property) -> [str]:
+    """
+    Collects names of all properties (e.g., technology, modeling languages, ...) that a modeling tool contains.
+    :param tool_property: property contained with a modeling tool
+    :return: list of property names
+    """
+    property_names: [str] = []
+    for tech in tool_property.all():
+        property_names.append(tech.name)
+    return property_names

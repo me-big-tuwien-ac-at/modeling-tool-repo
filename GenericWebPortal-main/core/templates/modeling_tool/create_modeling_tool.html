@@ -1,5 +1,490 @@
 {% extends "modeling_tool/index.html" %}
+{% load static %}
 
 {% block content %}
-Create Modeling Tool Page
+<div id="create-tool">
+  <h1 class="my-own-test">Suggest a new Modeling Tool</h1>
+
+  <form id="submission-form" (ngSubmit)="onSubmit()" novalidate class="submit-tool-form needs-validation">
+    <section>
+      <div>
+        <div>
+          <input id="tool_name"
+                 class=" "
+                 name="name"
+                 [(ngModel)]="modelingToolByUser.name"
+                 type="text"
+                 value=""
+                 placeholder="Modeling Tool Name"
+                 (focusout)="checkIfToolNameAlreadyExists()"
+                 required/>
+          <div class="invalid-input" *ngIf="userModelValidator.name.syntactic !== undefined ">
+
+          </div>
+          <div class="invalid-input" *ngIf="userModelValidator.name.duplicate !== undefined">
+            Tool with the name  already exists.
+            Click <a routerLink="/modeling_tool/edit/">here</a> to switch to edit mode.
+          </div>
+        </div>
+        <div>
+          <input class=" "
+                 name="link"
+                 placeholder="Link to the webpage"
+                 [(ngModel)]="modelingToolByUser.link"/>
+          <div class="invalid-input" *ngIf="userModelValidator.link !== undefined ">
+
+          </div>
+        </div>
+      </div>
+      <div>
+        <i *ngIf="mode === 0" class="bi bi-plus-lg"></i>
+        <i *ngIf="mode === 2" class="bi bi-pencil-fill"></i>
+        <i class="bi bi-diagram-2-fill"></i>
+      </div>
+    </section>
+    <section>
+      <div class="form-group">
+        <label for="openSourceContent">Open Source</label>
+        <div class="input-group">
+          <select id="openSourceContent"
+                  name="openSource"
+                  style="border-radius: .375rem"
+                  class="form-select  "
+                  [(ngModel)]="modelingToolByUser.openSource">
+            <option class="bg-white" [ngValue]="null"></option>
+            <option class="false-value" [ngValue]="false">No</option>
+            <option class="true-value" [ngValue]="true">Yes</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && modelingToolByUser.openSource !== originalModelingTool.openSource"
+             (click)="modelingToolByUser.openSource = originalModelingTool.openSource">
+          Reset
+        </div>
+      </div>
+      <div class="form-group" (clickOutside)="technologyChecked = false">
+        <label for="appLibraryFramework">Technology</label>
+        <div class="input-group">
+          <div style="border-radius: .375rem"
+               class="form-select bg-white form-select-height form-custom"
+               (click)="technologyChecked = !technologyChecked">
+            <span class="mult-item"
+                  *ngFor="let tech of modelingToolByUser.technology"
+                  (click)="deleteTech(tech);$event.stopPropagation()">
+
+              <i class="bi bi-x"></i>
+            </span>
+          </div>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div id="appLibraryFramework" *ngIf="technologyChecked">
+          <ul class="list-items">
+            <li class="item "
+                *ngFor="let tech of getTechnologyEnum()"
+                (click)="addRemoveTechnology(tech)">
+            <span class="checkbox">
+              <i class="bi bi-check-lg"></i>
+            </span>
+              <span class="item-text">
+
+            </span>
+            </li>
+          </ul>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.technology, originalModelingTool.technology)"
+             (click)="setUserToolArray('technology', originalModelingTool.technology)">
+          Reset
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="webApp">Is it provided as a web application?</label>
+        <div class="input-group">
+          <select id="webApp"
+                  name="webApp"
+                  style="border-radius: .375rem"
+                  class="form-select  "
+                  [(ngModel)]="modelingToolByUser.webApp">
+            <option class="bg-white" [ngValue]="null"></option>
+            <option class="false-value" [ngValue]="false">No</option>
+            <option class="true-value" [ngValue]="true">Yes</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && modelingToolByUser.webApp !== originalModelingTool.webApp"
+             (click)="modelingToolByUser.webApp = originalModelingTool.webApp">
+          Reset
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="desktopApp">Is it provided as a desktop application?</label>
+        <div class="input-group">
+          <select id="desktopApp"
+                  name="desktopApp"
+                  style="border-radius: .375rem"
+                  class="form-select  "
+                  [(ngModel)]="modelingToolByUser.desktopApp">
+            <option class="bg-white" [ngValue]="null"></option>
+            <option class="false-value" [ngValue]="false">No</option>
+            <option class="true-value" [ngValue]="true">Yes</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && modelingToolByUser.desktopApp !== originalModelingTool.desktopApp"
+             (click)="modelingToolByUser.desktopApp = originalModelingTool.desktopApp">
+          Reset
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="categoryContent">Category</label>
+        <div class="input-group">
+          <select id="categoryContent"
+                  name="categoryContent"
+                  style="border-radius: .375rem"
+                  class="form-select bg-white"
+                  [(ngModel)]="modelingToolByUser.category">
+            <option *ngFor="let category of getCategoryEnum()"
+                    [ngValue]="category">
+
+            </option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && modelingToolByUser.category !== originalModelingTool.category"
+             (click)="modelingToolByUser.category = originalModelingTool.category">
+          Reset
+        </div>
+      </div>
+      <div class="form-group" (clickOutside)="modelingLanguagesChecked = false">
+        <label for="modelingLanguagesSuggestion">Modeling Languages</label>
+        <div class="input-group">
+          <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
+               (click)="modelingLanguagesChecked = !modelingLanguagesChecked">
+            <span class="mult-item"
+                  *ngFor="let language of modelingToolByUser.modelingLanguages"
+                  (click)="deleteModelingLanguage(language);$event.stopPropagation()">
+
+              <i class="bi bi-x"></i>
+            </span>
+          </div>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div id="modelingLanguagesSuggestion" *ngIf="modelingLanguagesChecked">
+          <ul class="list-items">
+            <li class="item "
+                *ngFor="let language of modelingLanguages"
+                (click)="addRemoveModelingLanguage(language)">
+            <span class="checkbox">
+              <i class="bi bi-check-lg"></i>
+            </span>
+              <span class="item-text">
+
+            </span>
+            </li>
+            <li class="own-property-input-list">
+              <input type="text"
+                     class="own-property-input"
+                     placeholder="Different modeling language"
+                     [ngModelOptions]="{standalone: true}"
+                     [(ngModel)]="suggestedModelingLanguage"
+                     (keyup.enter)="addRemoveModelingLanguage(suggestedModelingLanguage)">
+              <span (click)="addRemoveModelingLanguage(suggestedModelingLanguage)">
+                Add
+              </span>
+            </li>
+            <div class="invalid-input" *ngIf="userModelValidator.modelingLanguage !== undefined ">
+
+            </div>
+          </ul>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.modelingLanguages, originalModelingTool.modelingLanguages)"
+             (click)="setUserToolArray('modelingLanguages', originalModelingTool.modelingLanguages)">
+          Reset
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sourceCodeGenerationSuggestion">Does it provide source code generation?</label>
+        <div class="input-group">
+          <select id="sourceCodeGenerationSuggestion"
+                  name="sourceCodeGenerationSuggestion"
+                  style="border-radius: .375rem"
+                  class="form-select  "
+                  [(ngModel)]="modelingToolByUser.sourceCodeGeneration">
+            <option class="bg-white" [ngValue]="null"></option>
+            <option class="false-value" [ngValue]="false">No</option>
+            <option class="true-value" [ngValue]="true">Yes</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && modelingToolByUser.sourceCodeGeneration !== originalModelingTool.sourceCodeGeneration"
+             (click)="modelingToolByUser.sourceCodeGeneration = originalModelingTool.sourceCodeGeneration">
+          Reset
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cloudServiceSuggestion">Does it provide Cloud Service?</label>
+        <div class="input-group">
+          <select id="cloudServiceSuggestion"
+                  name="cloudServiceSuggestion"
+                  style="border-radius: .375rem"
+                  class="form-select  "
+                  [(ngModel)]="modelingToolByUser.cloudService">
+            <option class="bg-white" [ngValue]="null"></option>
+            <option class="false-value" [ngValue]="false">No</option>
+            <option class="true-value" [ngValue]="true">Yes</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && modelingToolByUser.cloudService !== originalModelingTool.cloudService"
+             (click)="modelingToolByUser.cloudService = originalModelingTool.cloudService">
+          Reset
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="licenseContent">License</label>
+        <div class="input-group">
+          <select id="licenseContent"
+                  name="licenseContent"
+                  style="border-radius: .375rem"
+                  class="form-select bg-white"
+                  [(ngModel)]="modelingToolByUser.license">
+            <option *ngFor="let license of getLicenseEnum()"
+                    [ngValue]="license">
+
+            </option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && modelingToolByUser.license !== originalModelingTool.license"
+             (click)="modelingToolByUser.license = originalModelingTool.license">
+          Reset
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="loginSelect">Is log-in required?</label>
+        <div class="input-group">
+          <select id="loginSelect"
+                  name="loginSelect"
+                  style="border-radius: .375rem"
+                  class="form-select  "
+                  [(ngModel)]="modelingToolByUser.loginRequired">
+            <option class="bg-white" [ngValue]="null"></option>
+            <option class="false-value" [ngValue]="false">No</option>
+            <option class="true-value" [ngValue]="true">Yes</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && modelingToolByUser.loginRequired !== originalModelingTool.loginRequired"
+             (click)="modelingToolByUser.loginRequired = originalModelingTool.loginRequired">
+          Reset
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="realtimeCollaborationSuggestion">Is Real Time Collaboration possible?</label>
+        <div class="input-group">
+          <select id="realtimeCollaborationSuggestion"
+                  name="realtimeCollaborationSuggestion"
+                  style="border-radius: .375rem"
+                  class="form-select  "
+                  [(ngModel)]="modelingToolByUser.realTimeCollab">
+            <option class="bg-white" [ngValue]="null"></option>
+            <option class="false-value" [ngValue]="false">No</option>
+            <option class="true-value" [ngValue]="true">Yes</option>
+          </select>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && modelingToolByUser.realTimeCollab !== originalModelingTool.realTimeCollab"
+             (click)="modelingToolByUser.realTimeCollab = originalModelingTool.realTimeCollab">
+          Reset
+        </div>
+      </div>
+      <div class="form-group" (clickOutside)="creatorsChecked = false">
+        <label for="creator">Creator</label>
+        <div class="input-group">
+          <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom" (click)="creatorsChecked = !creatorsChecked">
+            <span class="mult-item"
+                  *ngFor="let creator of modelingToolByUser.creator"
+                  (click)="deleteCreator(creator);$event.stopPropagation()">
+
+              <i class="bi bi-x"></i>
+            </span>
+          </div>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div id="creator" *ngIf="creatorsChecked">
+          <ul class="list-items">
+            <li class="own-property-input-list">
+              <input type="text"
+                     class="own-property-input"
+                     id="creator-new"
+                     placeholder="Creator"
+                     [ngModelOptions]="{standalone: true}"
+                     [(ngModel)]="creatorInput"
+                     (keyup.enter)="addCreator()">
+              <span (click)="addCreator()">
+                Add
+              </span>
+            </li>
+          </ul>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.creator, originalModelingTool.creator)"
+             (click)="setUserToolArray('creator', originalModelingTool.creator)">
+          Reset
+        </div>
+      </div>
+
+      <div class="form-group" (clickOutside)="platformsChecked = false">
+        <label for="editPlatforms">Platforms</label>
+        <div class="input-group">
+          <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
+               (click)="platformsChecked = !platformsChecked">
+            <span class="mult-item"
+                  *ngFor="let platform of modelingToolByUser.platform"
+                  (click)="deletePlatform(platform);$event.stopPropagation()">
+
+              <i class="bi bi-x"></i>
+            </span>
+          </div>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div id="editPlatforms" *ngIf="platformsChecked">
+          <ul class="list-items">
+            <li class="item "
+                *ngFor="let platform of platforms"
+                (click)="addRemovePlatform(platform)">
+            <span class="checkbox">
+              <i class="bi bi-check-lg"></i>
+            </span>
+              <span class="item-text">
+
+              </span>
+            </li>
+            <li class="own-property-input-list">
+              <input type="text"
+                     class="own-property-input"
+                     id="platformNew_1"
+                     placeholder="Different platform"
+                     [ngModelOptions]="{standalone: true}"
+                     [(ngModel)]="suggestedPlatforms"
+                     (keyup.enter)="addRemovePlatform(suggestedPlatforms)">
+              <span (click)="addRemovePlatform(suggestedPlatforms)">
+                Add
+              </span>
+            </li>
+            <div class="invalid-input" *ngIf="userModelValidator.platform !== undefined ">
+
+            </div>
+          </ul>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.platform, originalModelingTool.platform)"
+             (click)="setUserToolArray('platform', originalModelingTool.platform)">
+          Reset
+        </div>
+      </div>
+
+      <div class="form-group" (clickOutside)="programmingLanguagesChecked = false">
+        <label for="programmingLanguages">Programming Languages</label>
+        <div class="input-group">
+          <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
+               (click)="programmingLanguagesChecked = !programmingLanguagesChecked">
+            <span class="mult-item"
+                  *ngFor="let language of modelingToolByUser.programmingLanguage"
+                  (click)="deleteLanguage(language);$event.stopPropagation()">
+
+              <i class="bi bi-x"></i>
+            </span>
+          </div>
+          <i class="bi bi-chevron-down custom-select"></i>
+        </div>
+        <div id="programmingLanguages" *ngIf="programmingLanguagesChecked">
+          <ul class="list-items">
+            <li class="item "
+                *ngFor="let language of programmingLanguages"
+                (click)="addRemoveProgrammingLanguage(language)">
+              <span class="checkbox">
+                <i class="bi bi-check-lg"></i>
+              </span>
+              <span class="item-text">
+
+              </span>
+            </li>
+            <li class="own-property-input-list">
+              <input type="text"
+                     class="own-property-input"
+                     id="plNew_1"
+                     placeholder="Different programming language"
+                     [ngModelOptions]="{standalone: true}"
+                     [(ngModel)]="suggestedProgrammingLanguage"
+                     (keyup.enter)="addRemoveProgrammingLanguage(suggestedProgrammingLanguage)">
+              <span (click)="addRemoveProgrammingLanguage(suggestedProgrammingLanguage)">
+                Add
+              </span>
+            </li>
+            <div class="invalid-input" *ngIf="userModelValidator.programmingLanguage !== undefined ">
+
+            </div>
+          </ul>
+        </div>
+        <div class="reset"
+             *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.programmingLanguage, originalModelingTool.programmingLanguage)"
+             (click)="setUserToolArray('programmingLanguage', originalModelingTool.programmingLanguage)">
+          Reset
+        </div>
+      </div>
+    </section>
+    <section>
+      <label for="remarks">Additional Information / Remarks</label>
+      <textarea id="remarks" placeholder="" [(ngModel)]="modelingToolByUser.feedback" [ngModelOptions]="{standalone: true}"></textarea>
+    </section>
+
+    <section>
+      <div class="form-group">
+        <label for="email">Your Email for confirmation *</label>
+        <div class="input-group">
+          <input id="email"
+                 name="email"
+                 class="form-control "
+                 [(ngModel)]="modelingToolByUser.userEmail"
+                 required/>
+        </div>
+        <div class="invalid-input"
+             *ngIf="userModelValidator.email !== undefined ">
+
+        </div>
+      </div>
+
+      <div class="content-align-center">
+        <re-captcha *ngIf="!resolvedByUser" (resolved)="resolved($event)" siteKey=""></re-captcha>
+        <button *ngIf="resolvedByUser" type="button" data-dismiss="modal" class="reset-btn" (click)=onSubmit()>
+          Submit
+        </button>
+      </div>
+      <div class="invalid-input" *ngIf="mode === 2 && userModelValidator.toolNotEdited !== undefined">
+
+      </div>
+    </section>
+  </form>
+</div>
+
+<script id="helper"
+        data-name="{{ modeling_tools }}"
+        data-model-name="{{ modeling_languages }}"
+        data-height="{{ platforms }}"
+        data-hidden="{{ programming_languages }}"
+        src="{% static 'assets/js/create-modeling-tool.js' %}">
+</script>
+
+
 {% endblock content %}
