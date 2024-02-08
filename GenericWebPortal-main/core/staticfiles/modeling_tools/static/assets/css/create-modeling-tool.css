@@ -133,28 +133,23 @@
 /***********************************
  FORM TITLE ICON
 ************************************/
-#create-tool .bi-diagram-2-fill::before {
+#create-tool .bi.bi-diagram-2-fill {
+  color: #FFFFFF;
   content: "\f2eb";
-  font-size: 80px;
+  height: 80px;
+  width: 80px;
 }
 #create-tool .bi-plus-lg {
   position: relative;
-  left: 28px;
-  top: 7px;
+  left: 30px;
+  top: 3px;
+  color: #32DE84;
+  width: 40px;
+  height: 40px;
 }
-#create-tool .bi-pencil-fill {
-  position: relative;
-  left: 37px;
-  top: 8px;
-}
-#create-tool .bi-plus-lg::before {
-  font-size: 40px;
-  -webkit-text-stroke: 5px var(--android-green);
-}
-#create-tool .bi-pencil-fill::before {
-  font-size: 40px;
-  color: #6495ed;
-  transform: scale(-1,1);
+#create-tool .bi-plus-lg > path {
+  stroke: #32DE84;
+  stroke-width: 2px;
 }
 
 /***********************************

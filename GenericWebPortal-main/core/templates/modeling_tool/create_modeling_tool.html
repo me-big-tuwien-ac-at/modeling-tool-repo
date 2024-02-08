@@ -12,16 +12,11 @@
           <input id="tool_name"
                  class=" "
                  name="name"
-                 [(ngModel)]="modelingToolByUser.name"
                  type="text"
                  value=""
                  placeholder="Modeling Tool Name"
-                 (focusout)="checkIfToolNameAlreadyExists()"
                  required/>
-          <div class="invalid-input" *ngIf="userModelValidator.name.syntactic !== undefined ">
-
-          </div>
-          <div class="invalid-input" *ngIf="userModelValidator.name.duplicate !== undefined">
+          <div id="invalid-input-name-duplicate" class="invalid-input" style="display: none">
             Tool with the name  already exists.
             Click <a routerLink="/modeling_tool/edit/">here</a> to switch to edit mode.
           </div>
