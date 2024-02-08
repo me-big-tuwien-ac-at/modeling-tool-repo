@@ -17,18 +17,14 @@
                  placeholder="Modeling Tool Name"
                  required/>
           <div id="invalid-input-name-duplicate" class="invalid-input" style="display: none">
-            Tool with the name  already exists.
-            Click <a routerLink="/modeling_tool/edit/">here</a> to switch to edit mode.
+            Tool with the name <span id="name-duplicate-name"></span>  already exists.
+            Click <a href="{% url 'edit_modeling_tools' 0 %}">here</a> to switch to edit mode.
           </div>
+          <div id="invalid-input-name-syntactic" style="display: none"></div>
         </div>
         <div>
-          <input class=" "
-                 name="link"
-                 placeholder="Link to the webpage"
-                 [(ngModel)]="modelingToolByUser.link"/>
-          <div class="invalid-input" *ngIf="userModelValidator.link !== undefined ">
-
-          </div>
+          <input id="tool_link" name="link" placeholder="Link to the webpage"/>
+          <div id="invalid-input-link" class="invalid-input"></div>
         </div>
       </div>
       <div>
@@ -467,7 +463,7 @@
 
       <div class="content-align-center">
         <re-captcha *ngIf="!resolvedByUser" (resolved)="resolved($event)" siteKey=""></re-captcha>
-        <button *ngIf="resolvedByUser" type="button" data-dismiss="modal" class="reset-btn" (click)=onSubmit()>
+        <button *ngIf="resolvedByUser" type="button" data-dismiss="modal" class="reset-btn" onclick="submitModelingTool()">
           Submit
         </button>
       </div>
