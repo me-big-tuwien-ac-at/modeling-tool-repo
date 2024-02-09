@@ -20,4 +20,7 @@
 | 17.10.2023 | 12:20 - 14:00 | [Homepage] Displaying/Hiding list filtering options                                        | 1h 40min | 36h 49min       |
 | 18.10.2023 | 12:50 - 13:30 | [Homepage] Open/Close functionality for Technology/Modeling Languages/Platform/PL          | 0h 40min | 37h 29min       |
 | 19.11.2023 | 12:30 - 01:00 | [Homepage] "Filter Modeling Tools" - checkbox functionality                                | 0h 30min | 37h 59min       |
+| 08.02.2023 | 10:00 - 15:00 | [Create Modeling Tool] Initial Create Modeling Tool functionalities and design             | 5h 00min | 42h 59min       |
+| 08.02.2023 | 18:00 - 23:00 | [Create Modeling Tool] Initial steps for validation                                        | 5h 00min | 47h 59min       |
+| 08.02.2023 | 01:00 - 02:30 | [Create Modeling Tool] Initial steps for collapsing/expanding property options             | 1h 30min | 49h 29min       |
 

@@ -5,7 +5,7 @@
 <div id="create-tool">
   <h1 class="my-own-test">Suggest a new Modeling Tool</h1>
 
-  <form id="submission-form" (ngSubmit)="onSubmit()" novalidate class="submit-tool-form needs-validation">
+  <form id="submission-form" (ngSubmit)="onSubmit()" novalidate class="needs-validation">
     <section>
       <div>
         <div>
@@ -59,22 +59,21 @@
           Reset
         </div>
       </div>
-      <div class="form-group" (clickOutside)="technologyChecked = false">
+      <div class="form-group">
         <label for="appLibraryFramework">Technology</label>
         <div class="input-group">
           <div style="border-radius: .375rem"
                class="form-select bg-white form-select-height form-custom"
-               (click)="technologyChecked = !technologyChecked">
+               id="technology-input">
             <span class="mult-item"
                   *ngFor="let tech of modelingToolByUser.technology"
                   (click)="deleteTech(tech);$event.stopPropagation()">
-
               <i class="bi bi-x"></i>
             </span>
           </div>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
-        <div id="appLibraryFramework" *ngIf="technologyChecked">
+        <div id="appLibraryFramework" style="display: none">
           <ul class="list-items">
             <li class="item "
                 *ngFor="let tech of getTechnologyEnum()"
@@ -158,8 +157,9 @@
       <div class="form-group" (clickOutside)="modelingLanguagesChecked = false">
         <label for="modelingLanguagesSuggestion">Modeling Languages</label>
         <div class="input-group">
-          <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
-               (click)="modelingLanguagesChecked = !modelingLanguagesChecked">
+          <div style="border-radius: .375rem"
+               class="form-select bg-white form-select-height form-custom"
+               id="modeling-languages-input">
             <span class="mult-item"
                   *ngFor="let language of modelingToolByUser.modelingLanguages"
                   (click)="deleteModelingLanguage(language);$event.stopPropagation()">
@@ -169,7 +169,7 @@
           </div>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
-        <div id="modelingLanguagesSuggestion" *ngIf="modelingLanguagesChecked">
+        <div id="modelingLanguagesSuggestion" style="display: none">
           <ul class="list-items">
             <li class="item "
                 *ngFor="let language of modelingLanguages"
@@ -307,17 +307,18 @@
       <div class="form-group" (clickOutside)="creatorsChecked = false">
         <label for="creator">Creator</label>
         <div class="input-group">
-          <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom" (click)="creatorsChecked = !creatorsChecked">
+          <div style="border-radius: .375rem"
+               class="form-select bg-white form-select-height form-custom"
+               id="creators-input">
             <span class="mult-item"
                   *ngFor="let creator of modelingToolByUser.creator"
                   (click)="deleteCreator(creator);$event.stopPropagation()">
-
               <i class="bi bi-x"></i>
             </span>
           </div>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
-        <div id="creator" *ngIf="creatorsChecked">
+        <div id="creator" style="display: none">
           <ul class="list-items">
             <li class="own-property-input-list">
               <input type="text"
@@ -343,8 +344,9 @@
       <div class="form-group" (clickOutside)="platformsChecked = false">
         <label for="editPlatforms">Platforms</label>
         <div class="input-group">
-          <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
-               (click)="platformsChecked = !platformsChecked">
+          <div style="border-radius: .375rem"
+               class="form-select bg-white form-select-height form-custom"
+               id="platform-input">
             <span class="mult-item"
                   *ngFor="let platform of modelingToolByUser.platform"
                   (click)="deletePlatform(platform);$event.stopPropagation()">
@@ -354,7 +356,7 @@
           </div>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
-        <div id="editPlatforms" *ngIf="platformsChecked">
+        <div id="editPlatforms" style="display: none">
           <ul class="list-items">
             <li class="item "
                 *ngFor="let platform of platforms"
@@ -393,8 +395,9 @@
       <div class="form-group" (clickOutside)="programmingLanguagesChecked = false">
         <label for="programmingLanguages">Programming Languages</label>
         <div class="input-group">
-          <div style="border-radius: .375rem" class="form-select bg-white form-select-height form-custom"
-               (click)="programmingLanguagesChecked = !programmingLanguagesChecked">
+          <div style="border-radius: .375rem"
+               class="form-select bg-white form-select-height form-custom"
+               id="programming-language-input">
             <span class="mult-item"
                   *ngFor="let language of modelingToolByUser.programmingLanguage"
                   (click)="deleteLanguage(language);$event.stopPropagation()">
@@ -404,7 +407,7 @@
           </div>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
-        <div id="programmingLanguages" *ngIf="programmingLanguagesChecked">
+        <div id="programmingLanguages" style="display: none;">
           <ul class="list-items">
             <li class="item "
                 *ngFor="let language of programmingLanguages"

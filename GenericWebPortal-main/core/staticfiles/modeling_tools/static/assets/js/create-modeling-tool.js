@@ -144,3 +144,96 @@ const isValidUrl = urlString => {
     '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
   return !!urlPattern.test(urlString);
 }
+
+/***********************************
+ COLLAPSING/EXPANDING PROPERTY OPTIONS
+************************************/
+const technologyInput = document.getElementById('technology-input');
+const technologyOptions = document.getElementById('appLibraryFramework');
+
+document.addEventListener('click', function(event) {
+  const isClickInside = technologyInput.contains(event.target);
+  const techDisplay = technologyOptions.style.display;
+  if (isClickInside) {
+    if (techDisplay === 'none') {
+      technologyOptions.style.display = null;
+    } else {
+      technologyOptions.style.display = 'none';
+    }
+  }
+  else {
+    technologyOptions.style.display = 'none';
+  }
+});
+
+const modelingLanguagesInput = document.getElementById('modeling-languages-input');
+const modelingLanguageOptions = document.getElementById('modelingLanguagesSuggestion');
+
+document.addEventListener('click', function(event) {
+  const isClickInside = modelingLanguagesInput.contains(event.target);
+  const techDisplay = modelingLanguageOptions.style.display;
+  if (isClickInside) {
+    if (techDisplay === 'none') {
+      modelingLanguageOptions.style.display = null;
+    } else {
+      modelingLanguageOptions.style.display = 'none';
+    }
+  }
+  else {
+    modelingLanguageOptions.style.display = 'none';
+  }
+});
+
+const creatorsInput = document.getElementById('creators-input');
+const creatorsOptions = document.getElementById('creator');
+
+document.addEventListener('click', function(event) {
+  const isClickInside = creatorsInput.contains(event.target);
+  const techDisplay = creatorsOptions.style.display;
+  if (isClickInside) {
+    if (techDisplay === 'none') {
+      creatorsOptions.style.display = null;
+    } else {
+      creatorsOptions.style.display = 'none';
+    }
+  }
+  else {
+    creatorsOptions.style.display = 'none';
+  }
+});
+
+const platformsInput = document.getElementById('platform-input');
+const platformsOptions = document.getElementById('editPlatforms');
+
+document.addEventListener('click', function(event) {
+  const isClickInside = platformsInput.contains(event.target);
+  const techDisplay = platformsOptions.style.display;
+  if (isClickInside) {
+    if (techDisplay === 'none') {
+      platformsOptions.style.display = null;
+    } else {
+      platformsOptions.style.display = 'none';
+    }
+  }
+  else {
+    platformsOptions.style.display = 'none';
+  }
+});
+
+const programmingLanguagesInput = document.getElementById('programming-language-input');
+const programmingLanguagesOptions = document.getElementById('programmingLanguages');
+
+document.addEventListener('click', function(event) {
+  const isClickInside = programmingLanguagesInput.contains(event.target);
+  const techDisplay = programmingLanguagesOptions.style.display;
+  if (isClickInside) {
+    if (techDisplay === 'none') {
+      programmingLanguagesOptions.style.display = null;
+    } else {
+      programmingLanguagesOptions.style.display = 'none';
+    }
+  }
+  else {
+    programmingLanguagesOptions.style.display = 'none';
+  }
+});
