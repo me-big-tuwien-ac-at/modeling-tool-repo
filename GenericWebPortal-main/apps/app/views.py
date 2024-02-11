@@ -206,6 +206,8 @@ def modeling_tools_home(request):
 
 def create_modeling_tool(request):
     context = {
+        'technologies': SafeString(__get_modeling_tool_names(Technology.objects.all())),
+        'technologies_properties': __get_property_names(Technology.objects.all()),
         'modeling_tools': SafeString(__get_modeling_tool_names(ModelingTool.objects.all())),
         'modeling_languages': SafeString(__get_property_names(ModelingLanguage.objects.all())),
         'platforms': SafeString(__get_property_names(Platform.objects.all())),

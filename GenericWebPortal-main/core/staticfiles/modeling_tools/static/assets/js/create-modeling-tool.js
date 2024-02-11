@@ -17,7 +17,7 @@ function extract_regex_matches(input, regex, group) {
   return result
 }
 
-modeling_tool = {
+userModelingTool = {
   name: "",
   link: "",
   technologies: []
@@ -40,10 +40,10 @@ modeling_tool_validator = {
  LISTENERS ASSIGNING MODELING TOOL VALUES
 ************************************/
 document.getElementById('tool_name').addEventListener('input', (e) => {
-  modeling_tool.name = e.target.value;
+  userModelingTool.name = e.target.value;
 });
 document.getElementById('tool_link').addEventListener('input', (e) => {
-  modeling_tool.link = e.target.value;
+  userModelingTool.link = e.target.value;
 });
 
 /***********************************
@@ -80,15 +80,15 @@ function submitModelingTool() {
   // Check if the name of the modeling tool is not a duplicate, if it is not, check if the string is valid
   if (modeling_tool_validator.name !== undefined) {
     // Check if name is provided
-    modeling_tool_validator.name = checkIfStringIsValid(modeling_tool.name);
+    modeling_tool_validator.name = checkIfStringIsValid(userModelingTool.name);
   }
 
   // Check if name is not a duplicate
   // Check if link is provided
-  modeling_tool_validator.link = isValidUrl(modeling_tool.link);
+  modeling_tool_validator.link = isValidUrl(userModelingTool.link);
 
   console.log("Submitting modeling tool");
-  console.log(modeling_tool);
+  console.log(userModelingTool);
 }
 
 function isModelingToolValid() {
@@ -111,7 +111,7 @@ function isModelingToolValid() {
   }
 
   // TODO: 2. Check if the modeling tool is syntactically sound
-  modeling_tool_validator.name.syntactic = checkIfStringIsValid(modeling_tool.name);
+  modeling_tool_validator.name.syntactic = checkIfStringIsValid(userModelingTool.name);
 }
 
 function checkIfStringIsValid(input, inputType) {
@@ -279,3 +279,17 @@ for (let i = 0; i < selectFields.length; i++) {
 /***********************************
  ADD TECHNOLOGY TO USER MODELING TOOL
 ************************************/
+const technologySection = document.getElementById('appLibraryFramework');
+const technologyListItems = technologySection.children[0].children;
+for (let i = 0; i < technologyListItems.length; i++) {
+  technologyListItems[i].addEventListener('click', (event) => {
+    const value = technologyListItems[i].children[1].outerText;
+    if (userModelingTool.technologies.includes(value)) {
+      userModelingTool.technologies = userModelingTool.technologies.filter((tech) => {
+        return tech !== value;
+      })
+    } else {
+      userModelingTool.technologies.push(value);
+    }
+  });
+}
