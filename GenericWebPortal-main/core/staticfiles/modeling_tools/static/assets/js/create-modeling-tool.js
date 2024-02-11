@@ -237,3 +237,27 @@ document.addEventListener('click', function(event) {
     programmingLanguagesOptions.style.display = 'none';
   }
 });
+
+/***********************************
+ PROPERTY OPTION CSS
+************************************/
+const selectFields = document.getElementsByClassName('form-select');
+for (let i = 0; i < selectFields.length; i++) {
+  const selectField = selectFields[i];
+  selectField.addEventListener('change', (event) => {
+    console.log(event.target.value);
+    console.log(event.target.classList);
+    const selectValue = event.target.value;
+    const selectClassList = event.target.classList;
+    if (selectValue === null || selectValue === undefined || selectValue.length === 0) {
+      selectClassList.remove('false-value');
+      selectClassList.remove('true-value');
+    } else if (selectValue === 'No') {
+      selectClassList.remove('true-value');
+      selectClassList.add('false-value');
+    } else {
+      selectClassList.remove('false-value');
+      selectClassList.add('true-value');
+    }
+  });
+}

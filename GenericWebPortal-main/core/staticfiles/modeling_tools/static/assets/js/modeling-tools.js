@@ -714,9 +714,6 @@ for (let i = 0; i < booleanSelects.length; i++) {
         const selectId = booleanSelects[i].id;
         const rows = tableTBody.getElementsByTagName('tr');
 
-        console.log(value);
-        console.log(selectId);
-
         for (let j = 0; j < rows.length; j++) {
             const boolVal = rows[j].getElementsByClassName(`td-${selectId}`)[0].innerText.trim().replace(/\n/g, "");
             const canBeChanged = (!rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length === 0) || (rows[j].classList.contains(`${selectId}-filtered`) && rows[j].classList.length <= 1);
