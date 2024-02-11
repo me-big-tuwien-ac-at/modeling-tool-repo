@@ -287,9 +287,24 @@ for (let i = 0; i < technologyListItems.length; i++) {
     if (userModelingTool.technologies.includes(value)) {
       userModelingTool.technologies = userModelingTool.technologies.filter((tech) => {
         return tech !== value;
-      })
+      });
+      setSelectedProperties(technologyInput, userModelingTool.technologies)
     } else {
       userModelingTool.technologies.push(value);
+      setSelectedProperties(technologyInput, userModelingTool.technologies)
     }
   });
+}
+
+function setSelectedProperties(propertySection, userProperties) {
+  let techInnerHtml = ``;
+  for (let j = 0; j <userProperties.length; j++) {
+    techInnerHtml +=  `
+    <span class="mult-item">
+      ${userProperties[j]}
+      <i class="bi bi-x"></i>
+    </span>
+  `;
+  }
+  propertySection.innerHTML = techInnerHtml;
 }
