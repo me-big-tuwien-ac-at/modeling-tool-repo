@@ -19,7 +19,8 @@ function extract_regex_matches(input, regex, group) {
 
 modeling_tool = {
   name: "",
-  link: ""
+  link: "",
+  technologies: []
 }
 
 modeling_tool_validator = {
@@ -150,9 +151,12 @@ const isValidUrl = urlString => {
 ************************************/
 const technologyInput = document.getElementById('technology-input');
 const technologyOptions = document.getElementById('appLibraryFramework');
-
 document.addEventListener('click', function(event) {
   const isClickInside = technologyInput.contains(event.target);
+  const ulList = technologyOptions.children[0];
+  if (ulList.contains(event.target)) {
+    return;
+  }
   const techDisplay = technologyOptions.style.display;
   if (isClickInside) {
     if (techDisplay === 'none') {
@@ -168,12 +172,15 @@ document.addEventListener('click', function(event) {
 
 const modelingLanguagesInput = document.getElementById('modeling-languages-input');
 const modelingLanguageOptions = document.getElementById('modelingLanguagesSuggestion');
-
 document.addEventListener('click', function(event) {
   const isClickInside = modelingLanguagesInput.contains(event.target);
-  const techDisplay = modelingLanguageOptions.style.display;
+  const ulList = modelingLanguageOptions.children[0];
+  if (ulList.contains(event.target)) {
+    return;
+  }
+  const modelingLanguagesDisplay = modelingLanguageOptions.style.display;
   if (isClickInside) {
-    if (techDisplay === 'none') {
+    if (modelingLanguagesDisplay === 'none') {
       modelingLanguageOptions.style.display = null;
     } else {
       modelingLanguageOptions.style.display = 'none';
@@ -186,12 +193,15 @@ document.addEventListener('click', function(event) {
 
 const creatorsInput = document.getElementById('creators-input');
 const creatorsOptions = document.getElementById('creator');
-
 document.addEventListener('click', function(event) {
   const isClickInside = creatorsInput.contains(event.target);
-  const techDisplay = creatorsOptions.style.display;
+  const ulList = creatorsOptions.children[0];
+  if (ulList.contains(event.target)) {
+    return;
+  }
+  const creatorsDisplay = creatorsOptions.style.display;
   if (isClickInside) {
-    if (techDisplay === 'none') {
+    if (creatorsDisplay === 'none') {
       creatorsOptions.style.display = null;
     } else {
       creatorsOptions.style.display = 'none';
@@ -204,12 +214,15 @@ document.addEventListener('click', function(event) {
 
 const platformsInput = document.getElementById('platform-input');
 const platformsOptions = document.getElementById('editPlatforms');
-
 document.addEventListener('click', function(event) {
   const isClickInside = platformsInput.contains(event.target);
-  const techDisplay = platformsOptions.style.display;
+  const ulList = platformsOptions.children[0];
+  if (ulList.contains(event.target)) {
+    return;
+  }
+  const platformsDisplay = platformsOptions.style.display;
   if (isClickInside) {
-    if (techDisplay === 'none') {
+    if (platformsDisplay === 'none') {
       platformsOptions.style.display = null;
     } else {
       platformsOptions.style.display = 'none';
@@ -222,12 +235,15 @@ document.addEventListener('click', function(event) {
 
 const programmingLanguagesInput = document.getElementById('programming-language-input');
 const programmingLanguagesOptions = document.getElementById('programmingLanguages');
-
 document.addEventListener('click', function(event) {
   const isClickInside = programmingLanguagesInput.contains(event.target);
-  const techDisplay = programmingLanguagesOptions.style.display;
+  const ulList = programmingLanguagesOptions.children[0];
+  if (ulList.contains(event.target)) {
+    return;
+  }
+  const programmingLanguagesDisplay = programmingLanguagesOptions.style.display;
   if (isClickInside) {
-    if (techDisplay === 'none') {
+    if (programmingLanguagesDisplay === 'none') {
       programmingLanguagesOptions.style.display = null;
     } else {
       programmingLanguagesOptions.style.display = 'none';
@@ -245,8 +261,6 @@ const selectFields = document.getElementsByClassName('form-select');
 for (let i = 0; i < selectFields.length; i++) {
   const selectField = selectFields[i];
   selectField.addEventListener('change', (event) => {
-    console.log(event.target.value);
-    console.log(event.target.classList);
     const selectValue = event.target.value;
     const selectClassList = event.target.classList;
     if (selectValue === null || selectValue === undefined || selectValue.length === 0) {
@@ -261,3 +275,7 @@ for (let i = 0; i < selectFields.length; i++) {
     }
   });
 }
+
+/***********************************
+ ADD TECHNOLOGY TO USER MODELING TOOL
+************************************/

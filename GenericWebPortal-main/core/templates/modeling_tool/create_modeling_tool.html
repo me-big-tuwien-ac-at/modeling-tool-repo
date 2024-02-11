@@ -74,16 +74,17 @@
         </div>
         <div id="appLibraryFramework" style="display: none">
           <ul class="list-items">
-            <li class="item "
-                *ngFor="let tech of getTechnologyEnum()"
-                (click)="addRemoveTechnology(tech)">
-            <span class="checkbox">
-              <i class="bi bi-check-lg"></i>
-            </span>
-              <span class="item-text">
-
-            </span>
-            </li>
+            {% for tech in technologies_properties %}
+              <li class="item technology-item"
+                  (click)="addRemoveTechnology(tech)">
+              <span class="checkbox">
+                <i class="bi bi-check-lg"></i>
+              </span>
+                <span class="item-text">
+                  {{ tech }}
+                </span>
+              </li>
+            {% endfor %}
           </ul>
         </div>
         <div class="reset"
