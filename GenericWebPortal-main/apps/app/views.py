@@ -12,7 +12,7 @@ from django.template import loader
 from django.urls import reverse
 from django.utils.safestring import SafeString
 
-from apps.app.models import ModelingTool, ModelingLanguage, Platform, ProgrammingLanguage, Technology
+from apps.app.models import ModelingTool, ModelingLanguage, Platform, ProgrammingLanguage, Technology, Category
 from apps.app.searchapi import *
 from apps.app.forms import CompleteForm
 from apps.app.request_processing import process_request_parameters, searchFor, \
@@ -205,9 +205,12 @@ def modeling_tools_home(request):
 
 
 def create_modeling_tool(request):
+    cat_choices = [c[1] for c in Category.choices]
+    print(cat_choices)
     context = {
         'technologies': SafeString(__get_modeling_tool_names(Technology.objects.all())),
         'technologies_properties': __get_property_names(Technology.objects.all()),
+        'categories': [c[1] for c in Category.choices],
         'modeling_tools': SafeString(__get_modeling_tool_names(ModelingTool.objects.all())),
         'modeling_languages': SafeString(__get_property_names(ModelingLanguage.objects.all())),
         'platforms': SafeString(__get_property_names(Platform.objects.all())),
