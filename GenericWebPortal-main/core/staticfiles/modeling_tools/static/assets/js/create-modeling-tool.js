@@ -301,10 +301,18 @@ for (let i = 0; i < technologyListItems.length; i++) {
       userModelingTool.technologies = userModelingTool.technologies.filter((tech) => {
         return tech !== value;
       });
-      setSelectedProperties(technologyInput, userModelingTool.technologies)
+      setSelectedProperties(technologyInput, userModelingTool.technologies);
+      const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
+      checkbox.classList.remove('checked');
+      const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
+      checkedIcon.style.display = 'none';
     } else {
       userModelingTool.technologies.push(value);
-      setSelectedProperties(technologyInput, userModelingTool.technologies)
+      setSelectedProperties(technologyInput, userModelingTool.technologies);
+      const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
+      checkbox.classList.add('checked');
+      const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
+      checkedIcon.style.display = null;
     }
   });
 }
@@ -317,7 +325,7 @@ function setSelectedProperties(propertySection, userProperties) {
       <span>
         <span>${userProperties[j]}</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"></path>
         </svg>
       </span>
     </div>
@@ -329,7 +337,6 @@ function setSelectedProperties(propertySection, userProperties) {
 const multItems = document.getElementsByClassName('mult-item');
 for (let i = 0; i < multItems.length; i++) {
   multItems[i].addEventListener('click', () => {
-    console.log('Remove');
     multItems[i].remove();
   })
 }
