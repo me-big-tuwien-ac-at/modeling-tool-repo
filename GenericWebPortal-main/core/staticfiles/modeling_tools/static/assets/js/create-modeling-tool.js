@@ -21,7 +21,8 @@ userModelingTool = {
   name: "",
   link: "",
   technologies: [],
-  category: ""
+  category: "",
+  modelingLanguages: []
 }
 
 modeling_tool_validator = {
@@ -164,6 +165,9 @@ document.addEventListener('click', function(event) {
       if (multItemList[i].contains(event.target)) {
         const value = multItemList[i].children[0].children[0].outerText;
         userModelingTool.technologies = userModelingTool.technologies.filter((tech) => {
+          return tech !== value;
+        });
+        userModelingTool.modelingLanguages = userModelingTool.modelingLanguages.filter((tech) => {
           return tech !== value;
         });
         multItemList[i].remove();
@@ -323,6 +327,29 @@ for (let i = 0; i < technologyListItems.length; i++) {
 /***********************************
  ADD MODELING LANGUAGE TO USER MODELING TOOL
 ************************************/
+const modelingLanguageInput = document.getElementById('modeling-languages-input');
+const modelingLanguageSection = document.getElementById('modelingLanguagesSuggestion');
+const modelingLanguageListItems = modelingLanguageSection.children[0].children;
+for (let i = 0; i < modelingLanguageListItems.length; i++) {
+  modelingLanguageListItems[i].addEventListener('click', () => {
+    const value = modelingLanguageListItems[i].children[1].outerText;
+    const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
+    const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
+    if (userModelingTool.modelingLanguages.includes(value)) {
+      userModelingTool.modelingLanguages = userModelingTool.modelingLanguages.filter((language) => {
+        return language !== value;
+      });
+      setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
+      checkbox.classList.remove('checked');
+      checkedIcon.style.display = 'none';
+    } else {
+      userModelingTool.modelingLanguages.push(value);
+      setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
+      checkbox.classList.add('checked');
+      checkedIcon.style.display = null;
+    }
+  });
+}
 
 function setSelectedProperties(propertySection, userProperties) {
   let techInnerHtml = ``;
