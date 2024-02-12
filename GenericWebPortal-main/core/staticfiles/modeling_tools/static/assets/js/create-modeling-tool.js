@@ -166,6 +166,10 @@ document.addEventListener('click', function(event) {
           return tech !== value;
         });
         multItemList[i].remove();
+        const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
+        const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
+        checkbox.classList.remove('checked');
+        checkedIcon.style.display = 'none';
         return;
       }
     }
@@ -297,21 +301,19 @@ const technologyListItems = technologySection.children[0].children;
 for (let i = 0; i < technologyListItems.length; i++) {
   technologyListItems[i].addEventListener('click', () => {
     const value = technologyListItems[i].children[1].outerText;
+    const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
+    const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
     if (userModelingTool.technologies.includes(value)) {
       userModelingTool.technologies = userModelingTool.technologies.filter((tech) => {
         return tech !== value;
       });
       setSelectedProperties(technologyInput, userModelingTool.technologies);
-      const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
       checkbox.classList.remove('checked');
-      const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
       checkedIcon.style.display = 'none';
     } else {
       userModelingTool.technologies.push(value);
       setSelectedProperties(technologyInput, userModelingTool.technologies);
-      const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
       checkbox.classList.add('checked');
-      const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
       checkedIcon.style.display = null;
     }
   });
