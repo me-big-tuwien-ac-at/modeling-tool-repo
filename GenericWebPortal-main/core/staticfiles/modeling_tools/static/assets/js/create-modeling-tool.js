@@ -320,6 +320,10 @@ for (let i = 0; i < technologyListItems.length; i++) {
   });
 }
 
+/***********************************
+ ADD MODELING LANGUAGE TO USER MODELING TOOL
+************************************/
+
 function setSelectedProperties(propertySection, userProperties) {
   let techInnerHtml = ``;
   for (let j = 0; j <userProperties.length; j++) {

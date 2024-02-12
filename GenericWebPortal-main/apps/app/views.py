@@ -211,8 +211,9 @@ def create_modeling_tool(request):
         'technologies': SafeString(__get_modeling_tool_names(Technology.objects.all())),
         'technologies_properties': __get_property_names(Technology.objects.all()),
         'categories': [c[1] for c in Category.choices],
-        'modeling_tools': SafeString(__get_modeling_tool_names(ModelingTool.objects.all())),
         'modeling_languages': SafeString(__get_property_names(ModelingLanguage.objects.all())),
+        'modeling_languages_properties': __get_property_names(ModelingLanguage.objects.all()),
+        'modeling_tools': SafeString(__get_modeling_tool_names(ModelingTool.objects.all())),
         'platforms': SafeString(__get_property_names(Platform.objects.all())),
         'programming_languages': SafeString(__get_property_names(ProgrammingLanguage.objects.all()))
     }
