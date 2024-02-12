@@ -20,7 +20,10 @@ function extract_regex_matches(input, regex, group) {
 userModelingTool = {
   name: "",
   link: "",
+  openSource: undefined,
   technologies: [],
+  webApp: undefined,
+  desktopApp: undefined,
   category: "",
   modelingLanguages: []
 }
@@ -297,6 +300,22 @@ for (let i = 0; i < selectFields.length; i++) {
     }
   });
 }
+
+/***********************************
+ ADD BOOLEAN-PROPERTIES TO USER MODELING TOOL
+************************************/
+document.getElementById('openSourceContent').addEventListener('change', (event) => {
+  const value = event.target.value.toLowerCase();
+  userModelingTool.openSource = value === 'yes' ? true : (value === 'no' ? false : undefined);
+});
+document.getElementById('webApp').addEventListener('change', (event) => {
+  const value = event.target.value.toLowerCase();
+  userModelingTool.webApp = value === 'yes' ? true : (value === 'no' ? false : undefined);
+});
+document.getElementById('desktopApp').addEventListener('change', (event) => {
+  const value = event.target.value.toLowerCase();
+  userModelingTool.desktopApp = value === 'yes' ? true : (value === 'no' ? false : undefined);
+});
 
 /***********************************
  ADD TECHNOLOGY TO USER MODELING TOOL
