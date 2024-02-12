@@ -157,6 +157,19 @@ document.addEventListener('click', function(event) {
   if (ulList.contains(event.target)) {
     return;
   }
+  const multItemList = document.getElementsByClassName('mult-item');
+  if (multItemList.length > 0) {
+    for (let i = 0; i < multItemList.length; i++) {
+      if (multItemList[i].contains(event.target)) {
+        const value = multItemList[i].children[0].children[0].outerText;
+        userModelingTool.technologies = userModelingTool.technologies.filter((tech) => {
+          return tech !== value;
+        });
+        multItemList[i].remove();
+        return;
+      }
+    }
+  }
   const techDisplay = technologyOptions.style.display;
   if (isClickInside) {
     if (techDisplay === 'none') {
@@ -282,7 +295,7 @@ for (let i = 0; i < selectFields.length; i++) {
 const technologySection = document.getElementById('appLibraryFramework');
 const technologyListItems = technologySection.children[0].children;
 for (let i = 0; i < technologyListItems.length; i++) {
-  technologyListItems[i].addEventListener('click', (event) => {
+  technologyListItems[i].addEventListener('click', () => {
     const value = technologyListItems[i].children[1].outerText;
     if (userModelingTool.technologies.includes(value)) {
       userModelingTool.technologies = userModelingTool.technologies.filter((tech) => {
@@ -300,11 +313,23 @@ function setSelectedProperties(propertySection, userProperties) {
   let techInnerHtml = ``;
   for (let j = 0; j <userProperties.length; j++) {
     techInnerHtml +=  `
-    <span class="mult-item">
-      ${userProperties[j]}
-      <i class="bi bi-x"></i>
-    </span>
+    <div class="mult-item">
+      <span>
+        <span>${userProperties[j]}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+          <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+        </svg>
+      </span>
+    </div>
   `;
   }
   propertySection.innerHTML = techInnerHtml;
+}
+
+const multItems = document.getElementsByClassName('mult-item');
+for (let i = 0; i < multItems.length; i++) {
+  multItems[i].addEventListener('click', () => {
+    console.log('Remove');
+    multItems[i].remove();
+  })
 }

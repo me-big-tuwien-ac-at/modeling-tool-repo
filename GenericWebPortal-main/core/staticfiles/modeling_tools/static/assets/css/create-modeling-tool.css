@@ -155,6 +155,9 @@
 /***********************************
  SELECT DROPDOWN
 ************************************/
+#create-tool .list-items {
+  overflow: hidden;
+}
 #create-tool select {
   background: #FFFFFF;
   height: 2.8em;
@@ -219,6 +222,15 @@
   margin: 0.2rem;
   display: inline-block;
   cursor: pointer;
+}
+#create-tool .mult-item:hover {
+  background: #B31B1B;
+  transition: color 0.15s, background 0.5s;
+}
+#create-tool .mult-item > span {
+  align-items: center;
+  display: flex;
+  gap: 10px;
 }
 #create-tool .invalid-input {
   color: #dc3545;
