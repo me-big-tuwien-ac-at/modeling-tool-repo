@@ -52,11 +52,13 @@
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && modelingToolByUser.openSource !== originalModelingTool.openSource"
              (click)="modelingToolByUser.openSource = originalModelingTool.openSource">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group">
         <label for="appLibraryFramework">Technology</label>
@@ -84,11 +86,13 @@
             {% endfor %}
           </ul>
         </div>
+      <!--
         <div class="reset"
              *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.technology, originalModelingTool.technology)"
              (click)="setUserToolArray('technology', originalModelingTool.technology)">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group">
         <label for="webApp">Is it provided as a web application?</label>
@@ -104,11 +108,13 @@
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && modelingToolByUser.webApp !== originalModelingTool.webApp"
              (click)="modelingToolByUser.webApp = originalModelingTool.webApp">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group">
         <label for="desktopApp">Is it provided as a desktop application?</label>
@@ -124,11 +130,13 @@
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && modelingToolByUser.desktopApp !== originalModelingTool.desktopApp"
              (click)="modelingToolByUser.desktopApp = originalModelingTool.desktopApp">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group">
         <label for="categoryContent">Category</label>
@@ -145,11 +153,13 @@
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && modelingToolByUser.category !== originalModelingTool.category"
              (click)="modelingToolByUser.category = originalModelingTool.category">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group" (clickOutside)="modelingLanguagesChecked = false">
         <label for="modelingLanguagesSuggestion">Modeling Languages</label>
@@ -194,11 +204,13 @@
             </div>
           </ul>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.modelingLanguages, originalModelingTool.modelingLanguages)"
              (click)="setUserToolArray('modelingLanguages', originalModelingTool.modelingLanguages)">
           Reset
         </div>
+      -->
       </div>
       <div class="form-group">
         <label for="sourceCodeGenerationSuggestion">Does it provide source code generation?</label>
@@ -214,11 +226,13 @@
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && modelingToolByUser.sourceCodeGeneration !== originalModelingTool.sourceCodeGeneration"
              (click)="modelingToolByUser.sourceCodeGeneration = originalModelingTool.sourceCodeGeneration">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group">
         <label for="cloudServiceSuggestion">Does it provide Cloud Service?</label>
@@ -234,11 +248,13 @@
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && modelingToolByUser.cloudService !== originalModelingTool.cloudService"
              (click)="modelingToolByUser.cloudService = originalModelingTool.cloudService">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group">
         <label for="licenseContent">License</label>
@@ -255,11 +271,13 @@
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && modelingToolByUser.license !== originalModelingTool.license"
              (click)="modelingToolByUser.license = originalModelingTool.license">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group">
         <label for="loginSelect">Is log-in required?</label>
@@ -275,11 +293,13 @@
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && modelingToolByUser.loginRequired !== originalModelingTool.loginRequired"
              (click)="modelingToolByUser.loginRequired = originalModelingTool.loginRequired">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group">
         <label for="realtimeCollaborationSuggestion">Is Real Time Collaboration possible?</label>
@@ -295,11 +315,13 @@
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && modelingToolByUser.realTimeCollab !== originalModelingTool.realTimeCollab"
              (click)="modelingToolByUser.realTimeCollab = originalModelingTool.realTimeCollab">
           Reset
         </div>
+        -->
       </div>
       <div class="form-group" (clickOutside)="creatorsChecked = false">
         <label for="creator">Creator</label>
@@ -331,11 +353,13 @@
             </li>
           </ul>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.creator, originalModelingTool.creator)"
              (click)="setUserToolArray('creator', originalModelingTool.creator)">
           Reset
         </div>
+        -->
       </div>
 
       <div class="form-group" (clickOutside)="platformsChecked = false">
@@ -382,11 +406,13 @@
             </div>
           </ul>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.platform, originalModelingTool.platform)"
              (click)="setUserToolArray('platform', originalModelingTool.platform)">
           Reset
         </div>
+        -->
       </div>
 
       <div class="form-group" (clickOutside)="programmingLanguagesChecked = false">
@@ -433,11 +459,13 @@
             </div>
           </ul>
         </div>
+        <!--
         <div class="reset"
              *ngIf="mode === 2 && !arraysEqual(modelingToolByUser.programmingLanguage, originalModelingTool.programmingLanguage)"
              (click)="setUserToolArray('programmingLanguage', originalModelingTool.programmingLanguage)">
           Reset
         </div>
+        -->
       </div>
     </section>
     <section>
