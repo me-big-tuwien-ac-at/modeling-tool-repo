@@ -146,10 +146,10 @@
                   style="border-radius: .375rem"
                   class="form-select bg-white"
                   [(ngModel)]="modelingToolByUser.category">
-            <option *ngFor="let category of getCategoryEnum()"
-                    [ngValue]="category">
-
-            </option>
+            <option></option>
+            {% for category in categories %}
+              <option>{{ category }}</option>
+            {% endfor %}
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>

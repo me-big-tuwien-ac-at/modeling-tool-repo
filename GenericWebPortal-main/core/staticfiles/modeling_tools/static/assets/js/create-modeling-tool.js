@@ -20,7 +20,8 @@ function extract_regex_matches(input, regex, group) {
 userModelingTool = {
   name: "",
   link: "",
-  technologies: []
+  technologies: [],
+  category: ""
 }
 
 modeling_tool_validator = {
@@ -286,7 +287,7 @@ for (let i = 0; i < selectFields.length; i++) {
     } else if (selectValue === 'No') {
       selectClassList.remove('true-value');
       selectClassList.add('false-value');
-    } else {
+    } else if (selectValue === 'Yes') {
       selectClassList.remove('false-value');
       selectClassList.add('true-value');
     }
@@ -342,3 +343,11 @@ for (let i = 0; i < multItems.length; i++) {
     multItems[i].remove();
   })
 }
+
+/***********************************
+ SET CATEGORY OF USER MODELING TOOL
+************************************/
+const categoryContent = document.getElementById('categoryContent');
+categoryContent.addEventListener('change', (event) => {
+  userModelingTool.category = event.target.value;
+});
