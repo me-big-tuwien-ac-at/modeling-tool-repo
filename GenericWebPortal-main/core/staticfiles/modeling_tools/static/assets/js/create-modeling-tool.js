@@ -25,7 +25,15 @@ userModelingTool = {
   webApp: undefined,
   desktopApp: undefined,
   category: "",
-  modelingLanguages: []
+  modelingLanguages: [],
+  sourceCodeGeneration: undefined,
+  cloudService: undefined,
+  license: "",
+  loginRequired: undefined,
+  realTimeCollaboration: undefined,
+  creators: [],
+  platforms: [],
+  programmingLanguages: []
 }
 
 modeling_tool_validator = {
@@ -315,6 +323,22 @@ document.getElementById('webApp').addEventListener('change', (event) => {
 document.getElementById('desktopApp').addEventListener('change', (event) => {
   const value = event.target.value.toLowerCase();
   userModelingTool.desktopApp = value === 'yes' ? true : (value === 'no' ? false : undefined);
+});
+document.getElementById('sourceCodeGenerationSuggestion').addEventListener('change', (event) => {
+  const value = event.target.value.toLowerCase();
+  userModelingTool.sourceCodeGeneration = value === 'yes' ? true : (value === 'no' ? false : undefined);
+});
+document.getElementById('cloudServiceSuggestion').addEventListener('change', (event) => {
+  const value = event.target.value.toLowerCase();
+  userModelingTool.cloudService = value === 'yes' ? true : (value === 'no' ? false : undefined);
+});
+document.getElementById('loginSelect').addEventListener('change', (event) => {
+  const value = event.target.value.toLowerCase();
+  userModelingTool.loginRequired = value === 'yes' ? true : (value === 'no' ? false : undefined);
+});
+document.getElementById('realtimeCollaborationSuggestion').addEventListener('change', (event) => {
+  const value = event.target.value.toLowerCase();
+  userModelingTool.realTimeCollaboration = value === 'yes' ? true : (value === 'no' ? false : undefined);
 });
 
 /***********************************
