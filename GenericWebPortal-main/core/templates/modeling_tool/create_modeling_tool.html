@@ -167,7 +167,6 @@
                class="form-select bg-white form-select-height form-custom"
                id="modeling-languages-input">
           </div>
-          <i class="bi bi-chevron-down custom-select"></i>
         </div>
         <div id="modelingLanguagesSuggestion" style="display: none">
           <ul class="list-items">
@@ -312,11 +311,6 @@
           <div style="border-radius: .375rem"
                class="form-select bg-white form-select-height form-custom"
                id="creators-input">
-            <span class="mult-item"
-                  *ngFor="let creator of modelingToolByUser.creator"
-                  (click)="deleteCreator(creator);$event.stopPropagation()">
-              <i class="bi bi-x"></i>
-            </span>
           </div>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
@@ -330,10 +324,9 @@
                      [ngModelOptions]="{standalone: true}"
                      [(ngModel)]="creatorInput"
                      (keyup.enter)="addCreator()">
-              <span (click)="addCreator()">
-                Add
-              </span>
+              <span>Add</span>
             </li>
+            <div class="invalid-input"></div>
           </ul>
         </div>
         <!--
@@ -345,48 +338,35 @@
         -->
       </div>
 
-      <div class="form-group" (clickOutside)="platformsChecked = false">
+      <div class="form-group">
         <label for="editPlatforms">Platforms</label>
         <div class="input-group">
           <div style="border-radius: .375rem"
                class="form-select bg-white form-select-height form-custom"
                id="platform-input">
-            <span class="mult-item"
-                  *ngFor="let platform of modelingToolByUser.platform"
-                  (click)="deletePlatform(platform);$event.stopPropagation()">
-
-              <i class="bi bi-x"></i>
-            </span>
           </div>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
         <div id="editPlatforms" style="display: none">
           <ul class="list-items">
-            <li class="item "
-                *ngFor="let platform of platforms"
-                (click)="addRemovePlatform(platform)">
-            <span class="checkbox">
-              <i class="bi bi-check-lg"></i>
-            </span>
-              <span class="item-text">
-
-              </span>
+            {% for platform in platforms_properties %}
+              <li id="item-{{ platform|lower }}" class="item platform-item">
+                <span class="checkbox">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" id="check-{{ language|lower }}" style="display: none" viewBox="0 0 16 16">
+                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"></path>
+                  </svg>
+                </span>
+              <span class="item-text">{{ platform }}</span>
             </li>
+            {% endfor %}
             <li class="own-property-input-list">
               <input type="text"
                      class="own-property-input"
                      id="platformNew_1"
-                     placeholder="Different platform"
-                     [ngModelOptions]="{standalone: true}"
-                     [(ngModel)]="suggestedPlatforms"
-                     (keyup.enter)="addRemovePlatform(suggestedPlatforms)">
-              <span (click)="addRemovePlatform(suggestedPlatforms)">
-                Add
-              </span>
+                     placeholder="Different platform">
+              <span>Add</span>
             </li>
-            <div class="invalid-input" *ngIf="userModelValidator.platform !== undefined ">
-
-            </div>
+            <div class="invalid-input"></div>
           </ul>
         </div>
         <!--

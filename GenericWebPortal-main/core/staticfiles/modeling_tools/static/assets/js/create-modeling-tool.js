@@ -378,6 +378,11 @@ for (let i = 0; i < technologyListItems.length; i++) {
 const modelingLanguageInput = document.getElementById('modeling-languages-input');
 const modelingLanguageSection = document.getElementById('modelingLanguagesSuggestion');
 const modelingLanguageListItems = modelingLanguageSection.children[0].children;
+
+// const creatorsInput = document.getElementById('creators-input');
+const platformInput = document.getElementById('platform-input');
+const programmingLanguageInput = document.getElementById('programming-language-input');
+
 for (let i = 0; i < modelingLanguageListItems.length; i++) {
   modelingLanguageListItems[i].addEventListener('click', () => {
     const value = modelingLanguageListItems[i].children[1].outerText;
@@ -451,6 +456,8 @@ for (let i = 0; i < listItems.length; i++) {
 }
 
 function addModelingLanguage(value, warning, inputHolder) {
+  console.log(inputHolder);
+  console.log(inputHolder.id);
   if (value === '') {
     warning.innerHTML = "Can't specify an empty modeling language";
   } else if (modeling_languages.includes(value)) {

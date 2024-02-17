@@ -205,8 +205,8 @@ def modeling_tools_home(request):
 
 
 def create_modeling_tool(request):
-    cat_choices = [c[1] for c in Category.choices]
-    print(cat_choices)
+    print(__get_property_names(Platform.objects.all()))
+
     context = {
         'technologies': SafeString(__get_modeling_tool_names(Technology.objects.all())),
         'technologies_properties': __get_property_names(Technology.objects.all()),
@@ -216,7 +216,9 @@ def create_modeling_tool(request):
         'modeling_languages_properties': __get_property_names(ModelingLanguage.objects.all()),
         'modeling_tools': SafeString(__get_modeling_tool_names(ModelingTool.objects.all())),
         'platforms': SafeString(__get_property_names(Platform.objects.all())),
-        'programming_languages': SafeString(__get_property_names(ProgrammingLanguage.objects.all()))
+        'platforms_properties': __get_property_names(Platform.objects.all()),
+        'programming_languages': SafeString(__get_property_names(ProgrammingLanguage.objects.all())),
+        'programming_languages_properties': __get_property_names(ProgrammingLanguage.objects.all())
     }
 
     tools_converted = __convert_modeling_tool_query_set_to_array(ModelingTool.objects.all())
