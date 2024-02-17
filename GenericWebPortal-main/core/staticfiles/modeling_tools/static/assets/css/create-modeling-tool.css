@@ -155,9 +155,7 @@
 /***********************************
  SELECT DROPDOWN
 ************************************/
-#create-tool .list-items {
-  overflow: hidden;
-}
+
 #create-tool select {
   background: #FFFFFF;
   height: 2.8em;

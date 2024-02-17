@@ -182,11 +182,16 @@ document.addEventListener('click', function(event) {
           return tech !== value;
         });
         multItemList[i].remove();
-        const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
-        const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
-        checkbox.classList.remove('checked');
-        checkedIcon.style.display = 'none';
-        return;
+        const checkboxArea = document.getElementById(`item-${value.toLowerCase()}`);
+
+        // If the user has suggested a tool of his/her own, then the area is null
+        if (checkboxArea !== null) {
+          const checkbox = checkboxArea.children[0];
+          const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
+          checkbox.classList.remove('checked');
+          checkedIcon.style.display = 'none';
+          return;
+        }
       }
     }
   }
@@ -376,20 +381,22 @@ const modelingLanguageListItems = modelingLanguageSection.children[0].children;
 for (let i = 0; i < modelingLanguageListItems.length; i++) {
   modelingLanguageListItems[i].addEventListener('click', () => {
     const value = modelingLanguageListItems[i].children[1].outerText;
-    const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
-    const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
-    if (userModelingTool.modelingLanguages.includes(value)) {
-      userModelingTool.modelingLanguages = userModelingTool.modelingLanguages.filter((language) => {
-        return language !== value;
-      });
-      setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
-      checkbox.classList.remove('checked');
-      checkedIcon.style.display = 'none';
-    } else {
-      userModelingTool.modelingLanguages.push(value);
-      setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
-      checkbox.classList.add('checked');
-      checkedIcon.style.display = null;
+    if (document.getElementById(`item-${value.toLowerCase()}`) !== null) {
+      const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
+      const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
+      if (userModelingTool.modelingLanguages.includes(value)) {
+        userModelingTool.modelingLanguages = userModelingTool.modelingLanguages.filter((language) => {
+          return language !== value;
+        });
+        setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
+        checkbox.classList.remove('checked');
+        checkedIcon.style.display = 'none';
+      } else {
+        userModelingTool.modelingLanguages.push(value);
+        setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
+        checkbox.classList.add('checked');
+        checkedIcon.style.display = null;
+      }
     }
   });
 }
@@ -411,6 +418,41 @@ function setSelectedProperties(propertySection, userProperties) {
   propertySection.innerHTML = techInnerHtml;
 }
 
+/***********************************
+ ADD MODELING LANGUAGE TO USER MODELING TOOL - NEW SUGGESTION BY USER
+************************************/
+const listItems = document.getElementsByClassName('list-items');
+for (let i = 0; i < listItems.length; i++) {
+  const inputSection = listItems[i].getElementsByClassName('own-property-input-list');
+  if (inputSection.length > 0) {
+    const inputHolder = inputSection[0].children[0];
+    const addButton = inputSection[0].children[1];
+
+    addButton.addEventListener('click', () => {
+      const value = inputHolder.value.trim();
+      const warning = listItems[i].getElementsByClassName('invalid-input')[0];
+      if (value === '') {
+        warning.innerHTML = "Can't specify an empty modeling language";
+      } else if (modeling_languages.includes(value)) {
+        warning.innerHTML = "Please provide a modeling language not contained in the list yet";
+      } else {
+        const indexOf = (arr, q) => arr.findIndex(item => q.toLowerCase() === item.toLowerCase());
+        const duplicateCheck = indexOf(userModelingTool.modelingLanguages, value);
+        if (duplicateCheck > -1) {
+          warning.innerHTML = "Modeling Language already stored in the list";
+        } else {
+          userModelingTool.modelingLanguages.push(value);
+          setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
+          inputHolder.value = '';
+        }
+      }
+    });
+  }
+}
+
+/***********************************
+ REMOVING TICKED OPTION
+************************************/
 const multItems = document.getElementsByClassName('mult-item');
 for (let i = 0; i < multItems.length; i++) {
   multItems[i].addEventListener('click', () => {
@@ -421,7 +463,10 @@ for (let i = 0; i < multItems.length; i++) {
 /***********************************
  SET CATEGORY OF USER MODELING TOOL
 ************************************/
-const categoryContent = document.getElementById('categoryContent');
-categoryContent.addEventListener('change', (event) => {
+document.getElementById('categoryContent').addEventListener('change', (event) => {
   userModelingTool.category = event.target.value;
+});
+
+document.getElementById('licenseContent').addEventListener('change', (event) => {
+  userModelingTool.license = event.target.value;
 });

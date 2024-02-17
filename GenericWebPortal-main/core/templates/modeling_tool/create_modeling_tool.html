@@ -144,8 +144,7 @@
           <select id="categoryContent"
                   name="categoryContent"
                   style="border-radius: .375rem"
-                  class="form-select bg-white"
-                  [(ngModel)]="modelingToolByUser.category">
+                  class="form-select bg-white">
             <option></option>
             {% for category in categories %}
               <option>{{ category }}</option>
@@ -161,7 +160,7 @@
         </div>
         -->
       </div>
-      <div class="form-group" (clickOutside)="modelingLanguagesChecked = false">
+      <div class="form-group">
         <label for="modelingLanguagesSuggestion">Modeling Languages</label>
         <div class="input-group">
           <div style="border-radius: .375rem"
@@ -187,13 +186,8 @@
             <li class="own-property-input-list">
               <input type="text"
                      class="own-property-input"
-                     placeholder="Different modeling language"
-                     [ngModelOptions]="{standalone: true}"
-                     [(ngModel)]="suggestedModelingLanguage"
-                     (keyup.enter)="addRemoveModelingLanguage(suggestedModelingLanguage)">
-              <span (click)="addRemoveModelingLanguage(suggestedModelingLanguage)">
-                Add
-              </span>
+                     placeholder="Different modeling language">
+              <span>Add</span>
             </li>
             <div class="invalid-input" *ngIf="userModelValidator.modelingLanguage !== undefined ">
 
@@ -258,12 +252,11 @@
           <select id="licenseContent"
                   name="licenseContent"
                   style="border-radius: .375rem"
-                  class="form-select bg-white"
-                  [(ngModel)]="modelingToolByUser.license">
-            <option *ngFor="let license of getLicenseEnum()"
-                    [ngValue]="license">
-
-            </option>
+                  class="form-select bg-white">
+            <option></option>
+            {% for license in licenses %}
+              <option>{{ license }}</option>
+            {% endfor %}
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
