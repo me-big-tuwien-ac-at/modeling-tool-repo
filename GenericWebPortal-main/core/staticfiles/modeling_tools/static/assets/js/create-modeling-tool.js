@@ -380,7 +380,6 @@ const modelingLanguageSection = document.getElementById('modelingLanguagesSugges
 const modelingLanguageListItems = modelingLanguageSection.children[0].children;
 
 // const creatorsInput = document.getElementById('creators-input');
-const platformInput = document.getElementById('platform-input');
 const programmingLanguageInput = document.getElementById('programming-language-input');
 
 for (let i = 0; i < modelingLanguageListItems.length; i++) {
@@ -399,6 +398,39 @@ for (let i = 0; i < modelingLanguageListItems.length; i++) {
       } else {
         userModelingTool.modelingLanguages.push(value);
         setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
+        checkbox.classList.add('checked');
+        checkedIcon.style.display = null;
+      }
+    }
+  });
+}
+
+/***********************************
+ ADD DEVELOPER TO USER MODELING TOOL
+************************************/
+
+/***********************************
+ ADD PLATFORM TO USER MODELING TOOL
+************************************/
+const platformInput = document.getElementById('platform-input');
+const platformSection = document.getElementById('editPlatforms');
+const platformListItems = platformSection.children[0].children;
+for (let i = 0; i < platformListItems.length; i++) {
+  platformListItems[i].addEventListener('click', () => {
+    const value = platformListItems[i].children[1].outerText;
+    if (document.getElementById(`item-${value.toLowerCase()}`) !== null) {
+      const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
+      const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
+      if (userModelingTool.platforms.includes(value)) {
+        userModelingTool.platforms = userModelingTool.platforms.filter((platform) => {
+          return platform !== value;
+        });
+        setSelectedProperties(platformInput, userModelingTool.platforms);
+        checkbox.classList.remove('checked');
+        checkedIcon.style.display = 'none';
+      } else {
+        userModelingTool.platforms.push(value);
+        setSelectedProperties(platformInput, userModelingTool.platforms);
         checkbox.classList.add('checked');
         checkedIcon.style.display = null;
       }
