@@ -431,24 +431,44 @@ for (let i = 0; i < listItems.length; i++) {
     addButton.addEventListener('click', () => {
       const value = inputHolder.value.trim();
       const warning = listItems[i].getElementsByClassName('invalid-input')[0];
-      if (value === '') {
-        warning.innerHTML = "Can't specify an empty modeling language";
-      } else if (modeling_languages.includes(value)) {
-        warning.innerHTML = "Please provide a modeling language not contained in the list yet";
-      } else {
-        const indexOf = (arr, q) => arr.findIndex(item => q.toLowerCase() === item.toLowerCase());
-        const duplicateCheck = indexOf(userModelingTool.modelingLanguages, value);
-        if (duplicateCheck > -1) {
-          warning.innerHTML = "Modeling Language already stored in the list";
-        } else {
-          userModelingTool.modelingLanguages.push(value);
-          setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
-          inputHolder.value = '';
-        }
+      addModelingLanguage(value, warning, inputHolder);
+    });
+  }
+}
+
+for (let i = 0; i < listItems.length; i++) {
+  const userInputSection = listItems[i].getElementsByClassName('own-property-input-list');
+  if (userInputSection.length > 0) {
+    const enterSection = userInputSection[0].getElementsByClassName('own-property-input')[0];
+    enterSection.addEventListener('keyup', (event) => {
+      if (event.key === 'Enter') {
+        const value = enterSection.value;
+        const warning = listItems[i].getElementsByClassName('invalid-input')[0];
+        addModelingLanguage(value, warning, enterSection);
       }
     });
   }
 }
+
+function addModelingLanguage(value, warning, inputHolder) {
+  if (value === '') {
+    warning.innerHTML = "Can't specify an empty modeling language";
+  } else if (modeling_languages.includes(value)) {
+    warning.innerHTML = "Please provide a modeling language not contained in the list yet";
+  } else {
+    const indexOf = (arr, q) => arr.findIndex(item => q.toLowerCase() === item.toLowerCase());
+    const duplicateCheck = indexOf(userModelingTool.modelingLanguages, value);
+    if (duplicateCheck > -1) {
+      warning.innerHTML = `Modeling Language "${value}" is already stored in the list`;
+    } else {
+      userModelingTool.modelingLanguages.push(value);
+      setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
+      inputHolder.value = '';
+      warning.innerHTML = '';
+    }
+  }
+}
+
 
 /***********************************
  REMOVING TICKED OPTION
