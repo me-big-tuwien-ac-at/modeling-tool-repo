@@ -206,11 +206,10 @@
           <select id="sourceCodeGenerationSuggestion"
                   name="sourceCodeGenerationSuggestion"
                   style="border-radius: .375rem"
-                  class="form-select  "
-                  [(ngModel)]="modelingToolByUser.sourceCodeGeneration">
-            <option class="bg-white" [ngValue]="null"></option>
-            <option class="false-value" [ngValue]="false">No</option>
-            <option class="true-value" [ngValue]="true">Yes</option>
+                  class="form-select">
+            <option class="bg-white"></option>
+            <option class="false-value">No</option>
+            <option class="true-value">Yes</option>
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
@@ -228,11 +227,10 @@
           <select id="cloudServiceSuggestion"
                   name="cloudServiceSuggestion"
                   style="border-radius: .375rem"
-                  class="form-select  "
-                  [(ngModel)]="modelingToolByUser.cloudService">
-            <option class="bg-white" [ngValue]="null"></option>
-            <option class="false-value" [ngValue]="false">No</option>
-            <option class="true-value" [ngValue]="true">Yes</option>
+                  class="form-select">
+            <option class="bg-white"></option>
+            <option class="false-value">No</option>
+            <option class="true-value">Yes</option>
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
@@ -272,11 +270,10 @@
           <select id="loginSelect"
                   name="loginSelect"
                   style="border-radius: .375rem"
-                  class="form-select  "
-                  [(ngModel)]="modelingToolByUser.loginRequired">
-            <option class="bg-white" [ngValue]="null"></option>
-            <option class="false-value" [ngValue]="false">No</option>
-            <option class="true-value" [ngValue]="true">Yes</option>
+                  class="form-select">
+            <option class="bg-white"></option>
+            <option class="false-value">No</option>
+            <option class="true-value">Yes</option>
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
@@ -294,11 +291,10 @@
           <select id="realtimeCollaborationSuggestion"
                   name="realtimeCollaborationSuggestion"
                   style="border-radius: .375rem"
-                  class="form-select  "
-                  [(ngModel)]="modelingToolByUser.realTimeCollab">
-            <option class="bg-white" [ngValue]="null"></option>
-            <option class="false-value" [ngValue]="false">No</option>
-            <option class="true-value" [ngValue]="true">Yes</option>
+                  class="form-select">
+            <option class="bg-white"></option>
+            <option class="false-value">No</option>
+            <option class="true-value">Yes</option>
           </select>
           <i class="bi bi-chevron-down custom-select"></i>
         </div>
@@ -310,7 +306,7 @@
         </div>
         -->
       </div>
-      <div class="form-group" (clickOutside)="creatorsChecked = false">
+      <div class="form-group">
         <label for="creator">Creator</label>
         <div class="input-group">
           <div style="border-radius: .375rem"
