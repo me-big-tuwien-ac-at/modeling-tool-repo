@@ -378,48 +378,36 @@
         -->
       </div>
 
-      <div class="form-group" (clickOutside)="programmingLanguagesChecked = false">
+      <div class="form-group">
         <label for="programmingLanguages">Programming Languages</label>
         <div class="input-group">
           <div style="border-radius: .375rem"
                class="form-select bg-white form-select-height form-custom"
                id="programming-language-input">
-            <span class="mult-item"
-                  *ngFor="let language of modelingToolByUser.programmingLanguage"
-                  (click)="deleteLanguage(language);$event.stopPropagation()">
-
-              <i class="bi bi-x"></i>
-            </span>
           </div>
-          <i class="bi bi-chevron-down custom-select"></i>
         </div>
         <div id="programmingLanguages" style="display: none;">
           <ul class="list-items">
-            <li class="item "
-                *ngFor="let language of programmingLanguages"
-                (click)="addRemoveProgrammingLanguage(language)">
+            {% for language in programming_languages_properties %}
+              <li id="item-{{ language|lower }}" class="item programming-language-item">
               <span class="checkbox">
-                <i class="bi bi-check-lg"></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" id="check-{{ language|lower }}" style="display: none" viewBox="0 0 16 16">
+                  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"></path>
+                </svg>
               </span>
-              <span class="item-text">
-
-              </span>
-            </li>
+                <span class="item-text">
+                  {{ language }}
+                </span>
+              </li>
+            {% endfor %}
             <li class="own-property-input-list">
               <input type="text"
                      class="own-property-input"
                      id="plNew_1"
-                     placeholder="Different programming language"
-                     [ngModelOptions]="{standalone: true}"
-                     [(ngModel)]="suggestedProgrammingLanguage"
-                     (keyup.enter)="addRemoveProgrammingLanguage(suggestedProgrammingLanguage)">
-              <span (click)="addRemoveProgrammingLanguage(suggestedProgrammingLanguage)">
-                Add
-              </span>
+                     placeholder="Different programming language">
+              <span>Add</span>
             </li>
-            <div class="invalid-input" *ngIf="userModelValidator.programmingLanguage !== undefined ">
-
-            </div>
+            <div class="invalid-input"></div>
           </ul>
         </div>
         <!--
