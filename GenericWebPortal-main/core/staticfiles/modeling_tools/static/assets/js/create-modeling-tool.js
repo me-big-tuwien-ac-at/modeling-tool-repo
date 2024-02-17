@@ -438,6 +438,34 @@ for (let i = 0; i < platformListItems.length; i++) {
   });
 }
 
+/***********************************
+ ADD PROGRAMMING LANGUAGE TO USER MODELING TOOL
+************************************/
+const programmingLanguageSection = document.getElementById('programmingLanguages');
+const programmingLanguageListItems = programmingLanguageSection.children[0].children;
+for (let i = 0; i < programmingLanguageListItems.length; i++) {
+  programmingLanguageListItems[i].addEventListener('click', () => {
+    const value = programmingLanguageListItems[i].children[1].outerText;
+    if (document.getElementById(`item-${value.toLowerCase()}`) !== null) {
+      const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
+      const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
+      if (userModelingTool.programmingLanguages.includes(value)) {
+        userModelingTool.programmingLanguages = userModelingTool.programmingLanguages.filter((language) => {
+          return language !== value;
+        });
+        setSelectedProperties(programmingLanguageInput, userModelingTool.programmingLanguages);
+        checkbox.classList.remove('checked');
+        checkedIcon.style.display = 'none';
+      } else {
+        userModelingTool.programmingLanguages.push(value);
+        setSelectedProperties(programmingLanguageInput, userModelingTool.programmingLanguages);
+        checkbox.classList.add('checked');
+        checkedIcon.style.display = null;
+      }
+    }
+  });
+}
+
 function setSelectedProperties(propertySection, userProperties) {
   let techInnerHtml = ``;
   for (let j = 0; j <userProperties.length; j++) {
