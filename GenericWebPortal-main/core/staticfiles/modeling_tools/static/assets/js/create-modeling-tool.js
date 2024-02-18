@@ -25,14 +25,14 @@ userModelingTool = {
   openSource: undefined,
   technologies: [],
   webApp: undefined,
-  desktopApp: undefined,
+  desktopApp: null,
   category: "",
   modelingLanguages: [],
-  sourceCodeGeneration: undefined,
-  cloudService: undefined,
+  sourceCodeGeneration: null,
+  cloudService: null,
   license: "",
-  loginRequired: undefined,
-  realTimeCollaboration: undefined,
+  loginRequired: null,
+  realTimeCollaboration: null,
   creators: [],
   platforms: [],
   programmingLanguages: []
@@ -518,8 +518,6 @@ for (let i = 0; i < listItems.length; i++) {
 }
 
 function addModelingLanguage(value, warning, inputHolder) {
-  console.log(inputHolder);
-  console.log(inputHolder.id);
   if (value === '') {
     warning.innerHTML = "Can't specify an empty modeling language";
   } else if (modeling_languages.includes(value)) {
@@ -561,24 +559,19 @@ document.getElementById('licenseContent').addEventListener('change', (event) => 
 });
 
 function postModelingTool() {
-  // console.log(getCookie('csrftoken'));
-
-  /*
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("POST", 'http://127.0.0.1:8000/create-modeling-tool/add', true);
-  xhttp.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-  xhttp.send(JSON.stringify({
-      name: "Modeling Tool Test",
-      link: "https://www.modelingtooltest.com",
-    }));
-   */
-
   fetch(`${baseUrl}/create-modeling-tool/add`, {
     method: "POST",
+    body: JSON.stringify(userModelingTool),
+    /*
     body: JSON.stringify({
-      name: "Modeling Tool Test",
+      name: "Different Test",
       link: "https://www.modelingtooltest.com",
-    }),
+      openSource: false,
+      technology: undefined,
+      webApplication: false,
+      desktopApplication: true,
+      category: "Graphical Modeling Tool",
+    }),*/
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       "X-CSRFToken": getCookie('csrftoken')

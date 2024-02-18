@@ -3,6 +3,7 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 import re
+from ast import literal_eval
 from datetime import datetime
 
 from django import template
@@ -180,6 +181,7 @@ def pages(request):
 
 
 def modeling_tools(request):
+    print(len(ModelingTool.objects.all()))
     context = {
         'modeling_tools': ModelingTool.objects.all(),
         'technology': Technology.objects.all(),
@@ -231,11 +233,49 @@ def post_modeling_tool(request):
     body = request.body.decode('utf-8')
     name: str = __get_json_body_key_value(body, "name")
     link: str = __get_json_body_key_value(body, "link")
+    open_source: bool = __get_json_body_key_value_bool(body, "openSource")
+    technology: [str] = __get_json_body_key_value_arr(body, "technologies")
+    web_app: bool = __get_json_body_key_value_bool(body, "webApp")
+    desktop_app: bool = __get_json_body_key_value_bool(body, "desktopApp")
+    category: str = __get_json_body_key_value(body, "category")
+    modeling_languages: [str] = __get_json_body_key_value_arr(body, "modelingLanguages")
+    source_code_generation: bool = __get_json_body_key_value_bool(body, "sourceCodeGeneration")
+    cloud_service: bool = __get_json_body_key_value_bool(body, "cloudService")
+    tool_license: str = __get_json_body_key_value(body, "license")
+    log_in: str = __get_json_body_key_value(body, "logInRequired")
+    real_time_collab: str = __get_json_body_key_value(body, "realTimeCollaboration")
+    developers: str = __get_json_body_key_value(body, "developers")
+    platforms: str = __get_json_body_key_value(body, "platforms")
+    programming_languages: str = __get_json_body_key_value(body, "programmingLanguages")
+
+    print(name)
+    print(link)
+    print(open_source)
+    print(technology)
+    print(web_app)
+    print(desktop_app)
+    print(category)
+    print(modeling_languages)
+    print(source_code_generation)
+    print(cloud_service)
+    print(tool_license)
+    print(log_in)
+    print(real_time_collab)
+    print(developers)
+    print(platforms)
+    print(programming_languages)
 
     modeling_tools = ModelingTool.objects.all()
     modeling_languages = ModelingLanguage.objects.all()
     platforms = Platform.objects.all()
     programming_languages = ProgrammingLanguage.objects.all()
+
+    """
+    modeling_tool_suggestion = ModelingTool.objects.create(
+        name=__get_json_body_key_value(body, "name"),
+        link=__get_json_body_key_value(body, "link")
+    )
+    """
 
     context = {
         'modeling_tools': modeling_tools,
@@ -306,3 +346,13 @@ def __get_property_names(tool_property) -> [str]:
 def __get_json_body_key_value(body: str, key: str) -> str | None:
     re_match = re.findall(rf'"{key}":"(.*?)"', body)
     return re_match[0] if len(re_match) > 0 else None
+
+
+def __get_json_body_key_value_bool(body: str, key: str) -> bool | None:
+    re_match = re.findall(rf'"{key}":(.*?)[,}}]', body)
+    return (True if re_match[0].lower() == 'true' else False) if len(re_match) > 0 else None
+
+
+def __get_json_body_key_value_arr(body: str, key: str) -> [str]:
+    re_match = re.findall(rf'"{key}":(\[.*?\])', body)
+    return literal_eval(re_match[0]) if len(re_match) > 0 else []
