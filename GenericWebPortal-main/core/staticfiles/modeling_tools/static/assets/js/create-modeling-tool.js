@@ -1,3 +1,5 @@
+const baseUrl = "http://127.0.0.1:8000";
+
 const modeling_tool_names_raw = document.getElementById("helper").getAttribute("data-name");
 const modeling_languages_raw = document.getElementById("helper").getAttribute("data-model-name");
 const platforms_raw = document.getElementById("helper").getAttribute("data-height");
@@ -557,3 +559,51 @@ document.getElementById('categoryContent').addEventListener('change', (event) =>
 document.getElementById('licenseContent').addEventListener('change', (event) => {
   userModelingTool.license = event.target.value;
 });
+
+function postModelingTool() {
+  // console.log(getCookie('csrftoken'));
+
+  /*
+  const xhttp = new XMLHttpRequest();
+  xhttp.open("POST", 'http://127.0.0.1:8000/create-modeling-tool/add', true);
+  xhttp.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+  xhttp.send(JSON.stringify({
+      name: "Modeling Tool Test",
+      link: "https://www.modelingtooltest.com",
+    }));
+   */
+
+  fetch(`${baseUrl}/create-modeling-tool/add`, {
+    method: "POST",
+    body: JSON.stringify({
+      name: "Modeling Tool Test",
+      link: "https://www.modelingtooltest.com",
+    }),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+      "X-CSRFToken": getCookie('csrftoken')
+    }
+  }).then(data => {
+    if (data.status === 200) {
+      window.location.replace(baseUrl);
+    } else {
+      console.error("Data could not be processed");
+    }
+  });
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}

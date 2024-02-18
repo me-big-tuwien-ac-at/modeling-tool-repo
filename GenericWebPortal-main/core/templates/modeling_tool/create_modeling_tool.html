@@ -421,7 +421,7 @@
     </section>
     <section>
       <label for="remarks">Additional Information / Remarks</label>
-      <textarea id="remarks" placeholder="" [(ngModel)]="modelingToolByUser.feedback" [ngModelOptions]="{standalone: true}"></textarea>
+      <textarea id="remarks" placeholder=""></textarea>
     </section>
 
     <section>
@@ -430,8 +430,7 @@
         <div class="input-group">
           <input id="email"
                  name="email"
-                 class="form-control "
-                 [(ngModel)]="modelingToolByUser.userEmail"
+                 class="form-control"
                  required/>
         </div>
         <div class="invalid-input"
@@ -442,7 +441,7 @@
 
       <div class="content-align-center">
         <re-captcha *ngIf="!resolvedByUser" (resolved)="resolved($event)" siteKey=""></re-captcha>
-        <button *ngIf="resolvedByUser" type="button" data-dismiss="modal" class="reset-btn" onclick="submitModelingTool()">
+        <button *ngIf="resolvedByUser" type="button" data-dismiss="modal" class="reset-btn" onclick="postModelingTool()">
           Submit
         </button>
       </div>

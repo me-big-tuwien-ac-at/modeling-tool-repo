@@ -20,6 +20,7 @@ urlpatterns = [
     path('', views.modeling_tools, name='modeling_tools'),
     path('modelingtoolshome', views.modeling_tools_home, name='modeling_tools_home'),
     path('create-modeling-tool', views.create_modeling_tool, name='create_modeling_tools'),
+    path('create-modeling-tool/add', views.post_modeling_tool, name='create_modeling_tools_add'),
     path('edit-modeling-tool', views.edit_modeling_tool_no_pk, name='edit_modeling_tools_no_pk'),
     path('edit-modeling-tool/<str:pk>', views.edit_modeling_tool, name='edit_modeling_tools'),
     # Matches any html file

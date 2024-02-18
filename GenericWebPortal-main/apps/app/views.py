@@ -2,6 +2,7 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
+import re
 from datetime import datetime
 
 from django import template
@@ -222,18 +223,27 @@ def create_modeling_tool(request):
     }
 
     tools_converted = __convert_modeling_tool_query_set_to_array(ModelingTool.objects.all())
-    print(len(tools_converted))
 
-    tool_names = __get_modeling_tool_names(ModelingTool.objects.all())
-
-    return render(request, 'modeling_tool/create_modeling_tool.html',
-                  context
-                  )
+    return render(request, 'modeling_tool/create_modeling_tool.html', context)
 
 
-def create_modeling_tool_json(request):
-    tools = [{"name": "Jordan"}]
-    return JsonResponse({"tools": tools})
+def post_modeling_tool(request):
+    body = request.body.decode('utf-8')
+    name: str = __get_json_body_key_value(body, "name")
+    link: str = __get_json_body_key_value(body, "link")
+
+    modeling_tools = ModelingTool.objects.all()
+    modeling_languages = ModelingLanguage.objects.all()
+    platforms = Platform.objects.all()
+    programming_languages = ProgrammingLanguage.objects.all()
+
+    context = {
+        'modeling_tools': modeling_tools,
+        'modeling_languages': modeling_languages,
+        'platforms': platforms,
+        'programming_languages': programming_languages
+    }
+    return render(request, 'modeling_tool/modeling_tool.html', context)
 
 
 def edit_modeling_tool_no_pk(request):
@@ -291,3 +301,8 @@ def __get_property_names(tool_property) -> [str]:
     for tech in tool_property.all():
         property_names.append(tech.name)
     return property_names
+
+
+def __get_json_body_key_value(body: str, key: str) -> str | None:
+    re_match = re.findall(rf'"{key}":"(.*?)"', body)
+    return re_match[0] if len(re_match) > 0 else None
