@@ -183,6 +183,15 @@ document.addEventListener('click', function(event) {
         userModelingTool.modelingLanguages = userModelingTool.modelingLanguages.filter((tech) => {
           return tech !== value;
         });
+        userModelingTool.creators = userModelingTool.creators.filter((creator) => {
+          return creator !== value;
+        });
+        userModelingTool.platforms = userModelingTool.platforms.filter((platform) => {
+          return platform !== value;
+        });
+        userModelingTool.programmingLanguages = userModelingTool.programmingLanguages.filter((language) => {
+          return language !== value;
+        });
         multItemList[i].remove();
         const checkboxArea = document.getElementById(`item-${value.toLowerCase()}`);
 
@@ -386,6 +395,7 @@ const programmingLanguageInput = document.getElementById('programming-language-i
 
 for (let i = 0; i < modelingLanguageListItems.length; i++) {
   modelingLanguageListItems[i].addEventListener('click', () => {
+    console.log("HERE");
     const value = modelingLanguageListItems[i].children[1].outerText;
     if (document.getElementById(`item-${value.toLowerCase()}`) !== null) {
       const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
@@ -410,6 +420,37 @@ for (let i = 0; i < modelingLanguageListItems.length; i++) {
 /***********************************
  ADD DEVELOPER TO USER MODELING TOOL
 ************************************/
+const developerInput = document.getElementById('creators-input');
+const developerSection = document.getElementById('creator');
+const developerListItems = developerSection.children[0];
+
+/*
+for (let i = 0; i < developerListItems.length; i++) {
+  developerListItems[i].addEventListener('click', () => {
+    console.log("WITHIN THE FOR LOOP");
+    const value = developerListItems[i].children[1].outerText;
+    if (document.getElementById(`item-${value.toLowerCase()}`) !== null) {
+      const checkbox = document.getElementById(`item-${value.toLowerCase()}`).children[0];
+      const checkedIcon = document.getElementById(`check-${value.toLowerCase()}`);
+      if (userModelingTool.creators.includes(value)) {
+        userModelingTool.creators = userModelingTool.creators.filter((creator) => {
+          return creator !== value;
+        });
+        setSelectedProperties(developerInput, userModelingTool.creators);
+        checkbox.classList.remove('checked');
+        checkedIcon.style.display = 'none';
+      } else {
+        console.log("HERE, ADDING CREATOR");
+        console.log(value);
+        userModelingTool.creators.push(value);
+        setSelectedProperties(developerInput, userModelingTool.creators);
+        checkbox.classList.add('checked');
+        checkedIcon.style.display = null;
+      }
+    }
+  });
+}
+ */
 
 /***********************************
  ADD PLATFORM TO USER MODELING TOOL
@@ -498,7 +539,38 @@ for (let i = 0; i < listItems.length; i++) {
     addButton.addEventListener('click', () => {
       const value = inputHolder.value.trim();
       const warning = listItems[i].getElementsByClassName('invalid-input')[0];
-      addModelingLanguage(value, warning, inputHolder);
+      const inputParentId = listItems[i].parentElement.id;
+      if (inputParentId === 'modelingLanguagesSuggestion') {
+        addModelingLanguage(
+            value,
+            warning,
+            inputHolder,
+            'Modeling Language',
+            'modelingLanguages',
+            modelingLanguageInput,
+            modeling_languages
+        );
+      } else if (inputParentId === 'creator') {
+        addModelingLanguage(
+            value,
+            warning,
+            inputHolder,
+            'Developer',
+            'creators',
+            developerInput,
+            []
+        );
+      } else if (inputParentId === 'editPlatforms') {
+        addModelingLanguage(
+            value,
+            warning,
+            inputHolder,
+            'Platforms',
+            'platforms',
+            platformInput,
+            platforms
+        );
+      }
     });
   }
 }
@@ -511,25 +583,56 @@ for (let i = 0; i < listItems.length; i++) {
       if (event.key === 'Enter') {
         const value = enterSection.value;
         const warning = listItems[i].getElementsByClassName('invalid-input')[0];
-        addModelingLanguage(value, warning, enterSection);
+        const inputParentId = listItems[i].parentElement.id;
+        if (inputParentId === 'modelingLanguagesSuggestion') {
+          addModelingLanguage(
+              value,
+              warning,
+              enterSection,
+              'Modeling Language',
+              'modelingLanguages',
+              modelingLanguageInput,
+              modeling_languages
+          );
+        } else if (inputParentId === 'creator') {
+        addModelingLanguage(
+            value,
+            warning,
+            enterSection,
+            'Developer',
+            'creators',
+            developerInput,
+            []
+        );
+        } else if (inputParentId === 'editPlatforms') {
+          addModelingLanguage(
+              value,
+              warning,
+              enterSection,
+              'Platforms',
+              'platforms',
+              platformInput,
+              platforms
+        );
+        }
       }
     });
   }
 }
 
-function addModelingLanguage(value, warning, inputHolder) {
+function addModelingLanguage(value, warning, inputHolder, sectionTitle, userModelingToolProperty, inputSection, dbProperties) {
   if (value === '') {
-    warning.innerHTML = "Can't specify an empty modeling language";
-  } else if (modeling_languages.includes(value)) {
-    warning.innerHTML = "Please provide a modeling language not contained in the list yet";
+    warning.innerHTML = `Can't specify an empty ${sectionTitle}`;
+  } else if (dbProperties.includes(value)) {
+    warning.innerHTML = `Please provide a ${sectionTitle} not contained in the list yet`;
   } else {
     const indexOf = (arr, q) => arr.findIndex(item => q.toLowerCase() === item.toLowerCase());
-    const duplicateCheck = indexOf(userModelingTool.modelingLanguages, value);
+    const duplicateCheck = indexOf(userModelingTool[userModelingToolProperty], value);
     if (duplicateCheck > -1) {
-      warning.innerHTML = `Modeling Language "${value}" is already stored in the list`;
+      warning.innerHTML = `${sectionTitle} "${value}" is already stored in the list`;
     } else {
-      userModelingTool.modelingLanguages.push(value);
-      setSelectedProperties(modelingLanguageInput, userModelingTool.modelingLanguages);
+      userModelingTool[userModelingToolProperty].push(value);
+      setSelectedProperties(inputSection, userModelingTool[userModelingToolProperty]);
       inputHolder.value = '';
       warning.innerHTML = '';
     }
