@@ -242,9 +242,11 @@ def post_modeling_tool(request):
     tool_license: str = __get_json_body_key_value(body, "license")
     log_in: bool = __get_json_body_key_value_bool(body, "loginRequired")
     real_time_collab: bool = __get_json_body_key_value_bool(body, "realTimeCollaboration")
-    developers: [str] = __get_json_body_key_value_arr(body, "developers")
+    developers: [str] = __get_json_body_key_value_arr(body, "creators")
     platforms: [str] = __get_json_body_key_value_arr(body, "platforms")
     programming_languages: [str] = __get_json_body_key_value_arr(body, "programmingLanguages")
+    remarks: str = __get_json_body_key_value(body, "remarks")
+
 
     print(name)
     print(link)
@@ -262,6 +264,7 @@ def post_modeling_tool(request):
     print(developers)
     print(platforms)
     print(programming_languages)
+    print(remarks)
 
     modeling_tools = ModelingTool.objects.all()
     modeling_languages = ModelingLanguage.objects.all()

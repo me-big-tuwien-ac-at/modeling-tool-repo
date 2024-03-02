@@ -27,4 +27,6 @@
 | 11.02.2024 | 19:30 - 23:00 | [Create Modeling Tool] Possibility to add list properties continuation                     |          |                 |
 | 12.02.2024 | 00:00 - 01:30 | [Create Modeling Tool] Possibility to add list properties continuation                     |          |                 |
 | 12.02.2024 | 02:00 - 03:30 | [Create Modeling Tool] Possibility to add list properties continuation                     |          |                 |
+| 25.02.2024 | 16:30 - 17:30 | [Create Modeling Tool] Add a developer                                                     |          |                 |
+| 02.03.2024 | 15:30 - 17:40 | [Create Modeling Tool] Modeling Tool validation                                            |          |                 |
 
