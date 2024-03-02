@@ -8,7 +8,7 @@ def modeling_tool_validation(
         technologies: [str],
         category: str,
         modeling_languages: [ModelingLanguage],
-        tool_license: License,
+        tool_license: str,
         developers: [Creator],
         platforms: [Platform],
         programming_languages: [ProgrammingLanguage],
@@ -35,7 +35,7 @@ def modeling_tool_validation(
     db_categories = Category.choices
     found_matching_category: bool = False
     for category_name in db_categories:
-        if category_name[1].lower() == category:
+        if category_name[1].lower() == category.lower():
             found_matching_category = True
             break
     if not found_matching_category:
@@ -50,7 +50,7 @@ def modeling_tool_validation(
     db_licenses = License.choices
     found_matching_license: bool = False
     for license_name in db_licenses:
-        if license_name[1].lower() == tool_license:
+        if license_name[1].lower() == tool_license.lower():
             found_matching_license = True
             break
     if not found_matching_license:
